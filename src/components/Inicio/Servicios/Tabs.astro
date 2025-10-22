@@ -1,0 +1,153 @@
+---
+const { tabs = [], active = tabs[0]?.id } = Astro.props;
+---
+
+<section class="tabs" data-tabs>
+  <div class="overflow-x-auto w-full scroller">
+    <div role="tablist" aria-label="Servicios" class="tab-list">
+      {tabs.map((t) => (
+        <button
+          role="tab"
+          id={`tab-${t.id}`}
+          class="tab text-sm md:text-base"
+          aria-selected={t.id === active ? 'true' : 'false'}
+          aria-controls={`panel-${t.id}`}
+          tabindex={t.id === active ? '0' : '-1'}
+          data-tab={t.id}
+        >
+          {t.label}
+        </button>
+      ))}
+      <span class="indicator" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  {tabs.map((t) => (
+    <div
+      role="tabpanel"
+      id={`panel-${t.id}`}
+      aria-labelledby={`tab-${t.id}`}
+      hidden={t.id !== active}
+      class="tab-panel"
+      data-panel={t.id}
+    >
+      {t.id === 'it' && <slot name="it" />}
+      {t.id === 'gestion' && <slot name="gestion" />}
+      {t.id === 'estrategias' && <slot name="estrategias" />}
+    </div>
+  ))}
+</section>
+
+<style>
+  .tab-list {
+    display: flex;
+    gap: .6rem;
+    align-items: center;
+    justify-content: center;
+    padding: .4rem;
+    width: max-content;
+    border-radius: 999px;
+    background: #0f1220;
+    position: relative;
+    margin: 0 auto; 
+     overflow-x: auto;
+     
+   }
+
+   .scroller{
+    scrollbar-width: none; 
+   }
+
+   .scroller::-webkit-scrollbar {
+     display: none;
+  }
+  .tab {
+    appearance: none;
+    background: transparent;
+    color: #bcd;
+    border: 1px solid #3452EB;
+    border-radius: 999px;
+    padding: .7rem 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  .tab[aria-selected="true"] {
+    color: #fff;
+  }
+  .indicator {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    height: 100%;
+    border-radius: 999px;
+    background: #3f5bf6;
+    width: 0;
+    transition: transform .25s cubic-bezier(.4,1,.4,1), width .25s cubic-bezier(.4,1,.4,1);
+    z-index: 0;
+  }
+  .tab-panel {
+    margin-top: 1rem;
+  }
+  .tabs [hidden] {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-tabs]');
+    if (!root) return;
+
+    const list = root.querySelector('[role="tablist"]');
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+    const ind = root.querySelector('.indicator');
+
+    function moveIndicatorTo(tab){
+      const rList = list.getBoundingClientRect();
+      const r = tab.getBoundingClientRect();
+      ind.style.height = tab.offsetHeight + 'px';
+      ind.style.width = r.width + 'px';
+      ind.style.transform = `translateX(${r.left - rList.left}px)`;
+    }
+
+    function setActive(id) {
+      tabs.forEach((t) => {
+        const selected = t.dataset.tab === id;
+        t.setAttribute("aria-selected", selected);
+        t.tabIndex = selected ? 0 : -1;
+        const panel = root.querySelector(`[data-panel="${t.dataset.tab}"]`);
+        if (panel) panel.toggleAttribute("hidden", !selected);
+      });
+
+      const shown = root.querySelector(`[data-panel="${id}"]`);
+      if (shown && window.gsap) {
+        window.gsap.fromTo(
+          shown,
+          { opacity: 0, x: -200 },
+          { opacity: 1, x: 0, duration: 0.25, ease: "power1.out" }
+        );
+      }
+
+      const activeTab = tabs.find((t) => t.dataset.tab === id);
+      if (activeTab) moveIndicatorTo(activeTab);
+    }
+
+    tabs.forEach((t) => {
+      t.addEventListener("click", () => setActive(t.dataset.tab));
+    });
+
+    const current = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
+    if (current) {
+      requestAnimationFrame(() => moveIndicatorTo(tabs.find(t=>t.dataset.tab===current)));
+      addEventListener('resize', () => {
+        const activeTab = tabs.find(t=>t.getAttribute('aria-selected')==='true');
+        if (activeTab) moveIndicatorTo(activeTab);
+      }, { passive:true });
+    }
+
+  })();
+</script>
+

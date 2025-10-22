@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  titulo: string;
+  descripcionCorta: string;
+  urlImg: string;
+  esUnica?: boolean;
+}
+
+const { titulo, descripcionCorta, urlImg, esUnica } = Astro.props;
+---
+
+<div class={`bg-[#100D23] p-5 rounded-2xl flex flex-col gap-2 ${esUnica ? 'lg:w-1/2' : ''}`}> 
+  <h3 class="text-lg sm:text-[22px]">{titulo}</h3>
+  <p class="mb-2 text-xs sm:text-base">{descripcionCorta}</p>
+  <div class="w-full mt-auto flex justify-center items-center rounded-xl bg-[#1E1C2C] py-8">
+  <Image
+    src=`/${urlImg}.png`
+    alt=`Icono de ${titulo}`
+    width={125} 
+    height={125}
+    class="object-contain w-20 h-auto"
+    loading="eager"
+    decoding="async"
+    format="webp"
+  />
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<section id="hero-banner" class="h-svh w-full bg-[url(/bg-hero.png)] bg-top-right bg-size-[45%] bg-no-repeat">
+    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2">
+        <h1 class="text-5xl">Soluciones Informáticas Integrales para tu Empresa</h1>
+        <p class="text-xl max-w-[600px]">Acompañamos a las PyMEs con soluciones tecnológicas que hacen crecer su negocio.</p>
+        <div class="flex gap-4 mt-8">
+            <a href="" class="bg-acento hover:bg-acentoHover px-8 py-2 rounded-full text-lg">Hablemos</a>
+            <a href="" class="border border-white hover:bg-white hover:text-black px-8 py-2 rounded-full text-lg">Explora más</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    #hero-banner::before{
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(ellipse at 0% 80%, transparent 70%, #07304A 120%),radial-gradient(ellipse at 0% 30%, #07304A 0%, transparent 40%);
+    }
+</style>

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-acento: #3452EB;
+  --color-acentoHover: #2c47cc;
+  --color-hover: #E5E5E5;
+}
+
+@font-face {
+  font-family: 'GuarujaGrotesk';
+  src: url('/src/assets/fonts/GuarujaGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grandis';
+  src: url('/src/assets/fonts/Grandis-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-title {
+  font-family: "GuarujaGrotesk", sans-serif;
+  -webkit-text-stroke: 0.3px;
+}
+
+.font-body {
+  font-family: "Grandis", sans-serif;
+}
+
+
+html {
+  font-family: 'Grandis', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+.contenedor{
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'GuarujaGrotesk', sans-serif;
+  -webkit-text-stroke: 0.5px;
+}
+
+p, li, span, a, button, input, textarea {
+  font-family: 'Grandis', sans-serif;
+}
+
+a, svg, path{
+  transition: all .3s ease-in-out;
+}
+

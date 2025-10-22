@@ -1,0 +1,339 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/prodrive-logo.png";
+---
+
+
+<div
+  id="overlay"
+  class="fixed top-0 left-0 w-screen h-screen bg-black/50 opacity-0 transition-all duration-300 ease-in-out pointer-events-none z-40 block lg:hidden"
+>
+</div>
+<header id="nav-menu" class="w-full h-[70px] z-50 fixed transition-colors duration-300 bg-transparent">
+  <nav
+    class="contenedor flex w-full h-full items-center gap-14 justify-center lg:justify-start relative"
+  >
+    <div id="navigation" class="absolute right-[20px] flex lg:hidden">
+      <input
+        type="checkbox"
+        id="hamburger-toggle"
+        aria-label="hamburger"
+        aria-controls="menu"
+        aria-expanded="false"
+      />
+      <label for="hamburger-toggle" id="hamburger" aria-hidden="true">
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+      </label>
+    </div>
+    <a href="/#" aria-label="Ir a Inicio">
+       <Image
+        src={logo}
+        alt="ProDrive"
+        width={140}
+        height={50}
+        loading="eager"
+        decoding="async"
+        format="webp"
+      />
+    </a>
+    <ul
+      id="lista"
+      class="fixed lista bg-[#0f1030] lg:justify-end lg:bg-transparent lg:relative top-[70px] lg:top-0 p-10 lg:p-0 right-0 w-80 flex flex-col lg:flex-row lg:gap-10 lg:w-full h-svh lg:h-full lg:items-center text-lg lg:text-base -z-10 lg:z-10 max-[1024px]:overflow-y-auto"
+    >
+      <li class="max-[1024px]:w-full max-[1024px]:flex">
+        <a
+          href=""
+          class="hover:text-hover font-medium transition-all duration-300 ease-in-out max-[1024px]:py-6 max-[1024px]:w-full"
+          >Inicio</a
+        >
+      </li>
+      <li
+        class="group max-[1024px]:w-full max-[1024px]:flex max-[1024px]:flex-col"
+      >
+        <input type="checkbox" id="dropdown-toggle" class="hidden absolute" />
+        <label
+          for="dropdown-toggle"
+          class="group-hover:text-hover font-medium transition-all py-2 duration-300 ease-in-out cursor-pointer flex justify-between lg:justify-normal items-center gap-2 max-[1024px]:py-6 max-[1024px]:w-full"
+          >Servicios
+          <svg
+            viewBox="0 0 16 10"
+            fill="none"
+            id="dd-arrow"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 lg:w-3 h-auto fill-white group-hover:fill-hover transition-all duration-300 ease-in-out"
+          >
+            <path
+              d="M14.3227 0.860652L15.5594 2.09849L8.81957 8.84065C8.71157 8.94933 8.58315 9.03558 8.44169 9.09444C8.30023 9.15329 8.14853 9.18359 7.99532 9.18359C7.8421 9.18359 7.6904 9.15329 7.54894 9.09444C7.40749 9.03558 7.27906 8.94933 7.17107 8.84065L0.427734 2.09849L1.6644 0.861818L7.99357 7.18982L14.3227 0.860652Z"
+            ></path>
+          </svg>
+        </label>
+        <ul
+          id="dropdown-list"
+          class="lg:absolute h-0 lg:h-max overflow-hidden lg:opacity-0 lg:-z-10 lg:pointer-events-none lg:bg-[#111338] lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto transition-all duration-300 ease-in-out lg:p-6 flex flex-col lg:gap-6 lg:-ml-5 px-4 text-sm sm:text-base"
+        >
+          <li class="py-8 lg:py-0">
+            <a
+              href=""
+             
+              class="hover:text-hover font-medium transition-all duration-300 ease-in-out"
+              >Consultoría Integral en IT</a
+            >
+          </li>
+          <li class="py-8 lg:py-0">
+            <a
+              href=""
+             
+              class="hover:text-hover font-medium transition-all duration-300 ease-in-out"
+              >Consultoría en Gestión</a
+            >
+          </li>
+          <li class="py-8 lg:py-0">
+            <a
+              href=""
+             
+              class="hover:text-hover font-medium transition-all duration-300 ease-in-out"
+              >Desarrollo de estrategias</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="max-[1024px]:w-full max-[1024px]:flex">
+        <a
+          href=""
+          class="hover:text-hover font-medium transition-all duration-300 ease-in-out max-[1024px]:py-6 max-[1024px]:w-full"
+          >Quienes Somos</a
+        >
+      </li>
+      <li class="max-[1024px]:w-full max-[1024px]:flex">
+        <a
+          href=""
+          class="hover:text-hover font-medium transition-all duration-300 ease-in-out max-[1024px]:py-6 max-[1024px]:w-full"
+          >Contacto</a
+        >
+      </li>
+      <li class="max-[1024px]:w-full max-[1024px]:flex">
+        <a
+          href=""
+          class="bg-acento hover:bg-acentoHover px-8 text-center mt-8 lg:mt-0 py-2 rounded-full max-[1024px]:w-full"
+          >Soporte</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .bg-header {
+    background-color: #0f1030 !important;
+  }
+  .bg-transparent {
+    background-color: rgba(8,28,52,0) !important;
+  }
+  #menu {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+  }
+  #hamburger-toggle {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+
+
+  }
+  #hamburger {
+    display: block;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: clamp(16px, 10vmin, 32px);
+    height: clamp(16px, 10vmin, 32px);
+    box-sizing: content-box;
+    transition: transform 0.2s ease;
+  }
+  #hamburger .slice {
+    --slice-height: 2px;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: var(--slice-height, 2px);
+    border-radius: var(--slice-height);
+    transition: all 0.2s ease;
+    background-color: #f8f8f8;
+    opacity: 90%;
+  }
+  #hamburger .slice {
+    margin-top: 22%;
+    margin-top: calc(33% - var(--slice-height));
+    top: calc((33% - var(--slice-height)) / -2);
+  }
+
+  #hamburger-toggle:checked ~ #menu {
+    visibility: visible;
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  #hamburger-toggle:checked ~ #hamburger .slice:nth-child(1) {
+    top: calc(50% - 33% + var(--slice-height) / 2);
+    transform: rotate(45deg);
+  }
+  #hamburger-toggle:checked ~ #hamburger .slice:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburger-toggle:checked ~ #hamburger .slice:nth-child(3) {
+    top: calc(-50% + var(--slice-height) / 2);
+    transform: rotate(-45deg);
+  }
+
+  #lang-toggle {
+    background-size: 0.9rem;
+  }
+
+  @media (width < 1024px) {
+    .lista {
+      transform: translateX(320px);
+      transition: transform 0.3s ease-in-out;
+    }
+    .open {
+      transform: translateX(0);
+    }
+  }
+</style>
+
+<script>
+    const nav = document.getElementById("navigation");
+    const hamburger = document.getElementById("hamburger-toggle") as HTMLInputElement | null;
+    const header = document.getElementById("nav-menu");
+
+    let lastState = "top";
+    function setHeaderBg() {
+      if (!header) return;
+      const isTop = window.scrollY === 0;
+      const isMobile = window.innerWidth < 1024;
+      const isMenuOpen = hamburger && hamburger.checked;
+      let newState = "top";
+      if (isMobile && isMenuOpen) {
+        newState = "menu";
+      } else if (!isTop) {
+        newState = "scrolled";
+      }
+      if (newState === lastState) return;
+      header.classList.remove("bg-transparent", "bg-header");
+      if (newState === "menu" || newState === "scrolled") {
+        header.classList.add("bg-header");
+      } else {
+        header.classList.add("bg-transparent");
+      }
+      lastState = newState;
+    }
+
+    if (nav && hamburger && header && !nav.dataset.bound) {
+      nav.dataset.bound = "1";
+
+      const updateHamburgerARIA = () => {
+        const menu = document.getElementById("menu");
+        if (!menu || !hamburger) return;
+        menu.setAttribute("aria-hidden", !hamburger.checked ? "true" : "false");
+        hamburger.setAttribute("aria-expanded", hamburger.checked ? "true" : "false");
+        setHeaderBg();
+      };
+
+      hamburger.addEventListener("change", updateHamburgerARIA);
+
+      
+      window.addEventListener("scroll", setHeaderBg);
+      window.addEventListener("resize", setHeaderBg);
+
+      const overlay = document.getElementById("overlay");
+      const abrirMenu = () => {
+        const lista = document.getElementById("lista");
+        if (!lista || !overlay) return;
+        lista.classList.toggle("open");
+        overlay.classList.toggle("opacity-0");
+        overlay.classList.toggle("opacity-50");
+        overlay.classList.toggle("pointer-events-none");
+        document.body.classList.toggle("overflow-y-hidden");
+        setHeaderBg();
+      };
+
+      if (overlay) {
+        overlay.addEventListener("click", () => {
+          if (hamburger) hamburger.checked = false;
+          abrirMenu();
+        });
+      }
+
+      const anchors = document.querySelectorAll("#lista a");
+      anchors.forEach((a) =>
+        a.addEventListener("click", () => {
+          if (window.innerWidth < 1024 && hamburger) {
+            hamburger.checked = false;
+            abrirMenu();
+          }
+        })
+      );
+
+      hamburger.addEventListener("change", abrirMenu);
+
+
+      setHeaderBg();
+    }
+</script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdown = document.getElementById("dropdown-toggle");
+    const listaDd = document.getElementById("dropdown-list");
+    const ddArrow = document.getElementById("dd-arrow");
+    if (!dropdown || !listaDd || !ddArrow) return;
+
+    dropdown.addEventListener("change", () => {
+      if (window.innerWidth < 1024) {
+        const abierto = dropdown.checked;
+        if (typeof gsap !== "undefined") {
+          if (abierto) {
+            listaDd.classList.remove("h-0");
+            listaDd.classList.add("overflow-hidden");
+            listaDd.style.height = "0px";
+            listaDd.style.opacity = "0";
+            listaDd.style.display = "flex";
+            listaDd.style.height = "auto";
+            const realHeight = listaDd.scrollHeight;
+            listaDd.style.height = "0px";
+            gsap.to(listaDd, {
+              height: realHeight,
+              opacity: 1,
+              duration: 0.22,
+              ease: "power1.out",
+              onComplete: () => {
+                listaDd.style.height = "auto";
+                listaDd.classList.remove("overflow-hidden");
+              }
+            });
+            ddArrow.classList.add("rotate-180");
+          } else {
+            const currentHeight = listaDd.scrollHeight;
+            listaDd.style.height = currentHeight + "px";
+            listaDd.classList.add("overflow-hidden");
+            gsap.to(listaDd, {
+              height: 0,
+              opacity: 0,
+              duration: 0.18,
+              ease: "power1.in",
+              onComplete: () => {
+                listaDd.classList.add("h-0");
+                listaDd.style.height = "";
+                listaDd.style.display = "";
+                listaDd.classList.remove("overflow-hidden");
+              }
+            });
+            ddArrow.classList.remove("rotate-180");
+          }
+        }
+      }
+    });
+  });
+</script>
+

@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/prodrive-logo.png";
+
+import Email from "./FooterIcons/Email.astro"
+import Telefono from "./FooterIcons/Telefono.astro"
+import Ubicacion from "./FooterIcons/Ubicacion.astro"
+import WhatsApp from "./FooterIcons/WhatsApp.astro"
+
+import Instagram from "./FooterIcons/Instagram.astro"
+import YouTube from "./FooterIcons/YouTube.astro"
+import TikTok from "./FooterIcons/TikTok.astro"
+
+---
+
+<footer class="py-24">
+  <div class="contenedor flex flex-col sm:grid sm:grid-cols-2 sm:grid-rows-[auto_auto] lg:flex lg:flex-row gap-20 lg:gap-40">
+    <div class="flex flex-col gap-4 w-full">
+      <Image
+        src={logo}
+        alt="ProDrive"
+        width={280}
+        height={100}
+        loading="eager"
+        decoding="async"
+        format="webp"
+      />
+      <p>
+        Empresa dedicada a la mejora continua de su negocio, generando buenas
+        prácticas y mejoras en tecnología.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4 w-full lg:max-w-[250px]">
+      <span class="font-title">Navegación</span>
+      <ul class="flex flex-col gap-4">
+        <li><a href="" class="hover:text-hover">Inicio</a></li>
+        <li><a href="" class="hover:text-hover">Servicios</a></li>
+        <li><a href="" class="hover:text-hover">Quienes Somos</a></li>
+        <li><a href="" class="hover:text-hover">Contacto</a></li>
+        <li><a href="" class="hover:text-hover">Soporte</a></li>
+      </ul>
+    </div>
+    <div class="flex flex-col sm:col-span-2 sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-20 lg:gap-8 w-full lg:max-w-[800px]">
+      <div class="flex flex-col gap-4">
+        <span class="font-title">Contacto</span>
+        <ul class="flex flex-col gap-4">
+          <li><a href="" class="flex gap-2 items-center group hover:text-hover w-max"><Email />soporte@prodrive.com.ar</a></li>
+          <li><a href="" class="flex gap-2 items-center group hover:text-hover w-max"><Telefono />2197-3871</a></li>
+          <li><a href="" class="flex gap-2 items-center group hover:text-hover w-max"><WhatsApp/>+54 9 11 21715162</a></li>
+          <li><a href="" class="flex gap-2 items-center group hover:text-hover w-max"><Ubicacion/>Vicente Lopez, Zona Norte, Gran Buenos Aires</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-4">
+        <span class="font-title">Redes Sociales</span>
+        <ul class="flex w-full gap-3">
+          <li><a href="" class="flex p-2 text-white hover:text-black hover:bg-white border-2 border-white rounded-full"><Instagram/></a></li>
+          <li><a href="" class="flex p-2 text-white hover:text-black hover:bg-white border-2 border-white rounded-full"><YouTube/></a></li>
+          <li><a href="" class="flex p-2 group hover:bg-white border-2 border-white rounded-full"><TikTok/></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-[1500px] px-5 mx-auto flex flex-col items-end mt-12">
+    <p class="text-sm">Copyright 2025 © ProDrive</p>
+    <p class="text-sm">Desarrollado por <a href="https://damianparrilli.com/" target="_blank" class="text-[#9aa9f7] hover:text-[#8c9be2]">Damián Parrilli</a></p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: linear-gradient(180deg, #0f1030 0%, #13153b 82%);
+  }
+
+  span {
+    font-size: 1.3rem;
+  }
+</style>
