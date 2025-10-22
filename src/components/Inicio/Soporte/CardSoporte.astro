@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  urlImg?: string;
+  titulo: string;
+  descripcion: string;
+  linkDescarga?: string;
+  linkAnchor: string;
+  descargar?: string;
+  ticket?: boolean;
+}
+
+const {
+  titulo,
+  descripcion,
+  urlImg,
+  descargar,
+  ticket,
+  linkDescarga,
+  linkAnchor,
+} = Astro.props;
+---
+
+<div
+  class="flex flex-col bg-[#28243C] max-md:max-w-[600px] w-full md:w-1/2 text-left py-8 px-6 md:px-8 rounded-4xl gap-3"
+>
+  {
+    urlImg ? (
+      <Image
+        src={`/${urlImg}.png`}
+        alt={`Logo de ${titulo}`}
+        width={200}
+        height={200}
+        class={`object-contain w-max ${urlImg === "anydesk" ? "h-7" : "h-10"}`}
+        loading="eager"
+        loading="eager"
+        decoding="async"
+        format="webp"
+      />
+    ) : (
+      ""
+    )
+  }
+
+<div class="flex items-center gap-3">
+    {ticket && <Image
+        src={`/salvavidas.png`}
+        alt={`Logo de ${titulo}`}
+        width={200}
+        height={200}
+        class={`object-contain w-max ${urlImg === "anydesk" ? "h-7" : "h-10"}`}
+        loading="eager"
+        loading="eager"
+        decoding="async"
+        format="webp"
+      />}
+    <h3 class="text-2xl"> {titulo}</h3>
+</div>
+  
+  <p class="mb-4 text-sm md:text-base">{descripcion}</p>
+  <div
+    class={ticket
+      ? "flex justify-end mt-auto"
+      : "flex justify-between items-center mt-auto"}
+  >
+    {
+      !ticket ? (
+        <a href={linkDescarga} class="hover:text-hover text-sm md:text-base">
+          Descargar {descargar}
+        </a>
+      ) : (
+        ""
+      )
+    }
+    <a
+      href={linkAnchor}
+      class="bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full"
+      >{ticket ? "Solicitar ticket" : "Acceder"}</a
+    >
+  </div>
+</div>

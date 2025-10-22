@@ -1,0 +1,22 @@
+---
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  icono: any;
+}
+
+const { titulo, descripcion, icono: Icono } = Astro.props;
+---
+
+<div
+  class="flex bg-[#28243C] max-md:max-w-[500px] w-full md:w-1/2 text-left p-7 rounded-4xl gap-4 items-center"
+>
+  <div class="rounded-full bg-white p-4">
+    <Icono />
+  </div>
+  <div class="flex flex-col justify-center h-full gap-1">
+    <h4 class="text-xl">{titulo}</h4>
+    <p class="text-sm md:text-base">{descripcion}</p>
+  </div>
+</div>

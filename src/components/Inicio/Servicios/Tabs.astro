@@ -1,5 +1,9 @@
 ---
-const { tabs = [], active = tabs[0]?.id } = Astro.props;
+interface Tab {
+  id: string;
+  label: string;
+}
+const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active?: string };
 ---
 
 <section class="tabs" data-tabs>
@@ -64,7 +68,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props;
   .tab {
     appearance: none;
     background: transparent;
-    color: #bcd;
+    color: rgb(206, 206, 206);
     border: 1px solid #3452EB;
     border-radius: 999px;
     padding: .7rem 1.2rem;
@@ -72,6 +76,10 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props;
     cursor: pointer;
     position: relative;
     z-index: 1;
+    transition: all .3s ease-in-out;
+  }
+  .tab:hover{
+    background-color: #2c47cc60;
   }
   .tab[aria-selected="true"] {
     color: #fff;
@@ -104,6 +112,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props;
     const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
     const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
     const ind = root.querySelector('.indicator');
+    const scroller = root.querySelector('.scroller');
 
     function moveIndicatorTo(tab){
       const rList = list.getBoundingClientRect();
@@ -111,6 +120,26 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props;
       ind.style.height = tab.offsetHeight + 'px';
       ind.style.width = r.width + 'px';
       ind.style.transform = `translateX(${r.left - rList.left}px)`;
+    }
+
+    function scrollTabIntoView(tabIdx) {
+      if (!scroller) return;
+      const tab = tabs[tabIdx];
+      if (!tab) return;
+      if (window.innerWidth >= 768) return;
+      let targetLeft = 0;
+      if (tabIdx === 0) {
+        targetLeft = 0;
+      } else if (tabIdx === tabs.length - 1) {
+        targetLeft = scroller.scrollWidth - scroller.offsetWidth;
+      } else {
+        targetLeft = tab.offsetLeft + tab.offsetWidth / 2 - scroller.offsetWidth / 2;
+      }
+      if (window.gsap) {
+        window.gsap.to(scroller, { scrollLeft: targetLeft, duration: 0.5, ease: "power2.out" });
+      } else {
+        scroller.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      }
     }
 
     function setActive(id) {
@@ -133,6 +162,9 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props;
 
       const activeTab = tabs.find((t) => t.dataset.tab === id);
       if (activeTab) moveIndicatorTo(activeTab);
+
+      const tabIdx = tabs.findIndex(t => t.dataset.tab === id);
+      scrollTabIntoView(tabIdx);
     }
 
     tabs.forEach((t) => {
@@ -140,12 +172,22 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props;
     });
 
     const current = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
+    function updateIndicator() {
+      const activeTab = tabs.find(t=>t.dataset.tab===current);
+      if (activeTab) moveIndicatorTo(activeTab);
+    }
     if (current) {
-      requestAnimationFrame(() => moveIndicatorTo(tabs.find(t=>t.dataset.tab===current)));
-      addEventListener('resize', () => {
-        const activeTab = tabs.find(t=>t.getAttribute('aria-selected')==='true');
-        if (activeTab) moveIndicatorTo(activeTab);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(updateIndicator);
+      });
+      window.addEventListener('load', updateIndicator);
+      window.addEventListener('resize', () => {
+        updateIndicator();
       }, { passive:true });
+      const imgs = root.querySelectorAll('.tab-panel img');
+      imgs.forEach(img => {
+        img.addEventListener('load', updateIndicator);
+      });
     }
 
   })();

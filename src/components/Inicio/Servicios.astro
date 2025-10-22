@@ -3,59 +3,117 @@ import Tabs from "./Servicios/Tabs.astro";
 import Card from "./Servicios/Card.astro";
 ---
 
-<section class="servicios-section overflow-x-hidden py-24 text-center bg-[url(/bg-services.png)] bg-center bg-no-repeat bg-cover">
-    <div class="contenedor">
-  <h2 class="text-[42px] font-title">¿Qué ofrecemos?</h2>
-  <p class="mb-12 text-lg max-w-3xl mx-auto">
-    Realizamos soluciones integrales para empresas que necesitan resolver problemas complejos
-    dentro de su circuito tanto de gestión como de tecnología.
-  </p>
+<section
+  class="servicios-section overflow-x-hidden py-24 text-center bg-[url(/bg-services.png)] bg-center bg-no-repeat bg-cover"
+>
+  <div class="contenedor">
+    <h2 class="text-3xl md:text-[42px] font-title">¿Qué ofrecemos?</h2>
+    <p class="mb-12 text-base md:text-lg max-w-3xl mx-auto">
+      Realizamos soluciones integrales para empresas que necesitan resolver
+      problemas complejos dentro de su circuito tanto de gestión como de
+      tecnología.
+    </p>
 
-  <Tabs
-    client:load
-    tabs={[
-      { id: 'it', label: 'Consultoría Integral en IT' },
-      { id: 'gestion', label: 'Consultoría en Gestión' },
-      { id: 'estrategias', label: 'Desarrollo de Estrategias' },
-    ]}
-  >
-    <div slot="it" class="text-left">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-        <Card titulo="Administración de Infraestructura" descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Soporte Técnico" descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología." urlImg="administracion-de-infraestructura"/>
+    <Tabs
+      client:load
+      tabs={[
+        { id: "it", label: "Consultoría Integral en IT" },
+        { id: "gestion", label: "Consultoría en Gestión" },
+        { id: "estrategias", label: "Desarrollo de Estrategias" },
+      ]}
+    >
+      <div slot="it" class="text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+          <Card
+            titulo="Administración de Infraestructura"
+            descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+            urlImg="administracion-de-infraestructura"
+          />
+          <Card
+            titulo="Soporte Técnico"
+            descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+            urlImg="soporte-tecnico"
+          />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 md:mt-6">
+          <Card
+            titulo="Seguridad Informática"
+            descripcionCorta="Protección de datos y backups seguros, tanto físicos como en la nube y controles con periodicidad."
+            urlImg="seguridad-informatica"
+          />
+          <Card
+            titulo="Redes"
+            descripcionCorta="Eficiencia en la interconectividad de los dispositivos de red, datos y control de ancho de banda."
+            urlImg="redes"
+          />
+          <Card
+            titulo="Gestión de Proveedores"
+            descripcionCorta="Gestionamos proveedores con selección, evaluación de riesgos, negociación y monitoreo."
+            urlImg="gestion-de-proveedores"
+          />
+          <Card
+            titulo="Seguridad Física"
+            descripcionCorta="Instalación de sistemas de video vigilancia, control de acceso y sistemas de seguridad digitales."
+            urlImg="seguridad-fisica"
+          />
+        </div>
       </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-        <Card titulo="Seguridad Informática" descripcionCorta="Protección de datos y backups seguros, tanto físicos como en la nube y controles con periodicidad." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Redes" descripcionCorta="Eficiencia en la interconectividad de los dispositivos de red, datos y control de ancho de banda." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Gestión de Proveedores" descripcionCorta="Gestionamos proveedores con selección, evaluación de riesgos, negociación y monitoreo." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Seguridad Física" descripcionCorta="Instalación de sistemas de video vigilancia, control de acceso y sistemas de seguridad digitales." urlImg="administracion-de-infraestructura"/>
-      </div>
-    </div>
 
-    <div slot="gestion" class="text-left">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-        <Card titulo="Administración de Infraestructura" descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Soporte Técnico" descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología." urlImg="administracion-de-infraestructura"/>
+      <div slot="gestion" class="text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+          <Card
+            titulo="Kaizen y 5S"
+            descripcionCorta="Con Kaizen y las 5S, ayudamos a tu empresa a mejorar procesos, reducir desperdicios y aumentar productividad. Cada acción cuenta, cada mejora suma."
+            urlImg="kaizen-y-5s"
+          />
+          <Card
+            titulo="Coaching Ontológico"
+            descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+            urlImg="coaching-ontologico"
+          />
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 md:mt-6">
+          <Card
+            titulo="Asesoramiento Contable y Administrativo"
+            descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+            urlImg="asesoramiento-contable-y-administrativo"
+          />
+          <Card
+            titulo="Capacitaciones"
+            descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+            urlImg="capacitaciones"
+          />
+        </div>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-        <Card titulo="Administración de Infraestructura" descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Soporte Técnico" descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología." urlImg="administracion-de-infraestructura"/>
-      </div>
-    </div>
 
-    <div slot="estrategias" class="text-left">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-        <Card titulo="Administración de Infraestructura" descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar." urlImg="administracion-de-infraestructura"/>
-        <Card titulo="Soporte Técnico" descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología." urlImg="administracion-de-infraestructura"/>
+      <div slot="estrategias" class="text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+          <Card
+            titulo="Branding"
+            descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+            urlImg="branding"
+          />
+          <Card
+            titulo="Comunicación Estratégica"
+            descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+            urlImg="comunicacion-estrategica"
+          />
+        </div>
+        <div class="flex justify-center mt-4 md:mt-6">
+          <Card
+            titulo="Diseño Web"
+            descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+            urlImg="diseño-web"
+            esUnica
+          />
+        </div>
       </div>
-      <div class="flex justify-center mt-6">
-        <Card titulo="Administración de Infraestructura" descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar." urlImg="administracion-de-infraestructura" esUnica/>
-      </div>
-  </Tabs>
-
-  
+    </Tabs>
+    <a
+      href=""
+      class="mt-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover"
+    >
+      Ver todos los servicios
+    </a>
   </div>
-  <a href="" class="mt-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover">
-    Ver todos los servicios
-  </a>
 </section>

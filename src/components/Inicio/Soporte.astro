@@ -1,0 +1,43 @@
+---
+import CardSoporte from "./Soporte/CardSoporte.astro";
+---
+
+<section
+  class="py-32 bg-[url(/bg-support.png)] bg-center bg-no-repeat bg-cover text-center"
+>
+  <div class="mx-auto max-w-[1100px] px-5">
+    <h2 class="text-3xl md:text-[42px] font-title">Nuestros canales de soporte</h2>
+    <p class="mb-12 text-base md:text-lg max-w-md mx-auto">
+      Te brindamos nuestras plataformas de software para conexión remota.
+    </p>
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col md:flex-row gap-4 items-center md:items-stretch">
+        <CardSoporte
+          titulo="Soporte via TeamViewer"
+          descripcion="Conéctate de forma segura mediante TeamViewer Quick Support y recibe asistencia remota inmediata en tu dispositivo."
+          urlImg="teamviwer"
+          descargar="TeamViewer"
+          linkDescarga=""
+          linkAnchor=""
+        />
+        <CardSoporte
+          titulo="Soporte via AnyDesk"
+          descripcion="Accede a la plataforma de AnyDesk para que nuestro equipo técnico pueda brindarte soporte remoto rápido y confiable."
+          urlImg="anydesk"
+          descargar="AnyDesk"
+          linkDescarga=""
+          linkAnchor=""
+        />
+      </div>
+      <p class="text-lg">o</p>
+      <div class="flex justify-center">
+        <CardSoporte
+          titulo="Abrir un ticket"
+          descripcion="Podes solicitar un ticket mediante email con tu correo, con seguimiento de los mismos y posibilidad de ver el estado de los mismos a tiempo real."
+          ticket
+          linkAnchor="Solicitar ticket"
+        />
+      </div>
+    </div>
+  </div>
+</section>

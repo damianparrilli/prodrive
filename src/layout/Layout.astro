@@ -33,7 +33,7 @@ const { title, description, keywords } = Astro.props;
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
-      content="https://opengraph.b-cdn.net/production/images/e62a5301-4fe2-4a8a-8042-c47b0b4c7ccc.png?token=uVEz_Lf86Vgq--DdMlS796ptp2Gv4tah9PgO3-WNoCk&height=630&width=1200&expires=33277364910"
+      content=""
     />
 
     <!-- Twitter Meta Tags -->
@@ -44,7 +44,7 @@ const { title, description, keywords } = Astro.props;
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content="https://opengraph.b-cdn.net/production/images/e62a5301-4fe2-4a8a-8042-c47b0b4c7ccc.png?token=uVEz_Lf86Vgq--DdMlS796ptp2Gv4tah9PgO3-WNoCk&height=630&width=1200&expires=33277364910"
+      content=""
     />
 
     <meta name="viewport" content="width=device-width" />
@@ -70,7 +70,7 @@ const { title, description, keywords } = Astro.props;
     <link
       rel="preload"
       as="font"
-      href="/src/assets/fonts/GuarujaGrotesk-Regular.woff2"
+      href="/fonts/GuarujaGrotesk-Regular.woff2"
       type="font/woff2"
       crossorigin
     />
@@ -84,6 +84,7 @@ const { title, description, keywords } = Astro.props;
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
   </body>
 </html>
 
