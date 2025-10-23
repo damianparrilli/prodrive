@@ -9,6 +9,7 @@ interface Props {
   linkAnchor: string;
   descargar?: string;
   ticket?: boolean;
+  class?: string;
 }
 
 const {
@@ -19,11 +20,12 @@ const {
   ticket,
   linkDescarga,
   linkAnchor,
+  class: className,
 } = Astro.props;
 ---
 
 <div
-  class="flex flex-col bg-[#28243C] max-md:max-w-[600px] w-full md:w-1/2 text-left py-8 px-6 md:px-8 rounded-4xl gap-3"
+  class={`flex flex-col bg-[#28243C] max-md:max-w-[600px] w-full md:w-1/2 text-left py-8 px-6 md:px-8 rounded-4xl gap-3 ${className || ''}`}
 >
   {
     urlImg ? (

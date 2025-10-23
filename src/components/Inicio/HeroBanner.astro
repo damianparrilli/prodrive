@@ -19,3 +19,20 @@
         background: radial-gradient(ellipse at 0% 80%, transparent 70%, #07304A 120%),radial-gradient(ellipse at 0% 30%, #07304A 0%, transparent 40%);
     }
 </style>
+
+<script is:inline>
+const heroBanner = document.querySelector('#hero-banner');
+if (heroBanner && window.gsap) {
+    window.gsap.to(heroBanner, {
+        opacity: 0,
+        y: -100,
+        scrollTrigger: {
+            trigger: heroBanner,
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+        }
+    });
+}
+</script>
+</style>

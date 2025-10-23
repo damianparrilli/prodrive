@@ -153,11 +153,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
 
       const shown = root.querySelector(`[data-panel="${id}"]`);
       if (shown && window.gsap) {
-        window.gsap.fromTo(
-          shown,
-          { opacity: 0, x: -200 },
-          { opacity: 1, x: 0, duration: 0.25, ease: "power1.out" }
-        );
+        window.gsap.set(shown, { opacity: 1, x: 0 });
       }
 
       const activeTab = tabs.find((t) => t.dataset.tab === id);

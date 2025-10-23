@@ -14,27 +14,46 @@ const { slug } = Astro.params;
 const servicio = servicios.find((s) => s.slug === slug);
 ---
 
-<Layout title={servicio?.title || "Servicio no encontrado"}>
+<Layout title={servicio ? `${servicio.title} - Prodrive` : "Servicio no encontrado"}>
   {
     servicio ? (
       <>
-        <section class="servicio pb-32">
+        <section class="servicio pb-32 overflow-x-hidden">
           <BannerServicios titulo={servicio.title} />
           <div class="contenedor flex flex-col px-4 gap-6">
-            {servicio.secciones.map((sec) => (
-              <article class="flex flex-col rounded-3xl gap-4 p-8 bg-[#1A1631]">
-                <h2 class="text-3xl">{sec.titulo}</h2>
+            {servicio.secciones.map((sec, i) => (
+              <article id={sec.slug}
+                class={`servicio-card flex rounded-3xl mx-auto w-full max-w-[1200px] items-stretch ${i % 2 === 0 ? 'justify-between' : ''} gap-6 p-8 bg-[#1A1631]`}
+                data-index={i}
+              >
+                <div class={`flex w-full flex-col gap-4 ${i % 2 === 0 ? 'order-1' : 'order-2'}`}>
+                  <h2 class="text-2xl md:text-3xl">{sec.titulo}</h2>
+                  <div class="flex lg:hidden rounded-xl overflow-hidden h-60 w-full">
+                  <Image
+                    src={`/${sec.imgMobile}.jpg`}
+                    alt={`Fotografía de`}
+                    width={400}
+                    height={400}
+                    class="object-cover w-full h-full"
+                    loading="eager"
+                    decoding="async"
+                    format="webp"
+                  />
+                  </div>
+                  <p class="leading-7" set:html={sec.texto} />
+                </div>
+                <div class={` md:w-2/5 hidden shrink-0 rounded-xl overflow-hidden lg:flex ${i % 2 === 0 ? 'order-2' : 'order-1'}`}>
                 <Image
-                  src={`/a.png`}
+                  src={`/${sec.imgDesktop}.jpg`}
                   alt={`Fotografía de`}
                   width={125}
                   height={125}
-                  class="object-contain w-full h-72"
+                  class={`object-cover h-full w-full `}
                   loading="eager"
                   decoding="async"
                   format="webp"
                 />
-                <p>{sec.texto}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -45,3 +64,46 @@ const servicio = servicios.find((s) => s.slug === slug);
     )
   }
 </Layout>
+
+<style>
+  /* Evitar parpadeo: ocultar elementos antes de que GSAP los anime */
+  .servicio-card[data-index] {
+    opacity: 0;
+  }
+  
+  .servicio-card[data-index]:nth-child(odd) {
+    transform: translateX(-100px);
+  }
+  
+  .servicio-card[data-index]:nth-child(even) {
+    transform: translateX(100px);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      
+      const articles = document.querySelectorAll('article[data-index]');
+      
+      articles.forEach((article) => {
+        const index = parseInt(article.getAttribute('data-index'));
+        const isEven = index % 2 === 0;
+        
+        // Animar entrada (ya no necesitamos gsap.set porque CSS ya lo hace)
+        window.gsap.to(article, {
+          x: 0,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: article,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      });
+    }
+  });
+</script>

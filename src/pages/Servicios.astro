@@ -1,10 +1,113 @@
 ---
-import Layout from "../layout/Layout.astro"
-import BannerServicios from "../components/Servicios/BannerServicios.astro"
-import CardsServiciosContainer from "../components/Servicios/CardsServiciosContainer.astro"
+import Layout from "../layout/Layout.astro";
+import BannerServicios from "../components/Servicios/BannerServicios.astro";
+import Tabs from "../components/Inicio/Servicios/Tabs.astro";
+import Card from "../components/Inicio/Servicios/Card.astro";
 ---
 
 <Layout title="Servicios - ProDrive" description="" keywords="">
-	<BannerServicios titulo="Nuestros servicios" />
-	<CardsServiciosContainer />
+  <BannerServicios titulo="Nuestros servicios" />
+  <div class="contenedor flex flex-col justify-center items-center">
+    <div class="servicios-tabs">
+      <Tabs
+        tabs={[
+          { id: "it", label: "Consultoría Integral en IT" },
+          { id: "gestion", label: "Consultoría en Gestión" },
+          { id: "estrategias", label: "Desarrollo de Estrategias" },
+        ]}
+      >
+        <div
+          slot="it"
+          class="servicios-content text-left"
+        >
+          <div class="flex flex-col gap-4">
+            <Card
+              titulo="Administración de Infraestructura"
+              descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+              urlImg="administracion-de-infraestructura"
+            />
+            <Card
+              titulo="Soporte Técnico"
+              descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+              urlImg="soporte-tecnico"
+            />
+            <Card
+              titulo="Seguridad Informática"
+              descripcionCorta="Protección de datos y backups seguros, tanto físicos como en la nube y controles con periodicidad."
+              urlImg="seguridad-informatica"
+            />
+            <Card
+              titulo="Redes"
+              descripcionCorta="Eficiencia en la interconectividad de los dispositivos de red, datos y control de ancho de banda."
+              urlImg="redes"
+            />
+            <Card
+              titulo="Gestión de Proveedores"
+              descripcionCorta="Gestionamos proveedores con selección, evaluación de riesgos, negociación y monitoreo."
+              urlImg="gestion-de-proveedores"
+            />
+            <Card
+              titulo="Seguridad Física"
+              descripcionCorta="Instalación de sistemas de video vigilancia, control de acceso y sistemas de seguridad digitales."
+              urlImg="seguridad-fisica"
+            />
+          </div>
+        </div>
+
+        <div
+          slot="gestion"
+          class="servicios-content text-left"
+        >
+          <div class="flex flex-col gap-4">
+            <Card
+              titulo="Kaizen y 5S"
+              descripcionCorta="<b>“Pequeños cambios, grandes resultados”</b><br>Con Kaizen y las 5S, ayudamos a tu empresa a mejorar procesos, reducir desperdicios y aumentar productividad. Cada acción cuenta, cada mejora suma."
+              urlImg="kaizen-y-5s"
+            />
+            <Card
+              titulo="Asesoramiento Contable y Administrativo"
+              descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+              urlImg="asesoramiento-contable-y-administrativo"
+            />
+            <Card
+              titulo="Capacitaciones"
+              descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+              urlImg="capacitaciones"
+              esUnica
+            />
+          </div>
+        </div>
+
+        <div
+          slot="estrategias"
+          class="servicios-content text-left p-4"
+        >
+          <div class="flex flex-col gap-4">
+            <Card
+              titulo="Branding"
+              descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+              urlImg="branding"
+            />
+            <Card
+              titulo="Comunicación Estratégica"
+              descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
+              urlImg="comunicacion-estrategica"
+            />
+            <Card
+              titulo="Diseño Web"
+              descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
+              urlImg="diseño-web"
+              esUnica
+            />
+          </div>
+        </div>
+      </Tabs>
+    </div>
+    <a
+      href=""
+      class="mt-12 mb-16 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover"
+    >
+      Ver todos los servicios
+    </a>
+  </div>
 </Layout>

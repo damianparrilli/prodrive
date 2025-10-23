@@ -36,6 +36,8 @@ html {
   font-family: 'Grandis', sans-serif;
   font-size: 16px;
   color: #fff;
+  scroll-padding-top: 80px;
+  scroll-behavior: smooth;
 }
 
 .contenedor{
@@ -55,5 +57,73 @@ p, li, span, a, button, input, textarea {
 
 a, svg, path{
   transition: all .3s ease-in-out;
+}
+
+a[class*="bg-"]:not(.no-shine), 
+button[class*="bg-"]:not(.no-shine) {
+  position: relative;
+  overflow: hidden;
+}
+
+a[class*="bg-"]:not(.no-shine)::before, 
+button[class*="bg-"]:not(.no-shine)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+a[class*="bg-"]:not(.no-shine):hover::before, 
+button[class*="bg-"]:not(.no-shine):hover::before {
+  opacity: 1;
+}
+
+a[class*="bg-"]:not(.no-shine) > *, 
+button[class*="bg-"]:not(.no-shine) > * {
+  position: relative;
+  z-index: 2;
+}
+
+.brillo-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.brillo-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.brillo-hover:hover::before {
+  opacity: 1;
+}
+
+.brillo-hover > * {
+  position: relative;
+  z-index: 2;
 }
 
