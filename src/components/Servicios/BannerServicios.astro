@@ -1,0 +1,25 @@
+---
+interface Props{
+    titulo: string;
+}
+
+const {titulo} = Astro.props;
+---
+
+<section class="banner h-96 pt-[70px] w-full bg-[url(/bg-hero.png)] bg-top-right bg-size-[45%] bg-no-repeat">
+    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2">
+        <h1 class="text-[32px] md:text-5xl">{titulo}</h1>
+    </div>
+</section>
+
+<style>
+    .banner::before{
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: calc(100% - 70px);
+        top: 0;
+        z-index: -1;
+        background: radial-gradient(ellipse at 0% 80%, transparent 70%, #07304A 120%),radial-gradient(ellipse at 0% 30%, #07304A 0%, transparent 40%);
+    }
+</style>

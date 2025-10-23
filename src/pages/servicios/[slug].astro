@@ -1,0 +1,47 @@
+---
+import Layout from "../../layout/Layout.astro";
+import { servicios } from "../../data/servicios.js";
+import BannerServicios from "../../components/Servicios/BannerServicios.astro";
+import { Image } from "astro:assets";
+
+export function getStaticPaths() {
+  return servicios.map((servicio) => ({
+    params: { slug: servicio.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const servicio = servicios.find((s) => s.slug === slug);
+---
+
+<Layout title={servicio?.title || "Servicio no encontrado"}>
+  {
+    servicio ? (
+      <>
+        <section class="servicio pb-32">
+          <BannerServicios titulo={servicio.title} />
+          <div class="contenedor flex flex-col px-4 gap-6">
+            {servicio.secciones.map((sec) => (
+              <article class="flex flex-col rounded-3xl gap-4 p-8 bg-[#1A1631]">
+                <h2 class="text-3xl">{sec.titulo}</h2>
+                <Image
+                  src={`/a.png`}
+                  alt={`Fotografía de`}
+                  width={125}
+                  height={125}
+                  class="object-contain w-full h-72"
+                  loading="eager"
+                  decoding="async"
+                  format="webp"
+                />
+                <p>{sec.texto}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </>
+    ) : (
+      <p>Servicio no encontrado</p>
+    )
+  }
+</Layout>
