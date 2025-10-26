@@ -15,8 +15,8 @@ const { titulo, descripcion, icono: Icono } = Astro.props;
   <div class="rounded-full bg-white p-4">
     <Icono />
   </div>
-  <div class="flex flex-col justify-center h-full gap-1">
+  <div class="flex flex-col justify-center h-full gap-1 min-w-0">
     <h4 class="text-xl">{titulo}</h4>
-    <p class="text-sm md:text-base">{descripcion}</p>
+    <p class="text-sm md:text-base break-all">{descripcion}</p>
   </div>
 </div>

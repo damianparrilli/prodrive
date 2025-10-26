@@ -1,53 +1,72 @@
 ---
-import Mensaje from "./ComoTrabajamos/Mensaje.astro"
-import PlanEstrategico from "./ComoTrabajamos/PlanEstrategico.astro"
-import Crecimiento from "./ComoTrabajamos/Crecimiento.astro"
+import Mensaje from "./ComoTrabajamos/Mensaje.astro";
+import PlanEstrategico from "./ComoTrabajamos/PlanEstrategico.astro";
+import Crecimiento from "./ComoTrabajamos/Crecimiento.astro";
 ---
 
-<section id="comoTrabajamos" class="py-32 text-center">
+<section id="comoTrabajamos" class="py-24 md:py-28 text-center">
   <div class="contenedor">
     <h2 class="text-3xl md:text-[42px] font-title">¿Cómo trabajamos?</h2>
     <p class="mb-12 text-base md:text-lg max-w-3xl mx-auto">
-      Hacemos sencillo lo complejo a través de estrategias, gracias a nuestra experiencia en diferentes rubros, sumando constantes capacitaciones.
+      Hacemos sencillo lo complejo a través de estrategias, gracias a nuestra
+      experiencia en diferentes rubros, sumando constantes capacitaciones.
     </p>
     <section class="relative flex flex-col items-center py-20 overflow-hidden">
-  <div id="barra" class="relative flex flex-col items-center w-full gap-24 before:absolute before:top-4 before:bottom-4 before:w-[5px]  before:left-1/2 before:-translate-x-1/2">
+      <div
+        id="barra"
+        class="relative flex flex-col items-center w-full gap-24 before:absolute before:top-4 before:bottom-4 before:w-[5px] before:left-1/2 before:-translate-x-1/2"
+      >
+        <div class="flex items-center justify-between w-full max-w-4xl step">
+          <p class="text-right text-lg md:text-xl text-white w-1/2 pr-6">
+            Usted establece una consulta
+          </p>
+          <div class="relative -left-2 gap-5 w-1/2 flex items-center">
+            <div class="dot w-4 h-4 rounded-full bg-acento"></div>
+            <div
+              class="icon border-2 border-[#3F5BF6] bg-linear-to-b from-[#1E1C2C] to-[#1B1B1B] rounded-lg p-4 mt-2 text-[#3F5BF6]"
+            >
+              <Mensaje />
+            </div>
+          </div>
+        </div>
 
-    <div class="flex items-center justify-between w-full max-w-4xl step">
-      <p class="text-right text-lg md:text-xl text-white w-1/2 pr-6">Usted establece una consulta</p>
-      <div class="relative -left-2 gap-5 w-1/2 flex items-center">
-        <div class="dot w-4 h-4 rounded-full bg-acento"></div>
-        <div class="icon border-2 border-[#3F5BF6] bg-linear-to-b from-[#1E1C2C] to-[#1B1B1B] rounded-lg p-4 mt-2 text-[#3F5BF6]">
-          <Mensaje />
+        <div class="flex items-center justify-between w-full max-w-4xl step">
+          <div
+            class="relative -right-2 gap-5 w-1/2 flex items-center justify-end"
+          >
+            <div
+              class="icon border-2 border-[#3F5BF6] bg-linear-to-b from-[#1E1C2C] to-[#1B1B1B] rounded-lg p-4 mt-2 text-[#3F5BF6]"
+            >
+              <PlanEstrategico />
+            </div>
+            <div class="dot w-4 h-4 rounded-full bg-[#3F5BF6]"></div>
+          </div>
+          <p class="text-left text-lg md:text-xl text-white w-1/2 pl-6">
+            Desarrollamos un plan estratégico
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between w-full max-w-4xl step">
+          <p class="text-right text-lg md:text-xl text-white w-1/2 pr-6">
+            Logramos el crecimiento de su empresa
+          </p>
+          <div class="relative -left-2 gap-5 w-1/2 flex items-center">
+            <div class="dot w-4 h-4 rounded-full bg-[#3F5BF6]"></div>
+            <div
+              class="icon relative border-2 border-[#3F5BF6] bg-linear-to-b from-[#1E1C2C] to-[#1B1B1B] rounded-lg p-3 mt-2 text-[#3F5BF6]"
+            >
+              <Crecimiento />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="flex items-center justify-between w-full max-w-4xl step">
-      <div class="relative  -right-2 gap-5 w-1/2 flex items-center justify-end">
-        <div class="icon border-2 border-[#3F5BF6] bg-linear-to-b from-[#1E1C2C] to-[#1B1B1B] rounded-lg p-4 mt-2 text-[#3F5BF6]">
-          <PlanEstrategico />
-        </div>
-        <div class="dot w-4 h-4 rounded-full bg-[#3F5BF6]"></div>
-        
-      </div>
-      <p class="text-left text-lg md:text-xl text-white w-1/2 pl-6">Desarrollamos un plan estratégico</p>
-    </div>
-
-    <div class="flex items-center justify-between w-full max-w-4xl step">
-      <p class="text-right text-lg md:text-xl text-white w-1/2 pr-6">Logramos el crecimiento de su empresa</p>
-      <div class="relative -left-2 gap-5 w-1/2 flex items-center">
-        <div class="dot w-4 h-4 rounded-full bg-[#3F5BF6]"></div>
-        <div class="icon relative border-2 border-[#3F5BF6] bg-linear-to-b from-[#1E1C2C] to-[#1B1B1B] rounded-lg p-3 mt-2 text-[#3F5BF6]">
-          <Crecimiento />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <a href="" class="mt-20 bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full">Realizar consulta</a href="">
-</section>
-
+      <a
+        href="/#contacto"
+        class="mt-20 bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full"
+        >Realizar consulta</a
+      >
+    </section>
   </div>
 </section>
 
@@ -66,8 +85,8 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro"
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      #1B318F 10%,
-      #1B318F 90%,
+      #1b318f 10%,
+      #1b318f 90%,
       transparent 100%
     );
   }
@@ -89,8 +108,8 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro"
       scrollTrigger: {
         trigger: ".step",
         start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
+        toggleActions: "play none none reverse",
+      },
     });
 
     gsap.from(".dot, .icon", {
@@ -100,8 +119,8 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro"
       ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: ".step",
-        start: "top 85%"
-      }
+        start: "top 85%",
+      },
     });
   });
 </script>

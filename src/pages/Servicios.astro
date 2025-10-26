@@ -2,14 +2,17 @@
 import Layout from "../layout/Layout.astro";
 import BannerServicios from "../components/Servicios/BannerServicios.astro";
 import Tabs from "../components/Inicio/Servicios/Tabs.astro";
-import CardCapacitaciones from "../components/Servicios/CardCapacitaciones.astro";
-import { Image } from "astro:assets";
+import It from "../components/Servicios/TipoServicios/It.astro";
+import Gestion from "../components/Servicios/TipoServicios/Gestion.astro";
+import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
+
 ---
 
 <Layout title="Servicios - ProDrive" description="" keywords="">
+  <div data-page="servicios" class="overflow-x-hidden">
   <BannerServicios titulo="Nuestros servicios" />
-  <section class="overflow-x-hidden py-12">
-    <div class="contenedor flex flex-col justify-center items-center">
+  <section class="py-12">
+    <div class="flex flex-col justify-center items-center">
       <div class="servicios-tabs w-full">
         <Tabs
           tabs={[
@@ -18,423 +21,119 @@ import { Image } from "astro:assets";
             { id: "estrategias", label: "Desarrollo de Estrategias" },
           ]}
         >
-          <div
-            slot="it"
-            class="servicios-content text-left flex flex-col my-14"
-          >
-            <div class="flex flex-col gap-32">
-              <div class="flex flex-col w-full gap-4">
-                <div class="flex flex-col">
-                  <h3 class="text-3xl">Kaizen y 5S: Mejora continua</h3>
-                  <p class="text-lg">
-                    Convierta su empresa en un espacio más productivo y
-                    competitivo
-                  </p>
-                </div>
-                <div class="flex flex-col md:flex-row gap-4 w-full">
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl"
-                  >
-                    <h4 class="text-xl">¿Qué hacemos?</h4>
-                    <ul class="list-disc pl-4">
-                      <li>
-                        Implementamos Kaizen para mejorar procesos y fomentar la
-                        participación del equipo.
-                      </li>
-                      <li>
-                        Aplicamos 5S para organizar, estandarizar y mantener el
-                        lugar de trabajo seguro y eficiente.
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl"
-                  >
-                    <h4 class="text-xl">Beneficios clave</h4>
-                    <ul class="list-disc pl-4">
-                      <li>Procesos más ágiles y eficientes.</li>
-                      <li>Reducción de desperdicios y costos.</li>
-                      <li>Mayor seguridad y orden en el trabajo.</li>
-                      <li>Mejor calidad en productos y servicios.</li>
-                    </ul>
-                  </div>
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl"
-                  >
-                    <h4 class="text-xl">¿Qué hacemos?</h4>
-                    <ul class="list-disc pl-4">
-                      <li>
-                        Implementamos Kaizen para mejorar procesos y fomentar la
-                        participación del equipo.
-                      </li>
-                      <li>
-                        Aplicamos 5S para organizar, estandarizar y mantener el
-                        lugar de trabajo seguro y eficiente.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="flex overflow-hidden rounded-2xl max-h-96">
-                  <Image
-                    src=`/kaizen-mobile.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-              </div>
-              <div class="flex flex-col md:flex-row md:items-center gap-4">
-                <div
-                  class="flex overflow-hidden order-2 md:order-1 w-full md:w-2/5 rounded-2xl max-h-96"
-                >
-                  <Image
-                    src=`/imagen-contable.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-                <div
-                  class="flex flex-col order-1 md:order-2 w-full md:w-3/5 gap-1"
-                >
-                  <h3 class="text-3xl">
-                    Asesoramiento Contable y Administrativo
-                  </h3>
-                  <p class="text-lg">
-                    Nuestros colaboradores en las distintas áreas podrán evaluar
-                    cada uno de los requerimientos y brindarle una solución
-                    acorde a su negocio y necesidades de desarrollo, en relación
-                    a temas contables y administrativos en general.
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-4">
-                <div class="flex flex-col w-full gap-1">
-                  <h3 class="text-3xl">Capacitaciones</h3>
-                  <p class="text-lg">
-                    Con las capacitaciones, se adquieren nuevos conocimientos y
-                    especializaciones, logrando un aumento sustancial en la
-                    productividad del trabajador.
-                  </p>
-                </div>
-                <div class="flex overflow-hidden w-full rounded-2xl max-h-96">
-                  <Image
-                    src=`/capacitaciones-imagen.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-				<div class="overflow-x-auto md:mx-0 md:px-0 scrollbar-hide">
-				  <div class="flex w-full md:grid md:grid-cols-2 gap-x-4 gap-y-8 mt-6">
-					<CardCapacitaciones 
-					numero="1"
-					titulo="Habilidades gerenciales"
-					descripcion="Esta es una de las capacitaciones más importantes, pues tiene por objetivo mejorar el trabajo en equipo."
-					/>
-					<CardCapacitaciones 
-					numero="2"
-					titulo="Gestión de procesos y mejora continua"
-					descripcion="Toda organización tiene procesos de operaciones. Entonces tener colaboradores capacitados para incrementar y mejorar los procesos en distintas áreas y organización es fundamental para cualquier organización que quiere prevalecer en el tiempo."
-					/>
-					<CardCapacitaciones 
-					numero="3"
-					titulo="Seguridad y Salud ocupacional"
-					descripcion="Los índices de siniestralidad se han incrementado y ni siquiera en la parte industrial, sino la administrativa. Los colaborares deberían estar capacitados en temas de ergonomía, en oficinas e industriales."
-					/>
-					<CardCapacitaciones 
-					numero="4"
-					titulo="Gestión ambiental"
-					descripcion="Toda empresa impacta en el medio ambiente, por ello la empresa necesita colaboradores especializados en estos temas"
-					/>
-					<CardCapacitaciones 
-					numero="5"
-					titulo="Continuidad de negocios"
-					descripcion="Las empresas deben asegurar que sus cadenas de suministro continúen operando bajo cualquier circunstancia."
-					/>
-					<CardCapacitaciones 
-					numero="6"
-					titulo="Coaching"
-					descripcion=" Capacitación aplicada a la optimización del empleado dentro de la empresa."
-					/>
-					<CardCapacitaciones 
-					numero="7"
-					titulo="Kaizen y 5S"
-					descripcion="Capacitación en la implementación de esta disciplina en el ámbito administrativo, de gestión e industrial."
-					/>
-					<CardCapacitaciones 
-					numero="8"
-					titulo="Capacitación técnica"
-					descripcion="Capacitación para los empleados que requieren tener un conocimiento técnico sobre las tecnologías utilizadas en la organización."
-					/>
-				  </div>
-				</div>
-              </div>
-            </div>
-          </div>
 
-          <div
-            slot="gestion"
-            class="servicios-content text-left flex flex-col my-14"
-          >
-            <div class="flex flex-col gap-32">
-              <div id="kaizen-y-5s" class="flex flex-col w-full gap-4">
-                <div class="flex flex-col">
-                  <h3 class="text-3xl">Kaizen y 5S: Mejora continua</h3>
-                  <p class="text-lg">
-                    Convierta su empresa en un espacio más productivo y
-                    competitivo
-                  </p>
-                </div>
-                <div class="flex flex-col md:flex-row gap-4 w-full">
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
-                  >
-                    <h4 class="text-xl">¿Qué hacemos?</h4>
-                    <ul class="list-disc pl-4">
-                      <li>
-                        Implementamos Kaizen para mejorar procesos y fomentar la
-                        participación del equipo.
-                      </li>
-                      <li>
-                        Aplicamos 5S para organizar, estandarizar y mantener el
-                        lugar de trabajo seguro y eficiente.
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
-                  >
-                    <h4 class="text-xl">Beneficios clave</h4>
-                    <ul class="list-disc pl-4">
-                      <li>Procesos más ágiles y eficientes.</li>
-                      <li>Reducción de desperdicios y costos.</li>
-                      <li>Mayor seguridad y orden en el trabajo.</li>
-                      <li>Mejor calidad en productos y servicios.</li>
-                    </ul>
-                  </div>
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
-                  >
-                    <h4 class="text-xl">¿Qué hacemos?</h4>
-                    <ul class="list-disc pl-4">
-                      <li>
-                        Implementamos Kaizen para mejorar procesos y fomentar la
-                        participación del equipo.
-                      </li>
-                      <li>
-                        Aplicamos 5S para organizar, estandarizar y mantener el
-                        lugar de trabajo seguro y eficiente.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="flex overflow-hidden rounded-2xl max-h-96">
-                  <Image
-                    src=`/kaizen-mobile.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-              </div>
-              <div class="flex flex-col md:flex-row md:items-center gap-4">
-                <div
-                  class="flex overflow-hidden order-2 md:order-1 w-full md:w-2/5 rounded-2xl max-h-96"
-                >
-                  <Image
-                    src=`/imagen-contable.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-                <div
-                  class="flex flex-col order-1 md:order-2 w-full md:w-3/5 gap-1"
-                >
-                  <h3 class="text-3xl">
-                    Asesoramiento Contable y Administrativo
-                  </h3>
-                  <p class="text-lg">
-                    Nuestros colaboradores en las distintas áreas podrán evaluar
-                    cada uno de los requerimientos y brindarle una solución
-                    acorde a su negocio y necesidades de desarrollo, en relación
-                    a temas contables y administrativos en general.
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-4">
-                <div class="flex flex-col w-full gap-1">
-                  <h3 class="text-3xl">Capacitaciones</h3>
-                  <p class="text-lg">
-                    Con las capacitaciones, se adquieren nuevos conocimientos y
-                    especializaciones, logrando un aumento sustancial en la
-                    productividad del trabajador.
-                  </p>
-                </div>
-                <div class="flex overflow-hidden w-full rounded-2xl max-h-96">
-                  <Image
-                    src=`/capacitaciones-imagen.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-				<div class="overflow-x-auto md:mx-0 md:px-0 scrollbar-hide">
-				  <div class="flex w-full md:grid md:grid-cols-2 gap-x-4 gap-y-8 mt-6 md:overflow-hidden">
-					<CardCapacitaciones 
-					numero="1"
-					titulo="Habilidades gerenciales"
-					descripcion="Esta es una de las capacitaciones más importantes, pues tiene por objetivo mejorar el trabajo en equipo."
-					/>
-					<CardCapacitaciones 
-					numero="2"
-					titulo="Gestión de procesos y mejora continua"
-					descripcion="Toda organización tiene procesos de operaciones. Entonces tener colaboradores capacitados para incrementar y mejorar los procesos en distintas áreas y organización es fundamental para cualquier organización que quiere prevalecer en el tiempo."
-					/>
-					<CardCapacitaciones 
-					numero="3"
-					titulo="Seguridad y Salud ocupacional"
-					descripcion="Los índices de siniestralidad se han incrementado y ni siquiera en la parte industrial, sino la administrativa. Los colaborares deberían estar capacitados en temas de ergonomía, en oficinas e industriales."
-					/>
-					<CardCapacitaciones 
-					numero="4"
-					titulo="Gestión ambiental"
-					descripcion="Toda empresa impacta en el medio ambiente, por ello la empresa necesita colaboradores especializados en estos temas"
-					/>
-					<CardCapacitaciones 
-					numero="5"
-					titulo="Continuidad de negocios"
-					descripcion="Las empresas deben asegurar que sus cadenas de suministro continúen operando bajo cualquier circunstancia."
-					/>
-					<CardCapacitaciones 
-					numero="6"
-					titulo="Coaching"
-					descripcion=" Capacitación aplicada a la optimización del empleado dentro de la empresa."
-					/>
-					<CardCapacitaciones 
-					numero="7"
-					titulo="Kaizen y 5S"
-					descripcion="Capacitación en la implementación de esta disciplina en el ámbito administrativo, de gestión e industrial."
-					/>
-					<CardCapacitaciones 
-					numero="8"
-					titulo="Capacitación técnica"
-					descripcion="Capacitación para los empleados que requieren tener un conocimiento técnico sobre las tecnologías utilizadas en la organización."
-					/>
-				  </div>
-				</div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            slot="estrategias"
-            class="servicios-content text-left flex flex-col my-16 gap-12"
-          >
-            <div class="flex flex-col gap-4">
-              <div class="flex flex-col w-full gap-4">
-                <div class="flex flex-col">
-                  <h3 class="text-3xl">Kaizen y 5S: Mejora continua</h3>
-                  <p class="text-lg">
-                    Convierta su empresa en un espacio más productivo y
-                    competitivo
-                  </p>
-                </div>
-                <div class="flex flex-col md:flex-row gap-4 w-full">
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl"
-                  >
-                    <h4 class="text-xl">¿Qué hacemos?</h4>
-                    <ul class="list-disc pl-4">
-                      <li>
-                        Implementamos Kaizen para mejorar procesos y fomentar la
-                        participación del equipo.
-                      </li>
-                      <li>
-                        Aplicamos 5S para organizar, estandarizar y mantener el
-                        lugar de trabajo seguro y eficiente.
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl"
-                  >
-                    <h4 class="text-xl">Beneficios clave</h4>
-                    <ul class="list-disc pl-4">
-                      <li>Procesos más ágiles y eficientes.</li>
-                      <li>Reducción de desperdicios y costos.</li>
-                      <li>Mayor seguridad y orden en el trabajo.</li>
-                      <li>Mejor calidad en productos y servicios.</li>
-                    </ul>
-                  </div>
-                  <div
-                    class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl"
-                  >
-                    <h4 class="text-xl">¿Qué hacemos?</h4>
-                    <ul class="list-disc pl-4">
-                      <li>
-                        Implementamos Kaizen para mejorar procesos y fomentar la
-                        participación del equipo.
-                      </li>
-                      <li>
-                        Aplicamos 5S para organizar, estandarizar y mantener el
-                        lugar de trabajo seguro y eficiente.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="flex overflow-hidden rounded-2xl max-h-96">
-                  <Image
-                    src=`/kaizen-mobile.jpg`
-                    alt=`Imagen de Kaizen`
-                    width={125}
-                    height={125}
-                    class="object-cover w-full h-full"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        
+          
+          <It slot="it" />
+          <Gestion slot="gestion" />
+          <Desarrollo slot="estrategias" />
+         
+          
+          
         </Tabs>
       </div>
     </div>
   </section>
+  </div>
 </Layout>
 
 <style>
   .scrollbar-hide {
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  
+  .seccion-contenido {
+    opacity: 0;
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      const itSecciones = document.querySelectorAll('[data-panel="it"] .seccion-contenido');
+      const gestionSecciones = document.querySelectorAll('[data-panel="gestion"] .seccion-contenido');
+      const desarrolloSecciones = document.querySelectorAll('[data-panel="estrategias"] .seccion-contenido');
+      
+      let scrollTriggers = [];
+
+      function animarSecciones(secciones, empiezaDesdeIzquierda = false) {
+        secciones.forEach((seccion, index) => {
+          let xInicial;
+          
+          if (index === 0) {
+            const st = window.gsap.fromTo(seccion,
+              {
+                opacity: 0,
+                y: 30
+              },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: seccion,
+                  start: "top 80%",
+                  toggleActions: "play none none reset",
+                  onLeaveBack: () => {
+                    window.gsap.set(seccion, { opacity: 0, y: 30 });
+                  }
+                }
+              }
+            );
+            if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
+          } else {
+            if (empiezaDesdeIzquierda) {
+              xInicial = index % 2 === 1 ? -100 : 100;
+            } else {
+              xInicial = index % 2 === 1 ? 100 : -100;
+            }
+            
+            const st = window.gsap.fromTo(seccion,
+              {
+                opacity: 0,
+                x: xInicial
+              },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: seccion,
+                  start: "top 80%",
+                  toggleActions: "play none none reset",
+                  onLeaveBack: () => {
+                    window.gsap.set(seccion, { opacity: 0, x: xInicial });
+                  }
+                }
+              }
+            );
+            if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
+          }
+        });
+      }
+
+      animarSecciones(itSecciones, false);
+      animarSecciones(gestionSecciones, true);
+      animarSecciones(desarrolloSecciones, false);
+
+      const tabs = document.querySelectorAll('[role="tab"]');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          setTimeout(() => {
+            scrollTriggers.forEach(st => {
+              if (st) st.refresh();
+            });
+          }, 100);
+        });
+      });
+    }
+  });
+</script>

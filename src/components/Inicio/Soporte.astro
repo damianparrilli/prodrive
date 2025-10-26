@@ -3,7 +3,7 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
 ---
 
 <section id="soporte"
-  class="py-32 bg-[url(/bg-support.png)] bg-center bg-no-repeat bg-cover text-center overflow-x-hidden"
+  class="py-24 md:py-28 bg-[url(/bg-support.png)] bg-center bg-no-repeat bg-cover text-center overflow-x-hidden"
 >
   <div class="mx-auto max-w-[1100px] px-5">
     <h2 class="soporte-titulo text-3xl md:text-[42px] font-title">Nuestros canales de soporte</h2>
@@ -18,8 +18,8 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
           descripcion="Conéctate de forma segura mediante TeamViewer Quick Support y recibe asistencia remota inmediata en tu dispositivo."
           urlImg="teamviwer"
           descargar="TeamViewer"
-          linkDescarga=""
-          linkAnchor=""
+          linkDescarga="https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe"
+          linkAnchor="https://get.teamviewer.com/6hwmqkh"
         />
         <CardSoporte
           class="soporte-card-right"
@@ -27,8 +27,8 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
           descripcion="Accede a la plataforma de AnyDesk para que nuestro equipo técnico pueda brindarte soporte remoto rápido y confiable."
           urlImg="anydesk"
           descargar="AnyDesk"
-          linkDescarga=""
-          linkAnchor=""
+          linkDescarga="https://anydesk.com/es/downloads/windows"
+          linkAnchor="https://download.anydesk.com/AnyDesk.exe?_ga=2.225585304.360525357.1586530072-1427590355.1584553161"
         />
       </div>
       <p class="soporte-o text-lg">o</p>
@@ -37,7 +37,7 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
           titulo="Abrir un ticket"
           descripcion="Podes solicitar un ticket mediante email con tu correo, con seguimiento de los mismos y posibilidad de ver el estado de los mismos a tiempo real."
           ticket
-          linkAnchor="Solicitar ticket"
+          linkAnchor="mailto:soporte@prodrive.com.ar"
         />
       </div>
     </div>

@@ -1,0 +1,364 @@
+---
+import CardNumeraciones from "../CardNumeraciones.astro";
+import { Image } from "astro:assets";
+---
+
+<div class="servicios-content contenedor text-left flex flex-col">
+  <div class="flex flex-col">
+    <div
+      id="administracion-de-infraestructura"
+      class="seccion-contenido flex flex-col w-full gap-4 pt-18 md:pt-22 pb-12"
+    >
+      <div class="flex flex-col">
+        <h3 class="text-3xl">Administración de Infraestructura</h3>
+        <p class="text-lg">
+          Convierta su empresa en un espacio más productivo y competitivo
+        </p>
+      </div>
+      <div
+        class="flex flex-col md:grid md:grid-cols-2 lg:flex md:flex-row gap-4 w-full"
+      >
+        <div
+          class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+        >
+          <h4 class="text-xl">Documentación</h4>
+          <p>
+            Creación y mantenimiento de la documentación técnica de la empresa que permite identificar el antes y después de cada proceso.
+          </p>
+        </div>
+        <div
+          class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+        >
+          <h4 class="text-xl">Mantenimiento de Servidores</h4>
+          <p>
+            Un servidor es software alojado en una computadora muy potente cuyo
+            fin es almacenar y gestionar información. Los servidores permanecen
+            encendidos las 24 horas del día.
+          </p>
+        </div>
+        <div
+          class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+        >
+          <h4 class="text-xl">Terminales dentro de Red</h4>
+          <p>
+            Soporte a dispositivos, Pc, Laptop, tablets, móviles, etc, que se
+            encuentren trabajando dentro de la red.
+          </p>
+        </div>
+        <div
+          class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+        >
+          <h4 class="text-xl">Conectividad</h4>
+          <p>
+            Integración a tiempo real de dispositivos de comunicación personal y
+            corporativa (PC, Smartphone, Tablet, etc.). Con posibilidad de
+            acceder en servidores ubicados en cualquier lugar del mundo.
+          </p>
+        </div>
+      </div>
+      <div class="flex overflow-hidden rounded-2xl max-md:h-50 max-h-96">
+        <Image
+          src=`/administracion-infraestructura-image.webp`
+          alt=`Imagen de Administración de Infraestructura`
+          width={500}
+          height={500}
+          class="object-cover w-full h-full max-md:h-50 max-h-96"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+    </div>
+
+    <div
+      id="soporte-tecnico"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 pb-12"
+    >
+      <div class="flex flex-col gap-4 lg:w-3/5">
+        <div class="flex flex-col">
+          <h3 class="text-3xl">Soporte Técnico</h3>
+          <p class="text-lg">
+            Brindamos un servicio especializado para resolver cualquier
+            inconveniente tecnológico que pueda afectar el rendimiento de su
+            empresa.
+          </p>
+          <div
+            class="lg:hidden flex overflow-hidden rounded-2xl mt-4 lg:w-2/5 max-h-50 md:max-h-64"
+          >
+            <Image
+              src=`/soporte.webp`
+              alt=`Imagen de Soporte Técnico Mobile`
+              width={500}
+              height={500}
+              class="object-cover w-full h-full max-h-50 md:max-h-64"
+              loading="eager"
+              decoding="async"
+              format="webp"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 w-full">
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <p>
+              Contamos con un staff de profesionales ampliamente capacitados
+              para solucionar incidentes informáticos en todos los niveles de
+              soporte.
+            </p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <p>
+              Para obtener el óptimo rendimiento de su equipamiento informático,
+              el mismo necesita estar constantemente controlado y disponer de un
+              servicio técnico confiable y seguro que acuda al instante ante su
+              requerimiento.
+            </p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <p>
+              Este soporte se puede dar por distintos medios, incluyendo correo
+              electrónico, teléfono, chat, software o presencialmente. En los
+              últimos años ha habido una tendencia hacia la asistencia técnica
+              remota. Esto significa que el técnico se conecta con la
+              computadora del cliente mediante una aplicación de conexión a
+              distancia.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:flex overflow-hidden rounded-2xl lg:w-2/5 xl:w-1/2">
+        <Image
+          src=`/soporte.webp`
+          alt=`Imagen de Soporte Técnico`
+          width={500}
+          height={500}
+          class="object-cover w-full h-full"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+    </div>
+
+    <div
+      id="seguridad-informatica"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 pb-12"
+    >
+      <div class="hidden lg:flex overflow-hidden rounded-2xl lg:w-2/5 xl:w-1/2">
+        <Image
+          src=`/seguridad-informatica-image.webp`
+          alt=`Imagen de Seguridad informática`
+          width={500}
+          height={500}
+          class="object-cover w-full h-full"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+      <div class="flex flex-col gap-4 lg:w-3/5">
+        <div class="flex flex-col">
+          <h3 class="text-3xl">Seguridad Informática</h3>
+          <p class="text-lg">
+            Protegemos tu información con seguridad informática y backups
+            confiables, asegurando tus datos siempre seguros y disponibles.
+          </p>
+          <div
+            class="lg:hidden flex overflow-hidden rounded-2xl mt-4 lg:w-2/5 max-h-50"
+          >
+            <Image
+              src=`/seguridad-informatica-image.webp`
+              alt=`Imagen de Seguridad informática mobile`
+              width={500}
+              height={500}
+              class="object-cover w-full max-h-50"
+              loading="eager"
+              decoding="async"
+              format="webp"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 w-full">
+          <h4 class="text-xl mt-2 md:mt-4">Protección de datos:</h4>
+          <div class="overflow-x-auto md:mx-0 md:px-0 scrollbar-hide">
+            <div
+              class="flex w-full md:grid md:grid-cols-2 gap-x-4 gap-y-8 overflow-y-hidden md:overflow-hidden"
+            >
+              <CardNumeraciones
+                numero="1"
+                titulo="Confidencialidad"
+                descripcion="Sólo los usuarios autorizados pueden acceder a los  recursos, datos e información."
+              />
+              <CardNumeraciones
+                numero="2"
+                titulo="Integridad"
+                descripcion="Sólo los usuarios autorizados deben ser capaces de modificar los datos cuando sea necesario."
+              />
+              <CardNumeraciones
+                numero="3"
+                titulo="Disponibilidad"
+                descripcion="Los datos deben estar disponibles para los usuarios cuando sea necesario."
+              />
+              <CardNumeraciones
+                numero="4"
+                titulo="Autenticación"
+                descripcion="El doble factor, hoy herramienta común en el uso de la seguridad de los datos."
+              />
+            </div>
+          </div>
+          <h4 class="text-xl mt-4">Backup:</h4>
+          <p>
+            Con el volumen y manejo actual de información es imposible pensar
+            que una pyme no cuenta con un backup o copia de seguridad,
+            fundamental entender que lo segundo más importante de un backup es
+            que se haga y de manera correcta, estas soluciones tanto físico con
+            cloud es uno de los servicios más solicitados en nuestra empresa, ya
+            que contamos con chequeos diarios de backup.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="redes"
+      class="seccion-contenido flex flex-col md:flex-row md:items-center gap-4 pt-18 md:pt-22 pb-12"
+    >
+      <div class="flex flex-col w-full md:w-3/5 gap-1">
+        <h3 class="text-3xl">Redes</h3>
+        <p class="text-lg">
+          La red representa a la telecomunicación, lo que permite que los
+          ordenadores se conecten entre sí para intercambiar información y
+          compartir hardware y software.
+        </p>
+        <p class="mt-2">
+          Nos encargamos de la configuración de VPN y enlaces punto a punto,
+          como diferentes tecnologías utilizadas en PYMEs.
+        </p>
+      </div>
+
+      <div
+        class="flex overflow-hidden w-full md:w-2/5 rounded-2xl lg:h-72 h-50"
+      >
+        <Image
+          src=`/redes-informaticas.jpg`
+          alt=`Imagen de Redes`
+          width={500}
+          height={500}
+          class="object-cover w-full lg:h-72 h-50"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+    </div>
+
+    <div
+      id="gestion-de-proveedores"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 pb-12"
+    >
+      <div class="flex order-2 md:order-1 overflow-hidden rounded-2xl max-md:h-50 lg:max-h-112 md:w-2/5">
+        <Image
+          src=`/gestion-proveedores.webp`
+          alt=`Imagen de Gestión de Proveedores`
+          width={500}
+          height={500}
+          class="object-cover w-full h-50 md:h-auto"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+      <div class="flex flex-col order-1 md:order-2 gap-4 my-auto md:w-3/5">
+        <div class="flex flex-col">
+          <h3 class="text-3xl">Gestión de Proveedores</h3>
+          <p class="text-lg">
+            Gestionamos y desarrollamos las relaciones con proveedores de bienes
+            y servicios que una empresa necesita para sus operaciones diarias y
+            el cumplimiento de su misión.
+          </p>
+        </div>
+        <div class="flex flex-col md:grid md:grid-cols-2 gap-4 w-full">
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <h4 class="text-xl">Selección del proveedor</h4>
+            <p>
+              Utilizamos un perfil de riesgo actualizado, calificando y
+              segmentando en base a categoría, ubicación y unidad de negocio.
+            </p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <h4 class="text-xl">Evaluación de riesgo</h4>
+            <p>
+              Llevamos a cabo la debida diligencia de riesgo con base a la
+              naturaleza de su compromiso con el proveedor.
+            </p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <h4 class="text-xl">Negociación contractual</h4>
+
+            <p></p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <h4 class="text-xl">Gestión de rendimiento y monitoreo</h4>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="seguridad-fisica"
+      class="seccion-contenido flex flex-col md:flex-row md:items-stretch gap-4 pt-18 md:pt-22 pb-12"
+    >
+      <div
+        class="flex overflow-hidden order-2 w-full md:w-2/5 rounded-2xl md:min-h-96 max-md:h-50"
+      >
+        <Image
+          src=`/seguridad-fisica-image.webp`
+          alt=`Imagen de Seguridad Física`
+          width={500}
+          height={500}
+          class="object-cover w-full md:min-h-96 max-md:h-50"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+      <div
+        class="flex flex-col order-1 my-auto w-full md:w-3/5 gap-1"
+      >
+        <h3 class="text-3xl">Seguridad Física</h3>
+        <p class="text-lg">Cámaras de seguridad:</p>
+        <p>
+          La instalación de unas cámaras de seguridad sin lugar a dudas le
+          proporcionará una sensación de seguridad y de tranquilidad mucho
+          mayor. De esta forma, cuando esté en su casa, empresa o se vaya de
+          vacaciones, tendrá el alivio de poder controlar en todo momento que
+          está ocurriendo en su hogar o negocio.
+        </p>
+        <p>
+          De hecho, hoy en día la mayoría de los servicios y cámaras de
+          videovigilancia cuentan con modernos sistemas avanzados que nos
+          permiten ver en todo momento, estemos donde estemos, que está
+          ocurriendo en nuestra propiedad. Si por ejemplo se va de vacaciones, a
+          través del móvil podrá acceder a las imágenes, una de las grandes
+          ventajas de contar con estos sistemas de seguridad y vigilancia,
+          además contamos con personal dedicado a instalación de control de
+          personal biométrico y electrónico.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

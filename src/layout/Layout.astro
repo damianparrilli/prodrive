@@ -88,7 +88,6 @@ const { title, description, keywords } = Astro.props;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" is:inline></script>
     
     <script is:inline>
-      // Efecto de brillo que sigue al cursor en botones/links con background
       document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('a[class*="bg-"], button[class*="bg-"], a[style*="background"], button[style*="background"], .brillo-hover');
         

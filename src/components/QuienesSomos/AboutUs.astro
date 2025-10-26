@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section class="pb-32 py-18">
+  <div class="contenedor">
+    <div class="flex flex-col md:flex-row gap-4 items-stretch">
+      <div class="flex overflow-hidden rounded-2xl max-md:h-50 md:w-2/5 lg:w-1/2">
+        <Image
+          src=`/image-aboutus.webp`
+          alt=`Imagen de Acerca de nosotros`
+          width={500}
+          height={500}
+          class="object-cover w-full max-md:h-50"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+      <div class="flex flex-col gap-2 md:w-3/5 lg:w-1/2 my-auto">
+      <p class="text-lg md:text-xl">
+        En ProDrive ayudamos a empresas a trabajar mejor a través de la tecnología.
+      </p>
+      <p class="text-lg md:text-xl">
+        Somos un equipo especializado en soporte IT, infraestructura y soluciones digitales, comprometido con acompañar cada etapa del crecimiento de tu negocio.
+      </p>
+      <p class="text-lg md:text-xl">
+        Nuestro propósito es hacer que tus sistemas funcionen de forma estable, segura y eficiente, para que vos puedas concentrarte en lo importante: tu empresa.
+      </p>
+      </div>
+    </div>
+  </div>
+</section>

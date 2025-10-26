@@ -7,7 +7,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
 ---
 
 <section class="tabs" data-tabs>
-  <div class="overflow-x-auto w-full scroller">
+  <div class="overflow-x-auto w-full scroller px-[15px]">
     <div role="tablist" aria-label="Servicios" class="tab-list">
       {tabs.map((t) => (
         <button
@@ -25,6 +25,8 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
       <span class="indicator" aria-hidden="true"></span>
     </div>
   </div>
+  
+  <div class="scroller-spacer"></div>
 
   {tabs.map((t) => (
     <div
@@ -59,7 +61,31 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
    }
 
    .scroller{
-    scrollbar-width: none; 
+    scrollbar-width: none;
+    border-bottom: transparent;
+   }
+   
+   :global(body:has([data-page="servicios"])) .scroller {
+    margin-bottom: -3rem;
+   }
+   
+   .scroller-spacer {
+    height: 0;
+   }
+   
+   .scroller-spacer.active {
+   
+   }
+
+   .scroller.fixed {
+    position: fixed;
+    padding: 0 15px;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #1A1631;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
    }
 
    .scroller::-webkit-scrollbar {
@@ -98,10 +124,50 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
   .tab-panel {
     margin-top: 1rem;
   }
+  
+  :global(body:has([data-page="servicios"])) .tab-panel {
+    margin-top: 0;
+  }
+  
   .tabs [hidden] {
     display: none !important;
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const isServiciosPage = window.location.pathname === '/servicios' || 
+                            window.location.pathname === '/servicios/' || 
+                            window.location.pathname.startsWith('/servicios#') ||
+                            window.location.pathname.startsWith('/servicios?');
+    
+    if (!isServiciosPage) return;
+    
+    const scroller = document.querySelector('[data-tabs] .scroller');
+    const spacer = document.querySelector('[data-tabs] .scroller-spacer');
+    if (!scroller) return;
+
+    const scrollerOffsetTop = scroller.offsetTop;
+    const targetTop = 70;
+    
+    scroller.dataset.initialTop = scrollerOffsetTop;
+
+    function handleScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      
+      if (scrollY >= (scrollerOffsetTop - targetTop)) {
+        scroller.classList.add('fixed');
+        if (spacer) spacer.classList.add('active');
+      } else {
+        scroller.classList.remove('fixed');
+        if (spacer) spacer.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  })();
+</script>
 
 <script is:inline>
   (() => {
@@ -185,7 +251,30 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
     }
 
     tabs.forEach((t) => {
-      t.addEventListener("click", () => setActive(t.dataset.tab));
+      t.addEventListener("click", () => {
+        const isServiciosPage = window.location.pathname === '/servicios' || 
+                                window.location.pathname === '/servicios/' || 
+                                window.location.pathname.startsWith('/servicios#') ||
+                                window.location.pathname.startsWith('/servicios?');
+        
+        if (isServiciosPage && scroller && scroller.classList.contains('fixed')) {
+          const initialTop = parseFloat(scroller.dataset.initialTop) || 0;
+          const targetTop = 70;
+          const scrollToPosition = initialTop - targetTop;
+          
+          window.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+          });
+        }
+        
+        setActive(t.dataset.tab);
+        
+        if (isServiciosPage) {
+          const newUrl = `${window.location.pathname}?tab=${t.dataset.tab}`;
+          window.history.pushState({}, '', newUrl);
+        }
+      });
     });
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -194,11 +283,6 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
     const hash = window.location.hash.substring(1);
     let initialTab = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
 
-    if (tabParam && tabs.some(t => t.dataset.tab === tabParam)) {
-      initialTab = tabParam;
-      setActive(initialTab, false);
-    }
-    
     if (hash) {
       const tabForHash = findTabForElement(hash);
       if (tabForHash) {
@@ -206,9 +290,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
         setActive(initialTab, false);
         scrollToElement(hash);
       }
-    }
-    
-    if (tabParam && !hash && tabs.some(t => t.dataset.tab === tabParam)) {
+    } else if (tabParam && tabs.some(t => t.dataset.tab === tabParam)) {
       initialTab = tabParam;
       setActive(initialTab, false);
     }

@@ -68,7 +68,7 @@ const {
   >
     {
       !ticket ? (
-        <a href={linkDescarga} class="hover:text-hover text-sm md:text-base">
+        <a href={linkDescarga} target="_blank" class="hover:text-hover text-sm md:text-base">
           Descargar {descargar}
         </a>
       ) : (
@@ -76,7 +76,7 @@ const {
       )
     }
     <a
-      href={linkAnchor}
+      href={linkAnchor} target="_blank"
       class="bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full"
       >{ticket ? "Solicitar ticket" : "Acceder"}</a
     >

@@ -40,90 +40,102 @@ html {
   scroll-behavior: smooth;
 }
 
-.contenedor{
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 0 20px;
+.contenedor {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'GuarujaGrotesk', sans-serif;
   -webkit-text-stroke: 0.5px;
 }
 
-p, li, span, a, button, input, textarea {
+p,
+li,
+span,
+a,
+button,
+input,
+textarea {
   font-family: 'Grandis', sans-serif;
 }
 
-a, svg, path{
+a,
+svg,
+path {
   transition: all .3s ease-in-out;
 }
 
-a[class*="bg-"]:not(.no-shine), 
-button[class*="bg-"]:not(.no-shine) {
-  position: relative;
-  overflow: hidden;
-}
+@media (min-width: 768px) {
 
-a[class*="bg-"]:not(.no-shine)::before, 
-button[class*="bg-"]:not(.no-shine)::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.15) 0%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-}
+  a[class*="bg-"]:not(.no-shine),
+  button[class*="bg-"]:not(.no-shine) {
+    position: relative;
+    overflow: hidden;
+  }
 
-a[class*="bg-"]:not(.no-shine):hover::before, 
-button[class*="bg-"]:not(.no-shine):hover::before {
-  opacity: 1;
-}
+  a[class*="bg-"]:not(.no-shine)::before,
+  button[class*="bg-"]:not(.no-shine)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
 
-a[class*="bg-"]:not(.no-shine) > *, 
-button[class*="bg-"]:not(.no-shine) > * {
-  position: relative;
-  z-index: 2;
-}
+  a[class*="bg-"]:not(.no-shine):hover::before,
+  button[class*="bg-"]:not(.no-shine):hover::before {
+    opacity: 1;
+  }
 
-.brillo-hover {
-  position: relative;
-  overflow: hidden;
-}
+  a[class*="bg-"]:not(.no-shine)>*,
+  button[class*="bg-"]:not(.no-shine)>* {
+    position: relative;
+    z-index: 2;
+  }
 
-.brillo-hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.15) 0%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-}
+  .brillo-hover {
+    position: relative;
+    overflow: hidden;
+  }
 
-.brillo-hover:hover::before {
-  opacity: 1;
-}
+  .brillo-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
 
-.brillo-hover > * {
-  position: relative;
-  z-index: 2;
-}
+  .brillo-hover:hover::before {
+    opacity: 1;
+  }
 
+  .brillo-hover>* {
+    position: relative;
+    z-index: 2;
+  }
+
+}
