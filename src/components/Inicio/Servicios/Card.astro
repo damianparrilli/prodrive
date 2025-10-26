@@ -6,12 +6,13 @@ interface Props {
   descripcionCorta: string;
   urlImg: string;
   esUnica?: boolean;
+  id?: string;
 }
 
-const { titulo, descripcionCorta, urlImg, esUnica } = Astro.props;
+const { titulo, descripcionCorta, urlImg, esUnica, id } = Astro.props;
 ---
 
-<a href=""
+<a href={`/servicios#${id}`}
   class={`servicio-card bg-[#100D23] md:bg-[#100D23] hover:bg-[#120f27] border border-transparent hover:border-white/10 p-5 rounded-2xl flex flex-col gap-2 group ${esUnica ? "lg:w-1/2" : ""}`}
 >
   <div class="flex gap-2 md:gap-3 justify-between">

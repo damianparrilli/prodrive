@@ -1,0 +1,31 @@
+---
+interface Props {
+  numero: string;
+  titulo: string;
+  descripcion: string;
+}
+
+const { numero, titulo, descripcion} = Astro.props;
+---
+
+<div class="flex md:w-full items-center">
+    <span class="text-transparent text-8xl md:text-9xl">{numero}</span>
+    <div class="texto-card flex flex-col p-4 md:p-6 gap-1 z-10 relative -ml-4 md:-ml-5 bg-[#1E1C2C] w-42 min-[395px]:w-60 brillo-hover md:w-full rounded-2xl">
+        <h4 class="text-lg md:text-xl">{titulo}</h4>
+        <p class="text-xs md:text-base">{descripcion}</p>
+    </div>
+</div>
+
+<style>
+    span{
+        -webkit-text-stroke: 2px white;
+    }
+
+    @media (max-width: 394px) {
+        .texto-card{
+        width: clamp(10.5rem, -8.7rem + 96vw, 15rem);
+    }
+    }
+    
+
+</style>

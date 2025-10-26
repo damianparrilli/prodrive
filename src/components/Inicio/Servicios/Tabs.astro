@@ -142,7 +142,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
       }
     }
 
-    function setActive(id) {
+    function setActive(id, skipScroll = false) {
       tabs.forEach((t) => {
         const selected = t.dataset.tab === id;
         t.setAttribute("aria-selected", selected);
@@ -159,15 +159,61 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
       const activeTab = tabs.find((t) => t.dataset.tab === id);
       if (activeTab) moveIndicatorTo(activeTab);
 
-      const tabIdx = tabs.findIndex(t => t.dataset.tab === id);
-      scrollTabIntoView(tabIdx);
+      if (!skipScroll) {
+        const tabIdx = tabs.findIndex(t => t.dataset.tab === id);
+        scrollTabIntoView(tabIdx);
+      }
+    }
+
+    function findTabForElement(elementId) {
+      for (const panel of panels) {
+        const element = panel.querySelector(`#${elementId}`);
+        if (element) {
+          return panel.dataset.panel;
+        }
+      }
+      return null;
+    }
+
+    function scrollToElement(elementId) {
+      setTimeout(() => {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
 
     tabs.forEach((t) => {
       t.addEventListener("click", () => setActive(t.dataset.tab));
     });
 
-    const current = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    
+    const hash = window.location.hash.substring(1);
+    let initialTab = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
+
+    if (tabParam && tabs.some(t => t.dataset.tab === tabParam)) {
+      initialTab = tabParam;
+      setActive(initialTab, false);
+    }
+    
+    if (hash) {
+      const tabForHash = findTabForElement(hash);
+      if (tabForHash) {
+        initialTab = tabForHash;
+        setActive(initialTab, false);
+        scrollToElement(hash);
+      }
+    }
+    
+    if (tabParam && !hash && tabs.some(t => t.dataset.tab === tabParam)) {
+      initialTab = tabParam;
+      setActive(initialTab, false);
+    }
+
+    const current = initialTab;
     function updateIndicator() {
       const activeTab = tabs.find(t=>t.dataset.tab===current);
       if (activeTab) moveIndicatorTo(activeTab);
