@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import CardEquipo from "./CardEquipo.astro";
+
+import giselaImage from "../../assets/images/gisela.jpg";
+import lisandroImage from "../../assets/images/lisandro.jpeg";
+---
+
+<section class="pb-16">
+  <div class="contenedor">
+    <div class="flex flex-col max-[500px]:mx-auto max-[500px]:max-w-96 min-[500px]:flex-row gap-4 py-12 justify-center">
+      
+        <CardEquipo
+          nombre="Gisela Nonaka"
+          puesto="Gestión de Mejoras"
+          imagen={giselaImage}
+          descripcion={'"Promover la mejora continua, mejorando el entorno laboral y aumentando la productividad, es el mejor camino para convertirse en una empresa eficiente"'}
+          />
+        <CardEquipo
+          nombre="Lisandro Valentini"
+          puesto="Gestión de Implementación"
+          imagen={lisandroImage}
+          descripcion="Especializados en implementaciones de tecnología y desarollo, buscamos que su empresa sea líder en el rubro, solucionando dificultades del día a día."
+          />
+    </div>
+  </div>
+</section>

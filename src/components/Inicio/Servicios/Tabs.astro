@@ -217,11 +217,6 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
         if (panel) panel.toggleAttribute("hidden", !selected);
       });
 
-      const shown = root.querySelector(`[data-panel="${id}"]`);
-      if (shown && window.gsap) {
-        window.gsap.set(shown, { opacity: 1, x: 0 });
-      }
-
       const activeTab = tabs.find((t) => t.dataset.tab === id);
       if (activeTab) moveIndicatorTo(activeTab);
 

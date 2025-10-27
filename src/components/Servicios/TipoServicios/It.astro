@@ -1,13 +1,20 @@
 ---
 import CardNumeraciones from "../CardNumeraciones.astro";
 import { Image } from "astro:assets";
+
+import administracionInfraestructuraImg from "../../../assets/images/administracion-infraestructura-image.webp";
+import soporteImg from "../../../assets/images/soporte.webp";
+import seguridadInformaticaImg from "../../../assets/images/seguridad-informatica-image.webp";
+import redesInformaticasImg from "../../../assets/images/redes-informaticas.jpg";
+import gestionProveedoresImg from "../../../assets/images/gestion-proveedores.webp";
+import seguridadFisicaImg from "../../../assets/images/seguridad-fisica-image.webp";
 ---
 
 <div class="servicios-content contenedor text-left flex flex-col">
   <div class="flex flex-col">
     <div
       id="administracion-de-infraestructura"
-      class="seccion-contenido flex flex-col w-full gap-4 pt-18 md:pt-22 pb-12"
+      class="seccion-contenido flex flex-col w-full gap-4 pt-22 "
     >
       <div class="flex flex-col">
         <h3 class="text-3xl">Administración de Infraestructura</h3>
@@ -58,10 +65,10 @@ import { Image } from "astro:assets";
       </div>
       <div class="flex overflow-hidden rounded-2xl max-md:h-50 max-h-96">
         <Image
-          src=`/administracion-infraestructura-image.webp`
+          src={administracionInfraestructuraImg}
           alt=`Imagen de Administración de Infraestructura`
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           class="object-cover w-full h-full max-md:h-50 max-h-96"
           loading="eager"
           decoding="async"
@@ -69,10 +76,11 @@ import { Image } from "astro:assets";
         />
       </div>
     </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Administración de Infraestructura</a>
 
     <div
       id="soporte-tecnico"
-      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 pb-12"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 "
     >
       <div class="flex flex-col gap-4 lg:w-3/5">
         <div class="flex flex-col">
@@ -86,10 +94,10 @@ import { Image } from "astro:assets";
             class="lg:hidden flex overflow-hidden rounded-2xl mt-4 lg:w-2/5 max-h-50 md:max-h-64"
           >
             <Image
-              src=`/soporte.webp`
+              src={soporteImg}
               alt=`Imagen de Soporte Técnico Mobile`
-              width={500}
-              height={500}
+              width={1500}
+              height={1500}
               class="object-cover w-full h-full max-h-50 md:max-h-64"
               loading="eager"
               decoding="async"
@@ -133,10 +141,10 @@ import { Image } from "astro:assets";
       </div>
       <div class="hidden lg:flex overflow-hidden rounded-2xl lg:w-2/5 xl:w-1/2">
         <Image
-          src=`/soporte.webp`
+          src={soporteImg}
           alt=`Imagen de Soporte Técnico`
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           class="object-cover w-full h-full"
           loading="eager"
           decoding="async"
@@ -144,17 +152,18 @@ import { Image } from "astro:assets";
         />
       </div>
     </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Soporte Técnico</a>
 
     <div
       id="seguridad-informatica"
-      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 pb-12"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 "
     >
       <div class="hidden lg:flex overflow-hidden rounded-2xl lg:w-2/5 xl:w-1/2">
         <Image
-          src=`/seguridad-informatica-image.webp`
+          src={seguridadInformaticaImg}
           alt=`Imagen de Seguridad informática`
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           class="object-cover w-full h-full"
           loading="eager"
           decoding="async"
@@ -172,10 +181,10 @@ import { Image } from "astro:assets";
             class="lg:hidden flex overflow-hidden rounded-2xl mt-4 lg:w-2/5 max-h-50"
           >
             <Image
-              src=`/seguridad-informatica-image.webp`
+              src={seguridadInformaticaImg}
               alt=`Imagen de Seguridad informática mobile`
-              width={500}
-              height={500}
+              width={1500}
+              height={1500}
               class="object-cover w-full max-h-50"
               loading="eager"
               decoding="async"
@@ -223,10 +232,11 @@ import { Image } from "astro:assets";
         </div>
       </div>
     </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Seguridad Informática</a>
 
     <div
       id="redes"
-      class="seccion-contenido flex flex-col md:flex-row md:items-center gap-4 pt-18 md:pt-22 pb-12"
+      class="seccion-contenido flex flex-col md:flex-row md:items-center gap-4 pt-18 md:pt-22 "
     >
       <div class="flex flex-col w-full md:w-3/5 gap-1">
         <h3 class="text-3xl">Redes</h3>
@@ -245,10 +255,10 @@ import { Image } from "astro:assets";
         class="flex overflow-hidden w-full md:w-2/5 rounded-2xl lg:h-72 h-50"
       >
         <Image
-          src=`/redes-informaticas.jpg`
+          src={redesInformaticasImg}
           alt=`Imagen de Redes`
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           class="object-cover w-full lg:h-72 h-50"
           loading="eager"
           decoding="async"
@@ -256,17 +266,18 @@ import { Image } from "astro:assets";
         />
       </div>
     </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Redes</a>
 
     <div
       id="gestion-de-proveedores"
-      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 pb-12"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 "
     >
       <div class="flex order-2 md:order-1 overflow-hidden rounded-2xl max-md:h-50 lg:max-h-112 md:w-2/5">
         <Image
-          src=`/gestion-proveedores.webp`
+          src={gestionProveedoresImg}
           alt=`Imagen de Gestión de Proveedores`
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           class="object-cover w-full h-50 md:h-auto"
           loading="eager"
           decoding="async"
@@ -317,19 +328,20 @@ import { Image } from "astro:assets";
         </div>
       </div>
     </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Gestión de Proveedores</a>
 
     <div
       id="seguridad-fisica"
-      class="seccion-contenido flex flex-col md:flex-row md:items-stretch gap-4 pt-18 md:pt-22 pb-12"
+      class="seccion-contenido flex flex-col md:flex-row md:items-stretch gap-4 pt-18 md:pt-22 "
     >
       <div
         class="flex overflow-hidden order-2 w-full md:w-2/5 rounded-2xl md:min-h-96 max-md:h-50"
       >
         <Image
-          src=`/seguridad-fisica-image.webp`
+          src={seguridadFisicaImg}
           alt=`Imagen de Seguridad Física`
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           class="object-cover w-full md:min-h-96 max-md:h-50"
           loading="eager"
           decoding="async"
@@ -360,5 +372,6 @@ import { Image } from "astro:assets";
         </p>
       </div>
     </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Seguridad Física</a>
   </div>
 </div>

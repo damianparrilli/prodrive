@@ -1,9 +1,11 @@
 ---
 import CardSoporte from "./Soporte/CardSoporte.astro";
+import bgSupport from "../../assets/images/bg-support.png";
 ---
 
 <section id="soporte"
-  class="py-24 md:py-28 bg-[url(/bg-support.png)] bg-center bg-no-repeat bg-cover text-center overflow-x-hidden"
+  class="py-24 md:py-28 bg-center bg-no-repeat bg-cover text-center overflow-x-hidden"
+  style={`background-image: url(${bgSupport.src});`}
 >
   <div class="mx-auto max-w-[1100px] px-5">
     <h2 class="soporte-titulo text-3xl md:text-[42px] font-title">Nuestros canales de soporte</h2>
@@ -74,9 +76,23 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.querySelector('#soporte');
+    if (!section || !window.gsap || !window.ScrollTrigger) return;
     
-    if (section && window.gsap && window.gsap.registerPlugin) {
-      window.gsap.to('.soporte-titulo', {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    
+    window.addEventListener('load', () => {
+      window.ScrollTrigger.refresh();
+    });
+    
+    const titulo = section.querySelector('.soporte-titulo');
+    const descripcion = section.querySelector('.soporte-descripcion');
+    const cardLeft = section.querySelector('.soporte-card-left');
+    const cardRight = section.querySelector('.soporte-card-right');
+    const textoO = section.querySelector('.soporte-o');
+    const ticketCard = section.querySelector('.soporte-ticket');
+    
+    if (titulo) {
+      window.gsap.to(titulo, {
         y: 0,
         opacity: 1,
         duration: 0.3,
@@ -84,11 +100,13 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
         scrollTrigger: {
           trigger: section,
           start: "top 60%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play reverse play reverse",
         }
       });
-      
-      window.gsap.to('.soporte-descripcion', {
+    }
+    
+    if (descripcion) {
+      window.gsap.to(descripcion, {
         y: 0,
         opacity: 1,
         duration: 0.3,
@@ -97,11 +115,13 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
         scrollTrigger: {
           trigger: section,
           start: "top 60%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play reverse play reverse",
         }
       });
-      
-      window.gsap.to('.soporte-card-left', {
+    }
+    
+    if (cardLeft) {
+      window.gsap.to(cardLeft, {
         x: 0,
         opacity: 1,
         duration: 0.4,
@@ -109,11 +129,13 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
         scrollTrigger: {
           trigger: section,
           start: "top 40%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play reverse play reverse",
         }
       });
-      
-      window.gsap.to('.soporte-card-right', {
+    }
+    
+    if (cardRight) {
+      window.gsap.to(cardRight, {
         x: 0,
         opacity: 1,
         duration: 0.4,
@@ -121,13 +143,13 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
         scrollTrigger: {
           trigger: section,
           start: "top 40%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play reverse play reverse",
         }
       });
-      
-      const ticketCard = document.querySelector('.soporte-ticket');
-      
-      window.gsap.to('.soporte-o', {
+    }
+    
+    if (textoO && ticketCard) {
+      window.gsap.to(textoO, {
         y: 0,
         opacity: 1,
         duration: 0.3,
@@ -135,11 +157,13 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
         scrollTrigger: {
           trigger: ticketCard,
           start: "top 85%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play reverse play reverse",
         }
       });
-      
-      window.gsap.to('.soporte-ticket', {
+    }
+    
+    if (ticketCard) {
+      window.gsap.to(ticketCard, {
         y: 0,
         opacity: 1,
         duration: 0.3,
@@ -147,7 +171,7 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
         scrollTrigger: {
           trigger: ticketCard,
           start: "top 85%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play reverse play reverse",
         }
       });
     }

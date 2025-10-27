@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   titulo: string;
   descripcionCorta: string;
-  urlImg: string;
+  imagen: ImageMetadata;
   esUnica?: boolean;
   id?: string;
 }
 
-const { titulo, descripcionCorta, urlImg, esUnica, id } = Astro.props;
+const { titulo, descripcionCorta, imagen, esUnica, id } = Astro.props;
 ---
 
 <a href={`/servicios#${id}`}
@@ -37,10 +38,10 @@ const { titulo, descripcionCorta, urlImg, esUnica, id } = Astro.props;
     class="w-full min-h-42 md:min-h-50 mt-auto flex justify-center items-center rounded-xl bg-[#1E1C2C] py-8 overflow-hidden"
   >
     <Image
-      src=`/${urlImg}.png`
+      src={imagen}
       alt=`Icono de ${titulo}`
-      width={125}
-      height={125}
+      width={700}
+      height={700}
       class="object-contain w-20 md:w-28 h-auto group-hover:scale-[1.15] transition-all ease-in-out duration-400"
       loading="eager"
       decoding="async"

@@ -1,10 +1,25 @@
 ---
 import Tabs from "./Servicios/Tabs.astro";
 import Card from "./Servicios/Card.astro";
+
+import administracionInfraestructura from "../../assets/images/administracion-de-infraestructura.png";
+import soporteTecnico from "../../assets/images/soporte-tecnico.png";
+import seguridadInformatica from "../../assets/images/seguridad-informatica.png";
+import redes from "../../assets/images/redes.png";
+import gestionProveedores from "../../assets/images/gestion-de-proveedores.png";
+import seguridadFisica from "../../assets/images/seguridad-fisica.png";
+import kaizenY5s from "../../assets/images/kaizen-y-5s.png";
+import asesoramientoContable from "../../assets/images/asesoramiento-contable-y-administrativo.png";
+import capacitaciones from "../../assets/images/capacitaciones.png";
+import branding from "../../assets/images/branding.png";
+import comunicacionEstrategica from "../../assets/images/comunicacion-estrategica.png";
+import diseñoWeb from "../../assets/images/diseño-web.png";
+import bgServices from "../../assets/images/bg-services.png";
 ---
 
 <section
-  class="servicios-section overflow-x-hidden py-24 text-center bg-[url(/bg-services.png)] bg-center bg-no-repeat bg-cover"
+  class="servicios-section overflow-x-hidden py-24 text-center bg-center bg-no-repeat bg-cover"
+  style={`background-image: url(${bgServices.src});`}
 >
   <div class="contenedor">
     <h2 class="servicios-titulo text-3xl md:text-[42px] font-title">
@@ -35,13 +50,13 @@ import Card from "./Servicios/Card.astro";
             id="administracion-de-infraestructura"
               titulo="Administración de Infraestructura"
               descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
-              urlImg="administracion-de-infraestructura"
+              imagen={administracionInfraestructura}
             />
             <Card
             id="soporte-tecnico"
               titulo="Soporte Técnico"
               descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
-              urlImg="soporte-tecnico"
+              imagen={soporteTecnico}
             />
           </div>
           <div
@@ -51,25 +66,25 @@ import Card from "./Servicios/Card.astro";
             id="seguridad-informatica"
               titulo="Seguridad Informática"
               descripcionCorta="Protección de datos y backups seguros, tanto físicos como en la nube y controles con periodicidad."
-              urlImg="seguridad-informatica"
+              imagen={seguridadInformatica}
             />
             <Card
             id="redes"
               titulo="Redes"
               descripcionCorta="Eficiencia en la interconectividad de los dispositivos de red, datos y control de ancho de banda."
-              urlImg="redes"
+              imagen={redes}
             />
             <Card
             id="gestion-de-proveedores"
               titulo="Gestión de Proveedores"
               descripcionCorta="Gestionamos proveedores con selección, evaluación de riesgos, negociación y monitoreo."
-              urlImg="gestion-de-proveedores"
+              imagen={gestionProveedores}
             />
             <Card
             id="seguridad-fisica"
               titulo="Seguridad Física"
               descripcionCorta="Instalación de sistemas de video vigilancia, control de acceso y sistemas de seguridad digitales."
-              urlImg="seguridad-fisica"
+              imagen={seguridadFisica}
             />
           </div>
         </div>
@@ -82,14 +97,14 @@ import Card from "./Servicios/Card.astro";
             <Card
               id="kaizen-y-5s"
               titulo="Kaizen y 5S"
-              descripcionCorta="<b>“Pequeños cambios, grandes resultados”</b><br>Con Kaizen y las 5S, ayudamos a tu empresa a mejorar procesos, reducir desperdicios y aumentar productividad. Cada acción cuenta, cada mejora suma."
-              urlImg="kaizen-y-5s"
+              descripcionCorta={'<b>"Pequeños cambios, grandes resultados"</b><br>Con Kaizen y las 5S, ayudamos a tu empresa a mejorar procesos, reducir desperdicios y aumentar productividad. Cada acción cuenta, cada mejora suma.'}
+              imagen={kaizenY5s}
             />
             <Card
               id="asesoramiento-contable-y-administrativo"
               titulo="Asesoramiento Contable y Administrativo"
               descripcionCorta="Mantenemos todos los dispositivos de red y damos soporte, garantizando conectividad segura y ágil desde cualquier lugar."
-              urlImg="asesoramiento-contable-y-administrativo"
+              imagen={asesoramientoContable}
             />
           </div>
           <div class="flex justify-center mt-4">
@@ -97,7 +112,7 @@ import Card from "./Servicios/Card.astro";
             id="capacitaciones"
               titulo="Capacitaciones"
               descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
-              urlImg="capacitaciones"
+              imagen={capacitaciones}
               esUnica
             />
           </div>
@@ -112,13 +127,13 @@ import Card from "./Servicios/Card.astro";
             id="branding"
               titulo="Branding"
               descripcionCorta="Te ayudamos a construir y fortalecer la identidad de tu marca, creando una presencia sólida y coherente que conecte con tu audiencia y destaque en el mercado."
-              urlImg="branding"
+              imagen={branding}
             />
             <Card
             id="comunicacion-estrategica"
               titulo="Comunicación Estratégica"
               descripcionCorta="Contamos con un equipo profesional brindando soporte informático integral, ofreciendo asistencia confiable y ágil de forma remota o presencial, para optimizar el rendimiento de tecnología."
-              urlImg="comunicacion-estrategica"
+              imagen={comunicacionEstrategica}
             />
           </div>
           <div class="flex justify-center mt-4">
@@ -126,7 +141,7 @@ import Card from "./Servicios/Card.astro";
             id="diseno-web"
               titulo="Diseño Web"
               descripcionCorta="Creamos sitios web atractivos y funcionales, optimizados para brindar la mejor experiencia al usuario y cumplir con los objetivos de tu negocio."
-              urlImg="diseño-web"
+              imagen={diseñoWeb}
               esUnica
             />
           </div>
@@ -163,41 +178,53 @@ import Card from "./Servicios/Card.astro";
       window.gsap.registerPlugin(window.ScrollTrigger);
 
       const section = document.querySelector(".servicios-section");
+      if (!section) return;
 
-      const todasLasCards = document.querySelectorAll(".servicio-card");
+      window.addEventListener('load', () => {
+        window.ScrollTrigger.refresh();
+      });
+
+      const todasLasCards = section.querySelectorAll(".servicio-card");
       window.gsap.set(todasLasCards, {
         scale: 0.5,
         opacity: 0,
       });
 
-      window.gsap.to(".servicios-titulo", {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 60%",
-          toggleActions: "play none none reverse",
-        },
-      });
+      const titulo = section.querySelector(".servicios-titulo");
+      const descripcion = section.querySelector(".servicios-descripcion");
 
-      window.gsap.to(".servicios-descripcion", {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        delay: 0.05,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 60%",
-          toggleActions: "play none none reverse",
-        },
-      });
+      if (titulo) {
+        window.gsap.to(titulo, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            toggleActions: "play reverse play reverse",
+          },
+        });
+      }
+
+      if (descripcion) {
+        window.gsap.to(descripcion, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          delay: 0.05,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            toggleActions: "play reverse play reverse",
+          },
+        });
+      }
 
       function animarContenedorYCards(contenedor, animarContenedor = true) {
         const cards = contenedor.querySelectorAll(".servicio-card");
-        const tabs = document.querySelector(".servicios-tabs");
+        const tabs = section.querySelector(".servicios-tabs");
 
         window.gsap.set(cards, {
           scale: 0.5,
@@ -241,22 +268,39 @@ import Card from "./Servicios/Card.astro";
       }
 
       setTimeout(() => {
-        const contenedorInicial = document.querySelector(
+        const contenedorInicial = section.querySelector(
           ".tab-panel:not([hidden]) .servicios-content"
         );
         if (contenedorInicial) {
           const st = ScrollTrigger.create({
             trigger: contenedorInicial,
             start: "top 80%",
-            once: true,
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
             onEnter: () => {
               animarContenedorYCards(contenedorInicial, true);
+            },
+            onLeaveBack: () => {
+              const cards = contenedorInicial.querySelectorAll(".servicio-card");
+              const tabs = section.querySelector(".servicios-tabs");
+              window.gsap.to([contenedorInicial, tabs], {
+                y: 50,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in",
+              });
+              window.gsap.to(cards, {
+                scale: 0.5,
+                opacity: 0,
+                duration: 0.15,
+                ease: "power1.in",
+              });
             },
           });
         }
       }, 100);
 
-      const tabs = document.querySelectorAll('[role="tab"]');
+      const tabs = section.querySelectorAll('[role="tab"]');
       tabs.forEach((tab) => {
         tab.addEventListener(
           "click",
@@ -265,7 +309,7 @@ import Card from "./Servicios/Card.astro";
               return;
             }
 
-            const todasLasCards = document.querySelectorAll(".servicio-card");
+            const todasLasCards = section.querySelectorAll(".servicio-card");
             window.gsap.set(todasLasCards, {
               scale: 0.5,
               opacity: 0,
@@ -273,11 +317,32 @@ import Card from "./Servicios/Card.astro";
 
             requestAnimationFrame(() => {
               const panelId = tab.getAttribute("data-tab");
-              const panel = document.querySelector(`[data-panel="${panelId}"]`);
+              const panel = section.querySelector(`[data-panel="${panelId}"]`);
               if (panel && !panel.hasAttribute("hidden")) {
                 const contenedor = panel.querySelector(".servicios-content");
                 if (contenedor) {
+                  const allTriggers = window.ScrollTrigger.getAll();
+                  const otherTriggers = allTriggers.filter(trigger => {
+                    if (!trigger.trigger) return false;
+                    const triggerElement = trigger.trigger;
+                    return !section.contains(triggerElement);
+                  });
+                  
+                  otherTriggers.forEach(trigger => {
+                    trigger.disable(false);
+                  });
+                  
                   animarContenedorYCards(contenedor, false);
+                  
+                  setTimeout(() => {
+                    window.ScrollTrigger.refresh();
+                    
+                    setTimeout(() => {
+                      otherTriggers.forEach(trigger => {
+                        trigger.enable(false);
+                      });
+                    }, 50);
+                  }, 350);
                 }
               }
             });

@@ -5,35 +5,30 @@ import Tabs from "../components/Inicio/Servicios/Tabs.astro";
 import It from "../components/Servicios/TipoServicios/It.astro";
 import Gestion from "../components/Servicios/TipoServicios/Gestion.astro";
 import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
-
+import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
 ---
 
 <Layout title="Servicios - ProDrive" description="" keywords="">
   <div data-page="servicios" class="overflow-x-hidden">
-  <BannerServicios titulo="Nuestros servicios" />
-  <section class="py-12">
-    <div class="flex flex-col justify-center items-center">
-      <div class="servicios-tabs w-full">
-        <Tabs
-          tabs={[
-            { id: "it", label: "Consultoría Integral en IT" },
-            { id: "gestion", label: "Consultoría en Gestión" },
-            { id: "estrategias", label: "Desarrollo de Estrategias" },
-          ]}
-        >
-
-        
-          
-          <It slot="it" />
-          <Gestion slot="gestion" />
-          <Desarrollo slot="estrategias" />
-         
-          
-          
-        </Tabs>
+    <BannerServicios titulo="Nuestros servicios" />
+    <section class="py-12">
+      <div class="flex flex-col justify-center items-center">
+        <div class="servicios-tabs w-full">
+          <Tabs
+            tabs={[
+              { id: "it", label: "Consultoría Integral en IT" },
+              { id: "gestion", label: "Consultoría en Gestión" },
+              { id: "estrategias", label: "Desarrollo de Estrategias" },
+            ]}
+          >
+            <It slot="it" />
+            <Gestion slot="gestion" />
+            <Desarrollo slot="estrategias" />
+          </Tabs>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+      <ContactoServicios />
   </div>
 </Layout>
 
@@ -45,7 +40,7 @@ import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
+
   .seccion-contenido {
     opacity: 0;
   }
@@ -56,21 +51,28 @@ import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
 
-      const itSecciones = document.querySelectorAll('[data-panel="it"] .seccion-contenido');
-      const gestionSecciones = document.querySelectorAll('[data-panel="gestion"] .seccion-contenido');
-      const desarrolloSecciones = document.querySelectorAll('[data-panel="estrategias"] .seccion-contenido');
-      
+      const itSecciones = document.querySelectorAll(
+        '[data-panel="it"] .seccion-contenido'
+      );
+      const gestionSecciones = document.querySelectorAll(
+        '[data-panel="gestion"] .seccion-contenido'
+      );
+      const desarrolloSecciones = document.querySelectorAll(
+        '[data-panel="estrategias"] .seccion-contenido'
+      );
+
       let scrollTriggers = [];
 
       function animarSecciones(secciones, empiezaDesdeIzquierda = false) {
         secciones.forEach((seccion, index) => {
           let xInicial;
-          
+
           if (index === 0) {
-            const st = window.gsap.fromTo(seccion,
+            const st = window.gsap.fromTo(
+              seccion,
               {
                 opacity: 0,
-                y: 30
+                y: 30,
               },
               {
                 opacity: 1,
@@ -83,8 +85,8 @@ import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
                   toggleActions: "play none none reset",
                   onLeaveBack: () => {
                     window.gsap.set(seccion, { opacity: 0, y: 30 });
-                  }
-                }
+                  },
+                },
               }
             );
             if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
@@ -94,11 +96,12 @@ import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
             } else {
               xInicial = index % 2 === 1 ? 100 : -100;
             }
-            
-            const st = window.gsap.fromTo(seccion,
+
+            const st = window.gsap.fromTo(
+              seccion,
               {
                 opacity: 0,
-                x: xInicial
+                x: xInicial,
               },
               {
                 opacity: 1,
@@ -111,8 +114,8 @@ import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
                   toggleActions: "play none none reset",
                   onLeaveBack: () => {
                     window.gsap.set(seccion, { opacity: 0, x: xInicial });
-                  }
-                }
+                  },
+                },
               }
             );
             if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
@@ -125,10 +128,10 @@ import Desarrollo from "../components/Servicios/TipoServicios/Desarrollo.astro";
       animarSecciones(desarrolloSecciones, false);
 
       const tabs = document.querySelectorAll('[role="tab"]');
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
           setTimeout(() => {
-            scrollTriggers.forEach(st => {
+            scrollTriggers.forEach((st) => {
               if (st) st.refresh();
             });
           }, 100);

@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  nombre: string;
+  puesto: string;
+  imagen: ImageMetadata;
+  descripcion: string;
+}
+
+const { nombre, puesto, imagen, descripcion } = Astro.props;
+---
+
+<div class="flex flex-col max-w-130 p-4 md:p-6 gap-4 bg-[#28243C] rounded-3xl brillo-hover">
+  <div class="flex flex-col items-center md:items-start md:flex-row gap-4">
+    <div class="aspect-square w-full md:max-w-40 h-auto rounded-2xl overflow-hidden">
+    <Image
+      src={imagen}
+      alt={`Imagen de ${nombre}`}
+      width={500}
+      height={500}
+      class="object-cover aspect-square w-full h-full"
+      loading="eager"
+      decoding="async"
+      format="webp"
+    />
+    </div>
+    <div class="flex flex-col items-center md:items-start max-md:text-center justify-center w-full md:h-full">
+    <h4 class="text-xl sm:text-2xl lg:text-3xl max-[500px]:text-2xl">{nombre}</h4>
+    <p class="text-sm sm:text-base lg:text-lg max-[500px]:text-base">{puesto}</p>
+    </div>
+  </div>
+  <p class="text-xs sm:text-sm md:text-base italic max-[500px]:text-sm">{descripcion}</p>
+</div>

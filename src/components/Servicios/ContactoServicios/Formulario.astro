@@ -1,0 +1,48 @@
+<form class="flex flex-col gap-4">
+  <div class="flex flex-col md:flex-row gap-x-4 gap-y-4 w-full justify-stretch">
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="w-full"/>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="Correo electrónico"
+      class="w-full"
+    />
+  </div>
+  <input type="text" name="asunto" id="asunto" placeholder="Asunto" />
+  <textarea
+    name="mensaje"
+    id="mensaje"
+    placeholder="Escribí tu mensaje"
+    class="rounded-4xl min-h-14 max-h-60 h-32"></textarea>
+  <input type="submit" value="Enviar mensaje" class="rounded-full bg-acento hover:bg-acentoHover py-3 cursor-pointer transition-all ease-in-out duration-300" />
+</form>
+
+<style>
+  input:not([type="submit"]),
+  textarea {
+      background-color: #090719;
+      border: 1px solid white;
+      padding: 15px 25px;
+      outline: none;
+      box-shadow: none;
+  }
+
+  input {
+    border-radius: 999px;
+  }
+
+    input:not([type="submit"]):focus,
+    input:not([type="submit"]):active,
+    textarea:focus,
+    textarea:active {
+      outline: none !important;
+      box-shadow: none !important;
+      border: 1px solid white;
+  }
+
+  input:not([type="submit"])::placeholder,
+  textarea::placeholder {
+    color: #7e7e7e !important;
+  }
+</style>

@@ -8,8 +8,14 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   vite: {
+    //@ts-ignore
     plugins: [tailwindcss()]
   },
-
+server: {
+    allowedHosts: [
+      "miracle-what-english-money.trycloudflare.com"
+    ]
+  },
   integrations: [sitemap()]
+  
 });
