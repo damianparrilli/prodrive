@@ -1,0 +1,115 @@
+---
+import CardDiferencia from "./CardDiferencia.astro"
+import Documentos from "./Icons/Documentos.astro"
+import AtencionPersonalizada from "./Icons/AtencionPersonalizada.astro"
+import Mejora from "./Icons/Mejora.astro"
+import Support from "./Icons/Support.astro"
+---
+
+<section class="mx-auto px-5 max-w-[1200px] pb-20 flex flex-col justify-center items-center gap-8">
+    <h2 class="diferencia-titulo w-full text-3xl text-center">¿Qué nos diferencia del resto?</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="diferencia-card">
+            <CardDiferencia icon={Documentos} title="Documentación total" description="Nos encargamos de mantener la información y así poder resolver problemas a futuro" />
+        </div>
+        <div class="diferencia-card">
+            <CardDiferencia icon={AtencionPersonalizada} title="Atención personalizada" description="Nos adaptamos a sus necesidades, ofreciendo soluciones a medida" />
+        </div>
+        <div class="diferencia-card">
+            <CardDiferencia icon={Mejora} title="Mejora continua" description="Brindamos un servicio de calidad y en constante evolución, buscando la excelencia para su empresa" />
+        </div>
+        <div class="diferencia-card">
+            <CardDiferencia icon={Support} title="Soporte remoto" description="Ofrecemos asistencia técnica a distancia para resolver problemas de manera eficiente" />
+        </div>
+    </div>
+</section>
+
+<style>
+  .diferencia-titulo {
+    opacity: 0;
+  }
+
+  .diferencia-card {
+    opacity: 0;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      const titulo = document.querySelector(".diferencia-titulo");
+      const cards = document.querySelectorAll(".diferencia-card");
+
+      window.gsap.fromTo(
+        titulo,
+        {
+          opacity: 0,
+          y: -50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titulo,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      const isMobile = window.innerWidth < 640;
+
+      if (isMobile) {
+        cards.forEach((card) => {
+          window.gsap.fromTo(
+            card,
+            {
+              opacity: 0,
+              y: 50,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      } else {
+        const tl = window.gsap.timeline({
+          scrollTrigger: {
+            trigger: titulo,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        cards.forEach((card, index) => {
+          tl.fromTo(
+            card,
+            {
+              opacity: 0,
+              y: 50,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+            },
+            index * 0.15
+          );
+        });
+      }
+    }
+  });
+</script>

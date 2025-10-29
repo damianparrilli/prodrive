@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import aboutusImage from "../../assets/images/image-aboutus.jpg";
+import misionImage from "../../assets/images/mision.jpg";
+---
+
+<section class="vision relative pb-32 pt-18 flex flex-col gap-24 overflow-x-hidden">
+  <div class="mx-auto px-5 max-w-[1200px]">
+    
+    <div class="flex flex-col md:flex-row gap-8 vision-block">
+      <div class="flex flex-col gap-2 md:w-3/5 lg:w-1/2 my-auto justify-stretch items-stretch">
+        <h2 class="w-full text-3xl">Nuestra visión</h2>
+        <p class="text-lg md:text-xl">
+          En ProDrive ayudamos a empresas a trabajar mejor a través de la
+          tecnología.
+        </p>
+        <p class="text-lg md:text-xl">
+          Somos un equipo especializado en soporte IT, infraestructura y
+          soluciones digitales, comprometido con acompañar cada etapa del
+          crecimiento de tu negocio.
+        </p>
+        <p class="text-lg md:text-xl">
+          Nuestro propósito es hacer que tus sistemas funcionen de forma
+          estable, segura y eficiente, para que vos puedas concentrarte en lo
+          importante: tu empresa.
+        </p>
+      </div>
+      <div
+        class="flex overflow-hidden rounded-2xl max-md:h-50 md:w-2/5 lg:w-1/2 justify-stretch items-stretch"
+      >
+        <Image
+          src={aboutusImage}
+          alt=`Imagen de Nuestra visión`
+          width={1500}
+          height={1500}
+          class="object-cover w-full max-md:h-50"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto px-5 max-w-[1200px]">
+    
+    <div class="flex flex-col md:flex-row gap-8 justify-stretch vision-block">
+      <div
+        class="flex overflow-hidden rounded-2xl max-md:h-50 order-2 md:order-1 md:w-2/5 lg:w-1/2"
+      >
+        <Image
+          src={misionImage}
+          alt=`Imagen de Nuestra misión`
+          width={1500}
+          height={1500}
+          class="object-cover w-full max-md:h-50"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+      <div class="flex flex-col gap-2 md:w-3/5 lg:w-1/2 order-1 md:order-2 my-auto">
+        <h2 class="w-full text-3xl">Nuestra misión</h2>
+        <p class="text-lg md:text-xl">
+          En ProDrive ayudamos a empresas a trabajar mejor a través de la
+          tecnología.
+        </p>
+        <p class="text-lg md:text-xl">
+          Somos un equipo especializado en soporte IT, infraestructura y
+          soluciones digitales, comprometido con acompañar cada etapa del
+          crecimiento de tu negocio.
+        </p>
+        <p class="text-lg md:text-xl">
+          Nuestro propósito es hacer que tus sistemas funcionen de forma
+          estable, segura y eficiente, para que vos puedas concentrarte en lo
+          importante: tu empresa.
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .vision {
+    background: radial-gradient(
+  ellipse at right,
+  #0b1e30e5 30%,
+  transparent 60%
+);
+  }
+  .vision::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(
+  ellipse at left,
+  #0b1e305d 30%,
+  transparent 50%
+);
+  }
+
+  .vision-block {
+    opacity: 0;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      const visionBlocks = document.querySelectorAll(".vision-block");
+
+      visionBlocks.forEach((block, index) => {
+        const xInicial = index % 2 === 0 ? -150 : 150;
+
+        window.gsap.fromTo(
+          block,
+          {
+            opacity: 0,
+            x: xInicial,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: block,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }
+  });
+</script>

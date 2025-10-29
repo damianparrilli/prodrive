@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import CardEquipo from "./CardEquipo.astro";
 
 import giselaImage from "../../assets/images/gisela.jpg";
@@ -8,20 +7,94 @@ import lisandroImage from "../../assets/images/lisandro.jpeg";
 
 <section class="pb-16">
   <div class="contenedor">
-    <div class="flex flex-col max-[500px]:mx-auto max-[500px]:max-w-96 min-[500px]:flex-row gap-4 py-12 justify-center">
+    <h2 class="equipo-titulo text-2xl md:text-3xl text-center">Conoce a nuestro equipo</h2>
+    <div class="flex flex-col max-[500px]:mx-auto max-[500px]:max-w-96 min-[500px]:flex-row gap-4 pt-6 pb-12 justify-center overflow-x-hidden">
       
-        <CardEquipo
-          nombre="Gisela Nonaka"
-          puesto="Gestión de Mejoras"
-          imagen={giselaImage}
-          descripcion={'"Promover la mejora continua, mejorando el entorno laboral y aumentando la productividad, es el mejor camino para convertirse en una empresa eficiente"'}
-          />
-        <CardEquipo
-          nombre="Lisandro Valentini"
-          puesto="Gestión de Implementación"
-          imagen={lisandroImage}
-          descripcion="Especializados en implementaciones de tecnología y desarollo, buscamos que su empresa sea líder en el rubro, solucionando dificultades del día a día."
-          />
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Gisela Nonaka"
+            puesto="Gestión de Mejoras"
+            imagen={giselaImage}
+            descripcion={'"Promover la mejora continua, mejorando el entorno laboral y aumentando la productividad, es el mejor camino para convertirse en una empresa eficiente"'}
+            />
+        </div>
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Lisandro Valentini"
+            puesto="Gestión de Implementación"
+            imagen={lisandroImage}
+            descripcion="Especializados en implementaciones de tecnología y desarollo, buscamos que su empresa sea líder en el rubro, solucionando dificultades del día a día."
+            />
+        </div>
     </div>
   </div>
 </section>
+
+<style>
+  .equipo-titulo {
+    opacity: 0;
+  }
+
+  .equipo-card {
+    opacity: 0;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      const titulo = document.querySelector(".equipo-titulo");
+      const cards = document.querySelectorAll(".equipo-card");
+
+      window.gsap.fromTo(
+        titulo,
+        {
+          opacity: 0,
+          y: -50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titulo,
+            start: "top 80%",
+            toggleActions: "play none none reset",
+            onLeaveBack: () => {
+              window.gsap.set(titulo, { opacity: 0, y: -50 });
+            },
+          },
+        }
+      );
+
+      cards.forEach((card, index) => {
+        const xInicial = index % 2 === 0 ? -100 : 100;
+
+        window.gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            x: xInicial,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              toggleActions: "play none none reset",
+              onLeaveBack: () => {
+                window.gsap.set(card, { opacity: 0, x: xInicial });
+              },
+            },
+          }
+        );
+      });
+    }
+  });
+</script>

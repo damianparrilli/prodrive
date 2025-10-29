@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "miracle-what-english-money.trycloudflare.com"
+      "academic-sequence-disposal-keys.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]
