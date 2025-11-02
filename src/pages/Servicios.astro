@@ -43,6 +43,7 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
 
   .seccion-contenido {
     opacity: 0;
+    overflow-x: hidden;
   }
 </style>
 
@@ -64,6 +65,8 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
       let scrollTriggers = [];
 
       function animarSecciones(secciones, empiezaDesdeIzquierda = false) {
+        const isMobile = window.innerWidth < 768;
+        
         secciones.forEach((seccion, index) => {
           let xInicial;
 
@@ -91,34 +94,59 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
             );
             if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
           } else {
-            if (empiezaDesdeIzquierda) {
-              xInicial = index % 2 === 1 ? -100 : 100;
-            } else {
-              xInicial = index % 2 === 1 ? 100 : -100;
-            }
-
-            const st = window.gsap.fromTo(
-              seccion,
-              {
-                opacity: 0,
-                x: xInicial,
-              },
-              {
-                opacity: 1,
-                x: 0,
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: seccion,
-                  start: "top 80%",
-                  toggleActions: "play none none reset",
-                  onLeaveBack: () => {
-                    window.gsap.set(seccion, { opacity: 0, x: xInicial });
-                  },
+            if (isMobile) {
+              const st = window.gsap.fromTo(
+                seccion,
+                {
+                  opacity: 0,
+                  y: 50,
                 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.8,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: seccion,
+                    start: "top 80%",
+                    toggleActions: "play none none reset",
+                    onLeaveBack: () => {
+                      window.gsap.set(seccion, { opacity: 0, y: 50 });
+                    },
+                  },
+                }
+              );
+              if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
+            } else {
+              if (empiezaDesdeIzquierda) {
+                xInicial = index % 2 === 1 ? -100 : 100;
+              } else {
+                xInicial = index % 2 === 1 ? 100 : -100;
               }
-            );
-            if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
+
+              const st = window.gsap.fromTo(
+                seccion,
+                {
+                  opacity: 0,
+                  x: xInicial,
+                },
+                {
+                  opacity: 1,
+                  x: 0,
+                  duration: 0.8,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: seccion,
+                    start: "top 80%",
+                    toggleActions: "play none none reset",
+                    onLeaveBack: () => {
+                      window.gsap.set(seccion, { opacity: 0, x: xInicial });
+                    },
+                  },
+                }
+              );
+              if (st.scrollTrigger) scrollTriggers.push(st.scrollTrigger);
+            }
           }
         });
       }

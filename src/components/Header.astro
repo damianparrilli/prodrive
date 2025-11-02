@@ -303,6 +303,7 @@ import logo from "../assets/images/prodrive-logo.png";
             listaDd.style.height = "0px";
             listaDd.style.opacity = "0";
             listaDd.style.display = "flex";
+            listaDd.style.pointerEvents = "auto";
             listaDd.style.height = "auto";
             const realHeight = listaDd.scrollHeight;
             listaDd.style.height = "0px";
@@ -321,6 +322,7 @@ import logo from "../assets/images/prodrive-logo.png";
             const currentHeight = listaDd.scrollHeight;
             listaDd.style.height = currentHeight + "px";
             listaDd.classList.add("overflow-hidden");
+            listaDd.style.pointerEvents = "none";
             gsap.to(listaDd, {
               height: 0,
               opacity: 0,

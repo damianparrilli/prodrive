@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "academic-sequence-disposal-keys.trycloudflare.com"
+      "surgeon-pupils-robot-antenna.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]
