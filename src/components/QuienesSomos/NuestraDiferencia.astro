@@ -35,31 +35,37 @@ import Support from "./Icons/Support.astro"
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initDiferenciaAnimaciones() {
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
+
+      setTimeout(() => {
+        window.ScrollTrigger.refresh();
+      }, 100);
 
       const titulo = document.querySelector(".diferencia-titulo");
       const cards = document.querySelectorAll(".diferencia-card");
 
-      window.gsap.fromTo(
-        titulo,
-        {
-          opacity: 0,
-          y: -50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titulo,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+      if (titulo) {
+        window.gsap.fromTo(
+          titulo,
+          {
+            opacity: 0,
+            y: -50,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: titulo,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
 
       const isMobile = window.innerWidth < 640;
 
@@ -110,6 +116,14 @@ import Support from "./Icons/Support.astro"
           );
         });
       }
+    }
+  }
+  
+  document.addEventListener('astro:page-load', initDiferenciaAnimaciones);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   });
 </script>

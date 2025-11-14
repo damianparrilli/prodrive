@@ -108,9 +108,13 @@ import misionImage from "../../assets/images/mision.jpg";
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initVisionAnimaciones() {
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
+
+      setTimeout(() => {
+        window.ScrollTrigger.refresh();
+      }, 100);
 
       const visionBlocks = document.querySelectorAll(".vision-block");
 
@@ -136,6 +140,14 @@ import misionImage from "../../assets/images/mision.jpg";
           }
         );
       });
+    }
+  }
+  
+  document.addEventListener('astro:page-load', initVisionAnimaciones);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   });
 </script>

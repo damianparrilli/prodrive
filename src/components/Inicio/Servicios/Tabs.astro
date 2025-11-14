@@ -135,7 +135,7 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
 </style>
 
 <script is:inline>
-  (() => {
+  function initScrollSticky() {
     const isServiciosPage = window.location.pathname === '/servicios' || 
                             window.location.pathname === '/servicios/' || 
                             window.location.pathname.startsWith('/servicios#') ||
@@ -166,11 +166,13 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-  })();
+  }
+  
+  document.addEventListener('astro:page-load', initScrollSticky);
 </script>
 
 <script is:inline>
-  (() => {
+  function initTabs() {
     const root = document.querySelector('[data-tabs]');
     if (!root) return;
 
@@ -308,7 +310,8 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
         img.addEventListener('load', updateIndicator);
       });
     }
-
-  })();
+  }
+  
+  document.addEventListener('astro:page-load', initTabs);
 </script>
 

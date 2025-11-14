@@ -1,0 +1,65 @@
+---
+---
+
+<div id="loader" class="fixed inset-0 z-9999 flex items-center justify-center bg-[#0B081D] transition-opacity duration-700">
+  <div id="lottie-container" class="w-[400px] h-[400px] md:w-[700px] md:h-[700px] relative mb-20">
+    <div class="absolute bottom-10 md:bottom-30 right-0 w-48 h-24 bg-[#0B081D] z-10"></div> 
+  </div>
+</div>
+
+<script>
+  import lottie from 'lottie-web';
+
+  import logoAnimation from '../assets/lottie/logo.json';
+
+  function initLoader() {
+    const loader = document.getElementById('loader');
+    const container = document.getElementById('lottie-container');
+    
+    if (!container || !loader) return;
+
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/prodrive/' || window.location.pathname === '/prodrive';
+    const hasSeenLoader = sessionStorage.getItem('loaderShown');
+
+    if (!isHomePage || hasSeenLoader) {
+      loader.style.display = 'none';
+      document.body.style.overflow = '';
+      document.body.style.pointerEvents = '';
+      return;
+    }
+
+    sessionStorage.setItem('loaderShown', 'true');
+
+    document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none';
+
+    const animation = lottie.loadAnimation({
+      container: container,
+      renderer: 'svg',
+      loop: false,
+      autoplay: true,
+      animationData: logoAnimation
+    });
+
+    animation.addEventListener('complete', () => {
+      loader.style.opacity = '0';
+      
+      setTimeout(() => {
+        loader.style.display = 'none';
+        document.body.style.overflow = '';
+        document.body.style.pointerEvents = '';
+      }, 700);
+    });
+  }
+
+  document.addEventListener('astro:page-load', initLoader);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.style.display = 'none';
+    }
+    document.body.style.overflow = '';
+    document.body.style.pointerEvents = '';
+  });
+</script>

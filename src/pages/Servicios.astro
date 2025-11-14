@@ -48,9 +48,13 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initAnimaciones() {
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
+
+      setTimeout(() => {
+        window.ScrollTrigger.refresh();
+      }, 100);
 
       const itSecciones = document.querySelectorAll(
         '[data-panel="it"] .seccion-contenido'
@@ -85,10 +89,7 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
                 scrollTrigger: {
                   trigger: seccion,
                   start: "top 80%",
-                  toggleActions: "play none none reset",
-                  onLeaveBack: () => {
-                    window.gsap.set(seccion, { opacity: 0, y: 30 });
-                  },
+                  toggleActions: "play reverse play reverse",
                 },
               }
             );
@@ -109,10 +110,7 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
                   scrollTrigger: {
                     trigger: seccion,
                     start: "top 80%",
-                    toggleActions: "play none none reset",
-                    onLeaveBack: () => {
-                      window.gsap.set(seccion, { opacity: 0, y: 50 });
-                    },
+                    toggleActions: "play reverse play reverse",
                   },
                 }
               );
@@ -138,10 +136,7 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
                   scrollTrigger: {
                     trigger: seccion,
                     start: "top 80%",
-                    toggleActions: "play none none reset",
-                    onLeaveBack: () => {
-                      window.gsap.set(seccion, { opacity: 0, x: xInicial });
-                    },
+                    toggleActions: "play reverse play reverse",
                   },
                 }
               );
@@ -165,6 +160,14 @@ import ContactoServicios from "../components/Servicios/ContactoServicios.astro";
           }, 100);
         });
       });
+    }
+  }
+
+  document.addEventListener('astro:page-load', initAnimaciones);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   });
 </script>

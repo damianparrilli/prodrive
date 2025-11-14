@@ -173,16 +173,16 @@ import bgServices from "../../assets/images/bg-services.png";
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initServiciosInicio() {
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
 
       const section = document.querySelector(".servicios-section");
       if (!section) return;
 
-      window.addEventListener('load', () => {
+      setTimeout(() => {
         window.ScrollTrigger.refresh();
-      });
+      }, 100);
 
       const todasLasCards = section.querySelectorAll(".servicio-card");
       window.gsap.set(todasLasCards, {
@@ -350,6 +350,14 @@ import bgServices from "../../assets/images/bg-services.png";
           true
         );
       });
+    }
+  }
+  
+  document.addEventListener('astro:page-load', initServiciosInicio);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   });
 </script>

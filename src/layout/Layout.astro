@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -75,6 +76,7 @@ const { title, description, keywords } = Astro.props;
       crossorigin
     />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body class="overflow-x-hidden bg-[#0B081D]">
     <Header />
@@ -88,7 +90,7 @@ const { title, description, keywords } = Astro.props;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" is:inline></script>
     
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
+      function initBrilloHover() {
         const elements = document.querySelectorAll('a[class*="bg-"], button[class*="bg-"], a[style*="background"], button[style*="background"], .brillo-hover');
         
         elements.forEach(element => {
@@ -101,7 +103,9 @@ const { title, description, keywords } = Astro.props;
             element.style.setProperty('--mouse-y', `${y}px`);
           });
         });
-      });
+      }
+
+      document.addEventListener('astro:page-load', initBrilloHover);
     </script>
   </body>
 </html>

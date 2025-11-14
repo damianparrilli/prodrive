@@ -6,7 +6,7 @@ import logo from "../assets/images/prodrive-logo.png";
 
 <div
   id="overlay"
-  class="fixed top-0 left-0 w-screen h-screen bg-black/50 opacity-0 transition-all duration-300 ease-in-out pointer-events-none block lg:hidden"
+  class="fixed top-0 left-0 w-screen h-screen bg-black/50 opacity-0 transition-all duration-300 ease-in-out pointer-events-none block lg:hidden z-9998"
 >
 </div>
 <header id="nav-menu" class="w-full h-[70px] z-50 fixed transition-colors duration-300 bg-transparent">
@@ -207,10 +207,15 @@ import logo from "../assets/images/prodrive-logo.png";
   }
 </style>
 
-<script>
+<script is:inline>
+  function initHeader() {
     const nav = document.getElementById("navigation");
-    const hamburger = document.getElementById("hamburger-toggle") as HTMLInputElement | null;
+    const hamburger = document.getElementById("hamburger-toggle");
     const header = document.getElementById("nav-menu");
+
+    if (!nav || !hamburger || !header) return;
+    if (nav.dataset.bound) return;
+    nav.dataset.bound = "1";
 
     let lastState = "top";
     function setHeaderBg() {
@@ -234,64 +239,63 @@ import logo from "../assets/images/prodrive-logo.png";
       lastState = newState;
     }
 
-    if (nav && hamburger && header && !nav.dataset.bound) {
-      nav.dataset.bound = "1";
-
-      const updateHamburgerARIA = () => {
-        const menu = document.getElementById("menu");
-        if (!menu || !hamburger) return;
-        menu.setAttribute("aria-hidden", !hamburger.checked ? "true" : "false");
-        hamburger.setAttribute("aria-expanded", hamburger.checked ? "true" : "false");
-        setHeaderBg();
-      };
-
-      hamburger.addEventListener("change", updateHamburgerARIA);
-
-      
-      window.addEventListener("scroll", setHeaderBg);
-      window.addEventListener("resize", setHeaderBg);
-
-      const overlay = document.getElementById("overlay");
-      const abrirMenu = () => {
-        const lista = document.getElementById("lista");
-        if (!lista || !overlay) return;
-        lista.classList.toggle("open");
-        overlay.classList.toggle("opacity-0");
-        overlay.classList.toggle("opacity-50");
-        overlay.classList.toggle("pointer-events-none");
-        document.body.classList.toggle("overflow-y-hidden");
-        setHeaderBg();
-      };
-
-      if (overlay) {
-        overlay.addEventListener("click", () => {
-          if (hamburger) hamburger.checked = false;
-          abrirMenu();
-        });
-      }
-
-      const anchors = document.querySelectorAll("#lista a");
-      anchors.forEach((a) =>
-        a.addEventListener("click", () => {
-          if (window.innerWidth < 1024 && hamburger) {
-            hamburger.checked = false;
-            abrirMenu();
-          }
-        })
-      );
-
-      hamburger.addEventListener("change", abrirMenu);
-
-
+    const updateHamburgerARIA = () => {
+      const menu = document.getElementById("menu");
+      if (!menu || !hamburger) return;
+      menu.setAttribute("aria-hidden", !hamburger.checked ? "true" : "false");
+      hamburger.setAttribute("aria-expanded", hamburger.checked ? "true" : "false");
       setHeaderBg();
+    };
+
+    hamburger.addEventListener("change", updateHamburgerARIA);
+
+    window.addEventListener("scroll", setHeaderBg);
+    window.addEventListener("resize", setHeaderBg);
+
+    const overlay = document.getElementById("overlay");
+    const abrirMenu = () => {
+      const lista = document.getElementById("lista");
+      if (!lista || !overlay) return;
+      lista.classList.toggle("open");
+      overlay.classList.toggle("opacity-0");
+      overlay.classList.toggle("opacity-50");
+      overlay.classList.toggle("pointer-events-none");
+      document.body.classList.toggle("overflow-y-hidden");
+      setHeaderBg();
+    };
+
+    if (overlay) {
+      overlay.addEventListener("click", () => {
+        if (hamburger) hamburger.checked = false;
+        abrirMenu();
+      });
     }
+
+    const anchors = document.querySelectorAll("#lista a");
+    anchors.forEach((a) =>
+      a.addEventListener("click", () => {
+        if (window.innerWidth < 1024 && hamburger) {
+          hamburger.checked = false;
+          abrirMenu();
+        }
+      })
+    );
+
+    hamburger.addEventListener("change", abrirMenu);
+
+    setHeaderBg();
+  }
+  
+  document.addEventListener('astro:page-load', initHeader);
 </script>
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initDropdown() {
     const dropdown = document.getElementById("dropdown-toggle");
     const listaDd = document.getElementById("dropdown-list");
     const ddArrow = document.getElementById("dd-arrow");
     if (!dropdown || !listaDd || !ddArrow) return;
+    if (dropdown.dataset.bound) return;
+    dropdown.dataset.bound = "1";
 
     dropdown.addEventListener("change", () => {
       if (window.innerWidth < 1024) {
@@ -340,6 +344,8 @@ import logo from "../assets/images/prodrive-logo.png";
         }
       }
     });
-  });
+  }
+  
+  document.addEventListener('astro:page-load', initDropdown);
 </script>
 

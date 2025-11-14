@@ -1,5 +1,6 @@
 ---
 import Layout from "../layout/Layout.astro"
+import Loader from "../components/Loader.astro"
 import HeroBanner from "../components/Inicio/HeroBanner.astro"
 import ServiciosInicio from "../components/Inicio/ServiciosInicio.astro"
 import ComoTrabajamos from "../components/Inicio/ComoTrabajamos.astro"
@@ -8,6 +9,7 @@ import Contacto from "../components/Inicio/Contacto.astro"
 ---
 
 <Layout title="ProDrive" description="" keywords="">
+	<Loader />
 	<HeroBanner />
 	<ServiciosInicio />
 	<ComoTrabajamos />

@@ -41,34 +41,40 @@ import lisandroImage from "../../assets/images/lisandro.jpeg";
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initEquipoAnimaciones() {
     if (window.gsap && window.ScrollTrigger) {
       window.gsap.registerPlugin(window.ScrollTrigger);
+
+      setTimeout(() => {
+        window.ScrollTrigger.refresh();
+      }, 100);
 
       const titulo = document.querySelector(".equipo-titulo");
       const cards = document.querySelectorAll(".equipo-card");
 
-      window.gsap.fromTo(
-        titulo,
-        {
-          opacity: 0,
-          y: -50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: titulo,
-            start: "top 80%",
-            toggleActions: "play none none reset",
-            onLeaveBack: () => {
-              window.gsap.set(titulo, { opacity: 0, y: -50 });
-            },
+      if (titulo) {
+        window.gsap.fromTo(
+          titulo,
+          {
+            opacity: 0,
+            y: -50,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: titulo,
+              start: "top 80%",
+              toggleActions: "play none none reset",
+              onLeaveBack: () => {
+                window.gsap.set(titulo, { opacity: 0, y: -50 });
+              },
+            },
+          }
+        );
+      }
 
       cards.forEach((card, index) => {
         const xInicial = index % 2 === 0 ? -100 : 100;
@@ -95,6 +101,14 @@ import lisandroImage from "../../assets/images/lisandro.jpeg";
           }
         );
       });
+    }
+  }
+  
+  document.addEventListener('astro:page-load', initEquipoAnimaciones);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   });
 </script>

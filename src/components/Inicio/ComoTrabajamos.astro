@@ -93,7 +93,7 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro";
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initComoTrabajamos() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
       console.error("GSAP o ScrollTrigger no están cargados.");
       return;
@@ -101,9 +101,9 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro";
 
     gsap.registerPlugin(ScrollTrigger);
 
-    window.addEventListener('load', () => {
+    setTimeout(() => {
       ScrollTrigger.refresh();
-    });
+    }, 100);
 
     const section = document.querySelector("#comoTrabajamos");
     if (!section) return;
@@ -136,8 +136,16 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro";
           trigger: steps[0],
           start: "top 85%",
           toggleActions: "play none none reverse",
-        },
+        }
       });
+    }
+  }
+  
+  document.addEventListener('astro:page-load', initComoTrabajamos);
+  
+  document.addEventListener('astro:before-preparation', () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   });
 </script>
