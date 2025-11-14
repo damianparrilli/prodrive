@@ -274,42 +274,41 @@ const { tabs = [], active = tabs[0]?.id } = Astro.props as { tabs: Tab[], active
       });
     });
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const tabParam = urlParams.get('tab');
-    
-    const hash = window.location.hash.substring(1);
-    let initialTab = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
+    setTimeout(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+      
+      const hash = window.location.hash.substring(1);
+      let initialTab = tabs.find(t => t.getAttribute('aria-selected') === 'true')?.dataset.tab || tabs[0]?.dataset.tab;
 
-    if (hash) {
-      const tabForHash = findTabForElement(hash);
-      if (tabForHash) {
-        initialTab = tabForHash;
+      if (tabParam && tabs.some(t => t.dataset.tab === tabParam)) {
+        initialTab = tabParam;
         setActive(initialTab, false);
+      }
+
+      if (hash) {
+        const tabForHash = findTabForElement(hash);
+        if (tabForHash) {
+          initialTab = tabForHash;
+          setActive(initialTab, false);
+        }
         scrollToElement(hash);
       }
-    } else if (tabParam && tabs.some(t => t.dataset.tab === tabParam)) {
-      initialTab = tabParam;
-      setActive(initialTab, false);
-    }
-
-    const current = initialTab;
-    function updateIndicator() {
-      const activeTab = tabs.find(t=>t.dataset.tab===current);
-      if (activeTab) moveIndicatorTo(activeTab);
-    }
-    if (current) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(updateIndicator);
-      });
-      window.addEventListener('load', updateIndicator);
-      window.addEventListener('resize', () => {
-        updateIndicator();
-      }, { passive:true });
-      const imgs = root.querySelectorAll('.tab-panel img');
-      imgs.forEach(img => {
-        img.addEventListener('load', updateIndicator);
-      });
-    }
+      
+      const current = initialTab;
+      function updateIndicator() {
+        const activeTab = tabs.find(t=>t.dataset.tab===current);
+        if (activeTab) moveIndicatorTo(activeTab);
+      }
+      if (current) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(updateIndicator);
+        });
+        window.addEventListener('resize', () => {
+          updateIndicator();
+        }, { passive:true });
+      }
+    }, 50);
   }
   
   document.addEventListener('astro:page-load', initTabs);

@@ -37,6 +37,7 @@ html {
   font-size: 16px;
   color: #fff;
   scroll-padding-top: 80px;
+  scrollbar-gutter: stable;
 }
 
 .contenedor {

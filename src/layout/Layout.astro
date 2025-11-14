@@ -5,7 +5,6 @@ import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppCTA from "../components/WhatsAppCTA.astro";
-import WhatsApp from "../components/FooterIcons/WhatsApp.astro";
 
 interface Props {
   title: string;
@@ -32,10 +31,7 @@ const { title, description, keywords } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta
-      property="og:image"
-      content=""
-    />
+    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/2206165d-928a-4a03-8f21-52c7501bbdb8.png?token=gN3KhAKK3744BFsTyC1nRQ6lVoqmi7SeQiTC3808wxI&height=675&width=1200&expires=33299124977">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -43,10 +39,7 @@ const { title, description, keywords } = Astro.props;
     <meta property="twitter:url" content={page} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content=""
-    />
+    <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/2206165d-928a-4a03-8f21-52c7501bbdb8.png?token=gN3KhAKK3744BFsTyC1nRQ6lVoqmi7SeQiTC3808wxI&height=675&width=1200&expires=33299124977">
 
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
