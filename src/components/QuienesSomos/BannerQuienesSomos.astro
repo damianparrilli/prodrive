@@ -1,8 +1,7 @@
 ---
-import bgContact from "../../assets/images/bg-contact.png";
 ---
 
-<section class="banner h-150 pt-[70px] w-full bg-center bg-size-[45%] bg-no-repeat" style={`background-image: url(${bgContact.src})`}>
+<section class="banner h-150 pt-[70px] w-full bg-center bg-size-[45%] bg-no-repeat bg-contact">
     <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2">
         <h1 class="text-4xl md:text-5xl">Nuestra historia</h1>
          <p class="text-lg md:text-xl max-w-[900px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo voluptatum magni facilis sed possimus exercitationem ex tempora rem similique incidunt quisquam quaerat id quis, consequuntur non, impedit eos sapiente voluptate?</p>
@@ -10,6 +9,12 @@ import bgContact from "../../assets/images/bg-contact.png";
 </section>
 
 <style>
+    .bg-contact {
+        background-image: url('/images/bg-contact.png');
+    }
+    
+
+    
     .banner::before{
         position: absolute;
         content: "";

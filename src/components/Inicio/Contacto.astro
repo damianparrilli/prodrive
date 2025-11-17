@@ -3,12 +3,10 @@ import Formulario from "./Contacto/Formulario.astro";
 
 import CardContainer from "./Contacto/CardContainer.astro"
 import Redes from "./Contacto/Redes.astro";
-import bgContact from "../../assets/images/bg-contact.png";
 ---
 
 <section id="contacto"
-  class="pt-24 md:pt-28 pb-40 bg-center bg-no-repeat bg-size-[1400px]"
-  style={`background-image: url(${bgContact.src});`}
+  class="pt-24 md:pt-28 pb-40 bg-center bg-no-repeat bg-size-[1400px] bg-contact"
 >
   <div class="mx-auto max-w-[1100px] px-5 text-center flex flex-col gap-4">
     <h2 class="text-3xl md:text-[42px] font-title">Contactate con nuestro equipo</h2>
@@ -24,3 +22,10 @@ import bgContact from "../../assets/images/bg-contact.png";
     </div>
   </div>
 </section>
+
+<style>
+  .bg-contact {
+    background-image: url('/images/bg-contact.png');
+  }
+  
+</style>

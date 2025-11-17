@@ -1,9 +1,5 @@
----
-import ctaImage from "../../assets/images/ctabanner.jpg";
----
-
 <section class="mx-auto px-5 max-w-[1200px] pb-32">
-    <div class="cta-card bg-cover relative bg-cta bg-center bg-no-repeat rounded-2xl py-24 px-8 text-center flex flex-col md:flex-row justify-between items-center gap-6" style={`background-image: url(${ctaImage.src})`}>
+    <div class="cta-card bg-cover relative bg-cta bg-center bg-no-repeat rounded-2xl py-24 px-8 text-center flex flex-col md:flex-row justify-between items-center gap-6">
         <div class="text-white relative z-10">
             <h2 class="text-2xl md:text-3xl mb-2">¿Listo para llevar su empresa al siguiente nivel?</h2>
             <p class="text-base sm:text-lg md:text-xl">Contáctenos hoy mismo y descubre cómo podemos ayudarte a optimizar tus procesos y potenciar tu crecimiento.</p>
@@ -14,6 +10,9 @@ import ctaImage from "../../assets/images/ctabanner.jpg";
 </section>
 
 <style>
+  .bg-cta{
+        background-image: url('/images/ctabanner.webp');
+  }
     .bg-cta::before {
         content: "";
         position: absolute;

@@ -14,12 +14,10 @@ import capacitaciones from "../../assets/images/capacitaciones.png";
 import branding from "../../assets/images/branding.png";
 import comunicacionEstrategica from "../../assets/images/comunicacion-estrategica.png";
 import diseñoWeb from "../../assets/images/diseño-web.png";
-import bgServices from "../../assets/images/bg-services.png";
 ---
 
 <section id="servicios"
-  class="servicios-section overflow-x-hidden py-24 text-center bg-center bg-no-repeat bg-cover"
-  style={`background-image: url(${bgServices.src});`}
+  class="servicios-section overflow-x-hidden py-24 text-center bg-center bg-no-repeat bg-cover bg-services"
 >
   <div class="contenedor">
     <h2 class="servicios-titulo text-3xl md:text-[42px] font-title">
@@ -170,6 +168,11 @@ import bgServices from "../../assets/images/bg-services.png";
 </section>
 
 <style>
+  .bg-services {
+    background-image: url('/images/bg-services.png');
+  }
+  
+  
   .servicios-titulo,
   .servicios-descripcion,
   .servicios-tabs,

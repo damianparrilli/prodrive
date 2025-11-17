@@ -1,42 +1,212 @@
----
-import bgHero from "../../assets/images/bg-hero.png";
----
+<section
+  id="hero-banner"
+  class="relative h-svh w-full bg-top-right bg-size-[45%] bg-no-repeat bg-hero overflow-hidden"
+>
+  <canvas
+    id="hero-canvas"
+    class="absolute top-0 left-0 w-full h-full -z-10"
+  ></canvas>
 
-<section id="hero-banner" class="h-svh w-full bg-top-right bg-size-[45%] bg-no-repeat" style={`background-image: url(${bgHero.src});`}>
-    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2">
-        <h1 class="text-[32px] max-md:leading-9 md:text-5xl">Soluciones Informáticas Integrales para tu Empresa</h1>
-        <p class="text-lg md:text-xl max-w-[600px]">Acompañamos a las PyMEs con soluciones tecnológicas que hacen crecer su negocio.</p>
-        <div class="flex gap-4 mt-8 justify-stretch w-full max-w-96">
-            <a href="/#contacto" class="bg-acento hover:bg-acentoHover w-full  py-2 rounded-full text-base md:text-lg">Hablemos</a>
-            <a href="/#servicios" class="border border-white w-full hover:bg-white hover:text-black  py-2 rounded-full text-base md:text-lg">Explora más</a>
-        </div>
+  <div
+    class="contenedor flex flex-col justify-center items-center h-full text-center gap-2 relative z-10"
+  >
+    <h1 class="text-[32px] max-md:leading-9 md:text-5xl">
+      Soluciones Informáticas Integrales para tu Empresa
+    </h1>
+    <p class="text-lg md:text-xl max-w-[600px]">
+      Acompañamos a las PyMEs con soluciones tecnológicas que hacen crecer su negocio.
+    </p>
+    <div class="flex gap-4 mt-8 justify-stretch w-full max-w-96">
+      <a
+        href="/#contacto"
+        class="bg-acento hover:bg-acentoHover w-full py-2 rounded-full text-base md:text-lg"
+      >
+        Hablemos
+      </a>
+      <a
+        href="/#servicios"
+        class="border border-white w-full hover:bg-white hover:text-black py-2 rounded-full text-base md:text-lg"
+      >
+        Explora más
+      </a>
     </div>
-</section>
+  </div>
 
-<style>
-    #hero-banner::before{
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: radial-gradient(ellipse at 0% 80%, transparent 70%, #07304A 120%),radial-gradient(ellipse at 0% 30%, #07304A 0%, transparent 40%);
+  <style>
+    #hero-banner::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      z-index: -20;
+      background: radial-gradient(ellipse at 0% 80%, transparent 70%, #07304a 120%),
+                  radial-gradient(ellipse at 0% 30%, #07304a 0%, transparent 40%);
     }
-</style>
+  </style>
 
-<script is:inline>
-const heroBanner = document.querySelector('#hero-banner');
-if (heroBanner && window.gsap) {
-    window.gsap.to(heroBanner, {
-        opacity: 0,
-        y: -100,
-        scrollTrigger: {
-            trigger: heroBanner,
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-        }
+  <script is:inline>
+    const hero = document.getElementById("hero-banner");
+    const canvas = document.getElementById("hero-canvas");
+    const ctx = canvas.getContext("2d");
+
+    const nodes = [];
+    const mouse = { x: null, y: null };
+    const maxDistance = 150;
+    let baseDensityFactor = 12000;
+
+    let width, height, nodesCount;
+    let leftW, rightW, topY, bottomY;
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     });
-}
-</script>
-</style>
+
+    window.addEventListener("mouseout", () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function isAllowed(x, y) {
+      return (
+        y < topY ||
+        x < leftW ||
+        x > rightW ||
+        y > bottomY
+      );
+    }
+
+    class Node {
+      constructor() {
+        this.randomizePosition();
+        this.baseVx = (Math.random() - 0.5) * 0.15;
+        this.baseVy = (Math.random() - 0.5) * 0.15;
+        this.vx = this.baseVx;
+        this.vy = this.baseVy;
+        this.baseRadius = 2;
+        this.hoverRadius = 4;
+      }
+
+      randomizePosition() {
+        let x, y;
+        do {
+          x = Math.random() * width;
+          y = Math.random() * height;
+        } while (!isAllowed(x, y));
+        this.x = x;
+        this.y = y;
+      }
+
+      update() {
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            this.vx += (this.baseVx * 3 - this.vx) * 0.05;
+            this.vy += (this.baseVy * 3 - this.vy) * 0.05;
+          } else {
+            this.vx += (this.baseVx - this.vx) * 0.05;
+            this.vy += (this.baseVy - this.vy) * 0.05;
+          }
+        } else {
+          this.vx += (this.baseVx - this.vx) * 0.05;
+          this.vy += (this.baseVy - this.vy) * 0.05;
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+
+        if (!isAllowed(this.x, this.y)) {
+          this.randomizePosition();
+        }
+      }
+
+      draw() {
+        let r = this.baseRadius;
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) r = this.hoverRadius;
+        }
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.fill();
+      }
+    }
+
+    function resize() {
+      const rect = hero.getBoundingClientRect();
+      width = canvas.width = rect.width;
+      height = canvas.height = rect.height;
+
+      leftW = width * 0.15;
+      rightW = width * 0.85;
+
+      topY = height * 0.12;
+      bottomY = height * 0.72;
+
+      const factor =
+        window.innerWidth < 768 ? baseDensityFactor * 1.5 : baseDensityFactor;
+
+      nodesCount = Math.floor((width * height) / factor);
+
+      nodes.length = 0;
+      for (let i = 0; i < nodesCount; i++) {
+        nodes.push(new Node());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDistance) {
+            const mx = (a.x + b.x) / 2;
+            const my = (a.y + b.y) / 2;
+            if (!isAllowed(mx, my)) continue;
+
+            let lineOpacity = 0.1 * (1 - dist / maxDistance);
+
+            if (mouse.x !== null && mouse.y !== null) {
+              const d1 = Math.sqrt((a.x - mouse.x) ** 2 + (a.y - mouse.y) ** 2);
+              const d2 = Math.sqrt((b.x - mouse.x) ** 2 + (b.y - mouse.y) ** 2);
+              if (d1 < 100 || d2 < 100)
+                lineOpacity = Math.min(lineOpacity + 0.6, 1);
+            }
+
+            ctx.strokeStyle = `rgba(255,255,255,${lineOpacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach((n) => {
+        n.update();
+        n.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    animate();
+  </script>
+</section>

@@ -1,11 +1,9 @@
 ---
 import CardSoporte from "./Soporte/CardSoporte.astro";
-import bgSupport from "../../assets/images/bg-support.png";
 ---
 
 <section id="soporte"
-  class="py-24 md:py-28 bg-center bg-no-repeat bg-cover text-center overflow-x-hidden"
-  style={`background-image: url(${bgSupport.src});`}
+  class="py-24 md:py-28 bg-center bg-no-repeat bg-cover text-center overflow-x-hidden bg-support"
 >
   <div class="mx-auto max-w-[1100px] px-5">
     <h2 class="soporte-titulo text-3xl md:text-[42px] font-title">Nuestros canales de soporte</h2>
@@ -47,6 +45,11 @@ import bgSupport from "../../assets/images/bg-support.png";
 </section>
 
 <style>
+  .bg-support {
+    background-image: url('/images/bg-support.png');
+  }
+  
+  
   .soporte-titulo,
   .soporte-descripcion {
     opacity: 0;
