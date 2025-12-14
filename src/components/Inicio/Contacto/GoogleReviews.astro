@@ -1,0 +1,55 @@
+<!-- Elfsight Google Reviews | Untitled Google Reviews -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c" data-elfsight-app-lazy></div>
+      <!-- <Redes /> -->
+
+<style is:global>
+    .elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c a[href*="elfsight.com/google-reviews-widget"] {
+        display: none !important;
+    }
+    
+    .elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c .eapps-widget-toolbar {
+        display: none !important;
+    }
+</style>
+
+<script is:inline>
+    function hideElfsightGoogleReviewsBranding() {
+        const brandingLinks = document.querySelectorAll('a[href*="elfsight.com/google-reviews-widget"]');
+        brandingLinks.forEach(link => {
+            link.style.display = 'none';
+        });
+        
+        const toolbars = document.querySelectorAll('.eapps-widget-toolbar');
+        toolbars.forEach(toolbar => {
+            toolbar.style.display = 'none';
+        });
+    }
+    
+    hideElfsightGoogleReviewsBranding();
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideElfsightGoogleReviewsBranding);
+    }
+    
+    const observerGoogleReviews = new MutationObserver(() => {
+        hideElfsightGoogleReviewsBranding();
+    });
+    
+    function startObservingGoogleReviews() {
+        const widgetContainer = document.querySelector('.elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c');
+        if (widgetContainer) {
+            observerGoogleReviews.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+       
+            setTimeout(startObservingGoogleReviews, 100);
+        }
+    }
+    
+    startObservingGoogleReviews();
+    
+    setInterval(hideElfsightGoogleReviewsBranding, 500);
+</script>

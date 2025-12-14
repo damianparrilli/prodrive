@@ -71,21 +71,13 @@ const imageMap: Record<string, any> = {
   <div
     class={ticket
       ? "flex justify-end mt-auto"
-      : "flex justify-between gap-4 items-center mt-auto"}
+      : "flex justify-end gap-4 items-center mt-auto"}
   >
-    {
-      !ticket ? (
-        <a href={linkDescarga} target="_blank" class="hover:text-hover text-sm md:text-base">
-          Descargar {descargar}
-        </a>
-      ) : (
-        ""
-      )
-    }
+    
     <a
       href={linkAnchor} target="_blank"
       class="bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full"
-      >{ticket ? "Solicitar ticket" : "Acceder"}</a
+      >{ticket ? "Solicitar ticket" : "Descargar"}</a
     >
   </div>
 </div>

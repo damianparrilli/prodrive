@@ -50,22 +50,11 @@
     const ctx = canvas.getContext("2d");
 
     const nodes = [];
-    const mouse = { x: null, y: null };
     const maxDistance = 150;
     let baseDensityFactor = 12000;
 
     let width, height, nodesCount;
     let leftW, rightW, topY, bottomY;
-
-    window.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    window.addEventListener("mouseout", () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
 
     function isAllowed(x, y) {
       return (
@@ -98,21 +87,8 @@
       }
 
       update() {
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            this.vx += (this.baseVx * 3 - this.vx) * 0.05;
-            this.vy += (this.baseVy * 3 - this.vy) * 0.05;
-          } else {
-            this.vx += (this.baseVx - this.vx) * 0.05;
-            this.vy += (this.baseVy - this.vy) * 0.05;
-          }
-        } else {
-          this.vx += (this.baseVx - this.vx) * 0.05;
-          this.vy += (this.baseVy - this.vy) * 0.05;
-        }
+        this.vx += (this.baseVx - this.vx) * 0.05;
+        this.vy += (this.baseVy - this.vy) * 0.05;
 
         this.x += this.vx;
         this.y += this.vy;
@@ -126,15 +102,8 @@
       }
 
       draw() {
-        let r = this.baseRadius;
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) r = this.hoverRadius;
-        }
         ctx.beginPath();
-        ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.baseRadius, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(255,255,255,0.4)";
         ctx.fill();
       }
@@ -179,13 +148,6 @@
             if (!isAllowed(mx, my)) continue;
 
             let lineOpacity = 0.1 * (1 - dist / maxDistance);
-
-            if (mouse.x !== null && mouse.y !== null) {
-              const d1 = Math.sqrt((a.x - mouse.x) ** 2 + (a.y - mouse.y) ** 2);
-              const d2 = Math.sqrt((b.x - mouse.x) ** 2 + (b.y - mouse.y) ** 2);
-              if (d1 < 100 || d2 < 100)
-                lineOpacity = Math.min(lineOpacity + 0.6, 1);
-            }
 
             ctx.strokeStyle = `rgba(255,255,255,${lineOpacity})`;
             ctx.lineWidth = 1;

@@ -2,8 +2,8 @@
     <div class="cta-card bg-cover relative bg-cta bg-center bg-no-repeat rounded-2xl py-24 px-8 text-center flex flex-col md:flex-row justify-between items-center gap-6">
         <div class="text-white relative z-10">
             <h2 class="text-2xl md:text-3xl mb-2">¿Listo para llevar su empresa al siguiente nivel?</h2>
-            <p class="text-base sm:text-lg md:text-xl">Contáctenos hoy mismo y descubre cómo podemos ayudarte a optimizar tus procesos y potenciar tu crecimiento.</p>
-            <a href="/#contacto" class="mt-6 bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full inline-block">Contactenos ahora</a>
+            <p class="text-base sm:text-lg md:text-lg">Contáctenos hoy mismo y descubra cómo podemos ayudarte a optimizar tus procesos y potenciar tu crecimiento.</p>
+            <a href="/#contacto" class="mt-6 bg-acento hover:bg-acentoHover text-white px-6 py-3 rounded-full inline-block">Contactenos</a>
         </div>
         
     </div>    
@@ -11,8 +11,23 @@
 
 <style>
   .bg-cta{
-        background-image: url('/images/ctabanner.webp');
+        background-image: none;
   }
+    .bg-cta::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/ctabanner.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: saturate(0.3);
+        border-radius: 1rem;
+        z-index: 0;
+    }
     .bg-cta::before {
         content: "";
         position: absolute;
@@ -20,7 +35,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.75);
         border-radius: 1rem;
         z-index: 1;
     }

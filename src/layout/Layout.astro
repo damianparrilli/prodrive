@@ -100,6 +100,21 @@ const { title, description, keywords } = Astro.props;
 
       document.addEventListener('astro:page-load', initBrilloHover);
     </script>
+
+    <script is:inline>
+
+      document.addEventListener('astro:before-preparation', (event) => {
+        const currentHasWidgets = document.querySelector('[class*="elfsight-app-"]') !== null;
+        const targetUrl = event.to?.href;
+        
+        if (!targetUrl) return;
+        
+        if (currentHasWidgets || targetUrl.includes('index') || targetUrl.endsWith('/')) {
+          event.preventDefault();
+          window.location.href = targetUrl;
+        }
+      });
+    </script>
   </body>
 </html>
 

@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "surgeon-pupils-robot-antenna.trycloudflare.com"
+      "announces-modified-economy-colour.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]

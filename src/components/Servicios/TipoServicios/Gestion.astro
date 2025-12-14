@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import kaizenMobileImg from "../../../assets/images/kaizen-mobile.webp";
 import imagenContableImg from "../../../assets/images/imagen-contable.webp";
 import capacitacionesImagenImg from "../../../assets/images/capacitaciones-imagen.webp";
+import gestionIAImage from "../../../assets/images/gestion-de-ia.jpg";
 ---
 
 <div class="servicios-content contenedor text-left flex flex-col overflow-x-hidden">
@@ -72,7 +73,69 @@ import capacitacionesImagenImg from "../../../assets/images/capacitaciones-image
     </div>
     <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Kaizen y 5S: Mejora continua</a>
     
-    
+    <div
+      id="soporte-tecnico"
+      class="seccion-contenido flex gap-6 flex-col md:flex-row items-stretch pt-18 md:pt-22 "
+    >
+      <div class="flex flex-col gap-4 lg:w-3/5">
+        <div class="flex flex-col">
+          <h3 class="text-3xl">Gestión de IA</h3>
+          <p class="text-lg">
+            Laborum nobis fugiat in odit commodi doloremque amet ea saepe qui ipsam ducimus blanditiis, eos reiciendis fugit explicabo aperiam animi.
+          </p>
+          <div
+            class="lg:hidden flex overflow-hidden rounded-2xl mt-4 lg:w-2/5 max-h-50 md:max-h-64"
+          >
+            <Image
+              src={gestionIAImage}
+              alt=`Imagen de Gestion de IA Mobile`
+              width={1500}
+              height={1500}
+              class="object-cover w-full h-full max-h-50 md:max-h-64"
+              loading="eager"
+              decoding="async"
+              format="webp"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 w-full">
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nobis fugiat in odit commodi doloremque amet ea saepe qui ipsam ducimus blanditiis, eos reiciendis fugit explicabo aperiam animi. Tempora, in.
+            </p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nobis fugiat in odit commodi doloremque amet ea saepe qui ipsam ducimus blanditiis, eos reiciendis fugit explicabo aperiam animi. Tempora, in.
+            </p>
+          </div>
+          <div
+            class="flex flex-col p-6 gap-1 bg-[#1E1C2C] w-full rounded-2xl brillo-hover"
+          >
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nobis fugiat in odit commodi doloremque amet ea saepe qui ipsam ducimus blanditiis, eos reiciendis fugit explicabo aperiam animi. Tempora, in.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:flex overflow-hidden rounded-2xl lg:w-2/5 xl:w-1/2">
+        <Image
+          src={gestionIAImage}
+          alt=`Imagen de Gestiín de IA`
+          width={1500}
+          height={1500}
+          class="object-cover w-full h-full"
+          loading="eager"
+          decoding="async"
+          format="webp"
+        />
+      </div>
+    </div>
+    <a href="" class="mt-6 mb-12 inline-block px-8 py-3 bg-acento text-white rounded-full hover:bg-acentoHover md:text-lg max-w-max mx-auto text-center">Solicitar Gestion de IA</a>
     
     
     <div

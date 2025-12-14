@@ -1,0 +1,67 @@
+<!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+
+<div class="max-w-[1200px] mx-auto mb-10 w-full flex">
+<div class="elfsight-app-39769996-97d8-4f8d-b2af-0aff03cb9eae" data-elfsight-app-lazy></div>
+</div>
+
+<style is:global>
+   
+    .elfsight-app-39769996-97d8-4f8d-b2af-0aff03cb9eae a[title="Free Instagram Feed Widget"] {
+        display: none !important;
+    }
+    
+  
+    .elfsight-app-39769996-97d8-4f8d-b2af-0aff03cb9eae .eapps-widget-toolbar {
+        display: none !important;
+    }
+</style>
+
+<script is:inline>
+   
+    function hideElfsightBranding() {
+       
+        const brandingLinks = document.querySelectorAll('a[title="Free Instagram Feed Widget"]');
+        brandingLinks.forEach(link => {
+            link.style.display = 'none';
+        });
+        
+      
+        const toolbars = document.querySelectorAll('.eapps-widget-toolbar');
+        toolbars.forEach(toolbar => {
+            toolbar.style.display = 'none';
+        });
+    }
+    
+    
+    hideElfsightBranding();
+    
+  
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideElfsightBranding);
+    }
+    
+
+    const observer = new MutationObserver(() => {
+        hideElfsightBranding();
+    });
+    
+ 
+    function startObserving() {
+        const widgetContainer = document.querySelector('.elfsight-app-39769996-97d8-4f8d-b2af-0aff03cb9eae');
+        if (widgetContainer) {
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            
+            setTimeout(startObserving, 100);
+        }
+    }
+    
+    startObserving();
+    
+   
+    setInterval(hideElfsightBranding, 500);
+</script>
