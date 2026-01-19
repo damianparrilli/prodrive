@@ -1,55 +1,72 @@
-<!-- Elfsight Google Reviews | Untitled Google Reviews -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
 <div class="elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c" data-elfsight-app-lazy></div>
-      <!-- <Redes /> -->
 
 <style is:global>
-    .elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c a[href*="elfsight.com/google-reviews-widget"] {
+    .elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c a[href*="elfsight.com"],
+    a[href*="elfsight.com/google-reviews-widget"],
+    a[title*="Google Reviews"][href*="elfsight"] {
         display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        height: 0 !important;
+        width: 0 !important;
+        overflow: hidden !important;
     }
     
-    .elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c .eapps-widget-toolbar {
+    .elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c .eapps-widget-toolbar,
+    .eapps-widget-toolbar,
+    div[class*="eapps-widget-toolbar"],
+    .eapps-google-reviews-footer,
+    div[class*="eapps-google-reviews-footer"] {
         display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
 </style>
 
 <script is:inline>
-    function hideElfsightGoogleReviewsBranding() {
-        const brandingLinks = document.querySelectorAll('a[href*="elfsight.com/google-reviews-widget"]');
-        brandingLinks.forEach(link => {
-            link.style.display = 'none';
+    (function() {
+        function hideElfsightGoogleReviewsBranding() {
+            const brandingSelectors = [
+                '.elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c a[href*="elfsight.com"]',
+                'a[href*="elfsight.com/google-reviews-widget"]',
+                'a[title*="Google Reviews"][href*="elfsight"]',
+                '.eapps-widget-toolbar',
+                'div[class*="eapps-widget-toolbar"]',
+                '.eapps-google-reviews-footer',
+                'div[class*="eapps-google-reviews-footer"]'
+            ];
+            
+            brandingSelectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    if (!el.closest('.elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c') || 
+                        el.matches('a[href*="elfsight.com"]') || 
+                        el.classList.contains('eapps-widget-toolbar') ||
+                        el.classList.contains('eapps-google-reviews-footer')) {
+                        el.style.cssText = 'display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important;';
+                    }
+                });
+            });
+        }
+        
+        hideElfsightGoogleReviewsBranding();
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', hideElfsightGoogleReviewsBranding);
+        }
+        
+        const observerGoogleReviews = new MutationObserver(hideElfsightGoogleReviewsBranding);
+        observerGoogleReviews.observe(document.body, {
+            childList: true,
+            subtree: true
         });
         
-        const toolbars = document.querySelectorAll('.eapps-widget-toolbar');
-        toolbars.forEach(toolbar => {
-            toolbar.style.display = 'none';
-        });
-    }
-    
-    hideElfsightGoogleReviewsBranding();
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', hideElfsightGoogleReviewsBranding);
-    }
-    
-    const observerGoogleReviews = new MutationObserver(() => {
-        hideElfsightGoogleReviewsBranding();
-    });
-    
-    function startObservingGoogleReviews() {
-        const widgetContainer = document.querySelector('.elfsight-app-e1b12012-f260-48c5-8a28-34fff8b70e9c');
-        if (widgetContainer) {
-            observerGoogleReviews.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        } else {
-       
-            setTimeout(startObservingGoogleReviews, 100);
-        }
-    }
-    
-    startObservingGoogleReviews();
-    
-    setInterval(hideElfsightGoogleReviewsBranding, 500);
+        setInterval(hideElfsightGoogleReviewsBranding, 300);
+        setTimeout(hideElfsightGoogleReviewsBrading, 1500);
+        setTimeout(hideElfsightGoogleReviewsBranding, 3000);
+    })();
 </script>

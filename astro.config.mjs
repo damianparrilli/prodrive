@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "announces-modified-economy-colour.trycloudflare.com"
+      "addition-garden-lambda-lyric.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]

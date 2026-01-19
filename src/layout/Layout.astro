@@ -26,14 +26,12 @@ const { title, description, keywords } = Astro.props;
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
 
-    <!-- Facebook Meta Tags -->
     <meta property="og:url" content={page} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/2206165d-928a-4a03-8f21-52c7501bbdb8.png?token=gN3KhAKK3744BFsTyC1nRQ6lVoqmi7SeQiTC3808wxI&height=675&width=1200&expires=33299124977">
 
-    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content={page} />
     <meta property="twitter:url" content={page} />
@@ -82,6 +80,14 @@ const { title, description, keywords } = Astro.props;
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" is:inline></script>
     
+<style>
+  @media (min-width: 800px) and (max-height: 650px) {
+    html{
+      font-size: 14px;
+    }
+  }
+</style>
+
     <script is:inline>
       function initBrilloHover() {
         const elements = document.querySelectorAll('a[class*="bg-"], button[class*="bg-"], a[style*="background"], button[style*="background"], .brillo-hover');

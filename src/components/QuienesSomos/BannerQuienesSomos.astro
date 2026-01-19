@@ -1,10 +1,14 @@
 ---
 ---
 
-<section class="banner h-150 pt-[70px] w-full bg-center bg-size-[45%] bg-no-repeat bg-contact">
-    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2">
+<section id="quienes-somos-banner" class="banner min-h-[95svh] sm:min-h-[87svh] h-150 pt-[70px] w-full bg-center bg-size-[45%] bg-no-repeat bg-contact relative overflow-hidden">
+    <canvas id="quienes-canvas" class="absolute top-0 left-0 w-full h-full -z-10"></canvas>
+    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2 relative z-10 min-h-[95svh] sm:min-h-[87svh]">
         <h1 class="text-4xl md:text-5xl">Nuestra historia</h1>
-         <p class="text-lg md:text-xl max-w-[900px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo voluptatum magni facilis sed possimus exercitationem ex tempora rem similique incidunt quisquam quaerat id quis, consequuntur non, impedit eos sapiente voluptate?</p>
+         <p id="typing-text" class="text-lg md:text-xl max-w-[900px]" data-text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo voluptatum magni facilis sed possimus exercitationem ex tempora rem similique incidunt quisquam quaerat id quis, consequuntur non, impedit eos sapiente voluptate?">
+            <span class="typing-hidden absolute opacity-0 pointer-events-none">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo voluptatum magni facilis sed possimus exercitationem ex tempora rem similique incidunt quisquam quaerat id quis, consequuntur non, impedit eos sapiente voluptate?</span>
+            <span class="typing-visible"></span>
+         </p>
     </div>
 </section>
 
@@ -12,8 +16,6 @@
     .bg-contact {
         background-image: url('/images/bg-contact.png');
     }
-    
-
     
     .banner::before{
         position: absolute;
@@ -25,3 +27,191 @@
         background: radial-gradient(ellipse at 0% 80%, transparent 70%, #07304A 120%),radial-gradient(ellipse at 0% 30%, #07304A 0%, transparent 40%);
     }
 </style>
+
+<script is:inline>
+    let animationId;
+    let isTypingComplete = false;
+    
+    function initQuienesAnimation() {
+        const banner = document.getElementById("quienes-somos-banner");
+        const canvas = document.getElementById("quienes-canvas");
+        const typingElement = document.getElementById("typing-text");
+        
+        if (!banner || !canvas || !typingElement || !window.gsap) return;
+        
+        const ctx = canvas.getContext("2d");
+        const fullText = typingElement.getAttribute("data-text");
+        const hiddenSpan = typingElement.querySelector(".typing-hidden");
+        const visibleSpan = typingElement.querySelector(".typing-visible");
+        
+        const nodes = [];
+        let baseDensityFactor = 12000;
+        let width, height, maxNodesCount;
+        let leftW, rightW, topY, bottomY;
+        isTypingComplete = false;
+        
+        typingElement.style.height = hiddenSpan.offsetHeight + "px";
+        visibleSpan.textContent = "";
+
+        function isAllowed(x, y) {
+          return (
+            y < topY ||
+            x < leftW ||
+            x > rightW ||
+            y > bottomY
+          );
+        }
+
+        class Node {
+          constructor() {
+            this.randomizePosition();
+            this.baseVx = (Math.random() - 0.5) * 0.1;
+            this.baseVy = (Math.random() - 0.5) * 0.1;
+            this.vx = this.baseVx;
+            this.vy = this.baseVy;
+            this.radius = 2 + Math.random() * 2;
+            this.opacity = 0;
+            this.targetOpacity = 0.2 + Math.random() * 0.3;
+          }
+
+          randomizePosition() {
+            let x, y;
+            let attempts = 0;
+            do {
+              x = Math.random() * width;
+              y = Math.random() * height;
+              attempts++;
+              if (attempts > 100) break;
+            } while (!isAllowed(x, y));
+            this.x = x;
+            this.y = y;
+          }
+
+          update() {
+            this.vx += (this.baseVx - this.vx) * 0.05;
+            this.vy += (this.baseVy - this.vy) * 0.05;
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+
+            if (!isAllowed(this.x, this.y)) {
+              this.randomizePosition();
+            }
+
+            if (this.opacity < this.targetOpacity) {
+              this.opacity += 0.02;
+            }
+          }
+
+          draw() {
+            if (this.opacity > 0) {
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+              ctx.fill();
+            }
+          }
+        }
+
+        function resize() {
+          const rect = banner.getBoundingClientRect();
+          width = canvas.width = rect.width;
+          height = canvas.height = rect.height;
+
+          const isMobile = window.innerWidth < 768;
+          
+          if (isMobile) {
+            leftW = width * 0.10;
+            rightW = width * 0.90;
+            topY = height * 0.25;
+            bottomY = height * 0.75;
+          } else {
+            leftW = width * 0.20;
+            rightW = width * 0.80;
+            topY = height * 0.20;
+            bottomY = height * 0.80;
+          }
+
+          const factor = isMobile ? baseDensityFactor * 1.3 : baseDensityFactor;
+          maxNodesCount = Math.floor((width * height) / factor);
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+
+          nodes.forEach((n) => {
+            n.update();
+            n.draw();
+          });
+
+          animationId = requestAnimationFrame(animate);
+        }
+
+        const resizeHandler = () => {
+          resize();
+          if (isTypingComplete && nodes.length < maxNodesCount) {
+            while (nodes.length < maxNodesCount) {
+              nodes.push(new Node());
+            }
+          }
+        };
+
+        window.addEventListener("resize", resizeHandler);
+        resize();
+        
+        requestAnimationFrame(() => {
+          animate();
+          
+          setTimeout(() => {
+            const chars = fullText.split("");
+            let lastNodeCount = 0;
+            
+            gsap.to({ i: 0 }, {
+              i: chars.length,
+              duration: chars.length * 0.03,
+              ease: "none",
+              onUpdate: function() {
+                const i = Math.floor(this.targets()[0].i);
+                visibleSpan.textContent = chars.slice(0, i).join("");
+                
+                const progress = i / chars.length;
+                const targetNodeCount = Math.floor(maxNodesCount * progress);
+                
+                if (targetNodeCount > lastNodeCount) {
+                  const nodesToAdd = targetNodeCount - lastNodeCount;
+                  for (let j = 0; j < nodesToAdd; j++) {
+                    nodes.push(new Node());
+                  }
+                  lastNodeCount = targetNodeCount;
+                }
+              },
+              onComplete: () => {
+                isTypingComplete = true;
+                while (nodes.length < maxNodesCount) {
+                  nodes.push(new Node());
+                }
+              }
+            });
+          }, 300);
+        });
+        
+        return () => {
+            cancelAnimationFrame(animationId);
+            window.removeEventListener("resize", resizeHandler);
+            gsap.killTweensOf({ i: 0 });
+        };
+    }
+    
+    let cleanup = initQuienesAnimation();
+    
+    document.addEventListener('astro:before-preparation', () => {
+        if (cleanup) cleanup();
+    });
+    
+    document.addEventListener('astro:page-load', () => {
+        cleanup = initQuienesAnimation();
+    });
+</script>

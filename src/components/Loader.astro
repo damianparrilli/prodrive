@@ -3,9 +3,17 @@
 
 <div id="loader" class="fixed inset-0 z-9999 flex items-center justify-center bg-[#0B081D] transition-opacity duration-700">
   <div id="lottie-container" class="w-[400px] h-[400px] md:w-[700px] md:h-[700px] relative mb-20">
-    <div class="absolute bottom-10 md:bottom-30 right-0 w-48 h-24 bg-[#0B081D] z-10"></div> 
+    <div class="absolute rectangulo bottom-10 md:bottom-30 right-0 w-48 h-24 bg-[#0B081D] z-10"></div> 
   </div>
 </div>
+
+<style>
+  @media (min-width: 800px) and (max-height: 650px) {
+    .rectangulo{
+      bottom: 150px;
+    }
+  }
+</style>
 
 <script>
   import lottie from 'lottie-web';
