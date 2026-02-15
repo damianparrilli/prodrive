@@ -1,14 +1,31 @@
 ---
 ---
 
-<section id="quienes-somos-banner" class="banner min-h-[95svh] sm:min-h-[87svh] h-150 pt-[70px] w-full bg-center bg-size-[45%] bg-no-repeat bg-contact relative overflow-hidden">
+<section id="quienes-somos-banner" class="banner py-50 w-full bg-center bg-size-[45%] bg-no-repeat bg-contact relative overflow-hidden">
     <canvas id="quienes-canvas" class="absolute top-0 left-0 w-full h-full -z-10"></canvas>
-    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2 relative z-10 min-h-[95svh] sm:min-h-[87svh]">
-        <h1 class="text-4xl md:text-5xl">Nuestra historia</h1>
-         <p id="typing-text" class="text-lg md:text-xl max-w-[900px]" data-text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo voluptatum magni facilis sed possimus exercitationem ex tempora rem similique incidunt quisquam quaerat id quis, consequuntur non, impedit eos sapiente voluptate?">
-            <span class="typing-hidden absolute opacity-0 pointer-events-none">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo voluptatum magni facilis sed possimus exercitationem ex tempora rem similique incidunt quisquam quaerat id quis, consequuntur non, impedit eos sapiente voluptate?</span>
-            <span class="typing-visible"></span>
-         </p>
+    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2 relative z-10">
+        <h1 class="text-4xl md:text-5xl mb-4">Nuestra historia</h1>
+        <div id="typing-container" class="text-lg md:text-xl max-w-[1000px] relative">
+            <div id="typing-hidden" class="invisible space-y-4" aria-hidden="true">
+                <p>Prodrive nace en 1999 como un proyecto orientado a brindar soluciones tecnológicas para PYMES, adaptadas a las necesidades y particularidades de cada mercado.</p>
+                <p>Con la llegada y expansión de Internet, las empresas comenzaron a demandar soluciones informáticas cada vez más complejas. A lo largo de los años fuimos incorporando conocimiento y experiencia, alcanzando en 2010 un salto cualitativo mediante la implementación de proyectos tecnológicos de mayor complejidad.</p>
+                <p>En 2013, a través de formación continua y capacitaciones especializadas, nos posicionamos firmemente en sectores industriales, de servicios y organismos gubernamentales. En 2019 desarrollamos procesos internos de gestión avanzados, lo que nos permitió mantener un servicio altamente personalizado sin perder eficiencia.</p>
+                <p>Durante el período 2020–2022 acompañamos a nuestros clientes en la digitalización de procesos críticos, fortaleciendo la conectividad y consolidándonos como un socio estratégico en contextos de alta exigencia operativa.</p>
+                <p>Actualmente continuamos brindando soluciones tecnológicas con altos niveles de capacidad, disponibilidad y adaptación. Creemos que la tecnología debe estar al servicio de las personas: incorporamos Inteligencia Artificial de forma estratégica, sin despersonalizar el negocio y comprendiendo las necesidades actuales de gestión.</p>
+                <p class="font-semibold mt-8">Nuestra mejor definición:</p>
+                <p class="italic">Somos fanáticos de lo que hacemos día a día para que nuestros clientes nos recomienden de forma natural como un aliado de negocio.</p>
+            </div>
+            
+            <div id="typing-visible" class="absolute top-0 left-0 w-full space-y-4">
+                <p class="typing-paragraph" data-text="Prodrive nace en 1999 como un proyecto orientado a brindar soluciones tecnológicas para PYMES, adaptadas a las necesidades y particularidades de cada mercado."></p>
+                <p class="typing-paragraph" data-text="Con la llegada y expansión de Internet, las empresas comenzaron a demandar soluciones informáticas cada vez más complejas. A lo largo de los años fuimos incorporando conocimiento y experiencia, alcanzando en 2010 un salto cualitativo mediante la implementación de proyectos tecnológicos de mayor complejidad."></p>
+                <p class="typing-paragraph" data-text="En 2013, a través de formación continua y capacitaciones especializadas, nos posicionamos firmemente en sectores industriales, de servicios y organismos gubernamentales. En 2019 desarrollamos procesos internos de gestión avanzados, lo que nos permitió mantener un servicio altamente personalizado sin perder eficiencia."></p>
+                <p class="typing-paragraph" data-text="Durante el período 2020–2022 acompañamos a nuestros clientes en la digitalización de procesos críticos, fortaleciendo la conectividad y consolidándonos como un socio estratégico en contextos de alta exigencia operativa."></p>
+                <p class="typing-paragraph" data-text="Actualmente continuamos brindando soluciones tecnológicas con altos niveles de capacidad, disponibilidad y adaptación. Creemos que la tecnología debe estar al servicio de las personas: incorporamos Inteligencia Artificial de forma estratégica, sin despersonalizar el negocio y comprendiendo las necesidades actuales de gestión."></p>
+                <p class="typing-paragraph font-semibold mt-8" data-text="Nuestra mejor definición:"></p>
+                <p class="typing-paragraph italic" data-text="Somos fanáticos de lo que hacemos día a día para que nuestros clientes nos recomienden de forma natural como un aliado de negocio."></p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -35,14 +52,12 @@
     function initQuienesAnimation() {
         const banner = document.getElementById("quienes-somos-banner");
         const canvas = document.getElementById("quienes-canvas");
-        const typingElement = document.getElementById("typing-text");
+        const visibleContainer = document.getElementById("typing-visible");
         
-        if (!banner || !canvas || !typingElement || !window.gsap) return;
+        if (!banner || !canvas || !visibleContainer || !window.gsap) return;
         
         const ctx = canvas.getContext("2d");
-        const fullText = typingElement.getAttribute("data-text");
-        const hiddenSpan = typingElement.querySelector(".typing-hidden");
-        const visibleSpan = typingElement.querySelector(".typing-visible");
+        const typingParagraphs = Array.from(visibleContainer.querySelectorAll(".typing-paragraph"));
         
         const nodes = [];
         let baseDensityFactor = 12000;
@@ -50,8 +65,7 @@
         let leftW, rightW, topY, bottomY;
         isTypingComplete = false;
         
-        typingElement.style.height = hiddenSpan.offsetHeight + "px";
-        visibleSpan.textContent = "";
+        typingParagraphs.forEach(p => p.textContent = "");
 
         function isAllowed(x, y) {
           return (
@@ -166,34 +180,47 @@
           animate();
           
           setTimeout(() => {
-            const chars = fullText.split("");
+            const totalText = typingParagraphs.map(p => p.getAttribute("data-text")).join("");
+            const totalChars = totalText.length;
             let lastNodeCount = 0;
+            let charsSoFar = 0;
             
-            gsap.to({ i: 0 }, {
-              i: chars.length,
-              duration: chars.length * 0.03,
-              ease: "none",
-              onUpdate: function() {
-                const i = Math.floor(this.targets()[0].i);
-                visibleSpan.textContent = chars.slice(0, i).join("");
-                
-                const progress = i / chars.length;
-                const targetNodeCount = Math.floor(maxNodesCount * progress);
-                
-                if (targetNodeCount > lastNodeCount) {
-                  const nodesToAdd = targetNodeCount - lastNodeCount;
-                  for (let j = 0; j < nodesToAdd; j++) {
-                    nodes.push(new Node());
+            const timeline = gsap.timeline();
+            
+            typingParagraphs.forEach((paragraph, index) => {
+              const text = paragraph.getAttribute("data-text");
+              const chars = text.split("");
+              const charsBeforeThis = charsSoFar;
+              charsSoFar += chars.length;
+              
+              timeline.to({ i: 0 }, {
+                i: chars.length,
+                duration: chars.length * 0.03,
+                ease: "none",
+                onUpdate: function() {
+                  const i = Math.floor(this.targets()[0].i);
+                  paragraph.textContent = chars.slice(0, i).join("");
+                  
+                  const totalProgress = (charsBeforeThis + i) / totalChars;
+                  const targetNodeCount = Math.floor(maxNodesCount * totalProgress);
+                  
+                  if (targetNodeCount > lastNodeCount) {
+                    const nodesToAdd = targetNodeCount - lastNodeCount;
+                    for (let j = 0; j < nodesToAdd; j++) {
+                      nodes.push(new Node());
+                    }
+                    lastNodeCount = targetNodeCount;
                   }
-                  lastNodeCount = targetNodeCount;
+                },
+                onComplete: () => {
+                  if (index === typingParagraphs.length - 1) {
+                    isTypingComplete = true;
+                    while (nodes.length < maxNodesCount) {
+                      nodes.push(new Node());
+                    }
+                  }
                 }
-              },
-              onComplete: () => {
-                isTypingComplete = true;
-                while (nodes.length < maxNodesCount) {
-                  nodes.push(new Node());
-                }
-              }
+              }, index === 0 ? "+=0" : "+=0.1"); 
             });
           }, 300);
         });
@@ -201,7 +228,7 @@
         return () => {
             cancelAnimationFrame(animationId);
             window.removeEventListener("resize", resizeHandler);
-            gsap.killTweensOf({ i: 0 });
+            gsap.killTweensOf({});
         };
     }
     
