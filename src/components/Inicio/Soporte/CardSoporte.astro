@@ -41,12 +41,13 @@ const imageMap: Record<string, any> = {
       <Image
         src={imageMap[urlImg]}
         alt={`Logo de ${titulo}`}
-        width={200}
-        height={200}
-        class={`object-contain w-max ${urlImg === "anydesk" ? "h-7" : "h-10"}`}
+        width={urlImg === "anydesk" ? 400 : 500}
+        height={urlImg === "anydesk" ? 133 : 200}
+        class={`object-contain ${urlImg === "anydesk" ? "h-12" : "h-16"}`}
+        style="width: auto; max-width: fit-content; display: block;"
         loading="eager"
         decoding="async"
-        format="webp"
+        quality={100}
       />
     ) : (
       ""

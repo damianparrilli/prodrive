@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "addition-garden-lambda-lyric.trycloudflare.com"
+      "certification-fishing-novels-observer.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]
