@@ -43,7 +43,7 @@ const imageMap: Record<string, any> = {
         alt={`Logo de ${titulo}`}
         width={urlImg === "anydesk" ? 400 : 500}
         height={urlImg === "anydesk" ? 133 : 200}
-        class={`object-contain ${urlImg === "anydesk" ? "h-12" : "h-16"}`}
+        class={`object-contain logo-soporte ${urlImg === "anydesk" ? "logo-anydesk" : "logo-teamviewer"}`}
         style="width: auto; max-width: fit-content; display: block;"
         loading="eager"
         decoding="async"
@@ -82,3 +82,25 @@ const imageMap: Record<string, any> = {
     >
   </div>
 </div>
+
+<style>
+
+  .logo-anydesk {
+    height: 2rem;
+  }
+  
+  .logo-teamviewer {
+    height: 2.25rem; 
+  }
+  
+ 
+  @supports (-webkit-touch-callout: none) {
+    .logo-anydesk {
+      height: 3rem; 
+    }
+    
+    .logo-teamviewer {
+      height: 4rem;
+    }
+  }
+</style>

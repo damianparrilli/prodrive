@@ -79,16 +79,16 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
 <script is:inline>
   let soporteResizeObserver;
   let soporteResizeTimeout;
+  let soporteIntersectionObservers = [];
+  
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
   
   function initSoporte() {
     const section = document.querySelector('#soporte');
-    if (!section || !window.gsap || !window.ScrollTrigger) return;
-    
-    window.gsap.registerPlugin(window.ScrollTrigger);
-    
-    setTimeout(() => {
-      window.ScrollTrigger.refresh();
-    }, 100);
+    if (!section || !window.gsap) return;
     
     const titulo = section.querySelector('.soporte-titulo');
     const descripcion = section.querySelector('.soporte-descripcion');
@@ -97,116 +97,262 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
     const textoO = section.querySelector('.soporte-o');
     const ticketCard = section.querySelector('.soporte-ticket');
     
-    if (titulo) {
-      window.gsap.to(titulo, {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 60%",
-          toggleActions: "play reverse play reverse",
-        }
+    if (isIOS()) {
+      soporteIntersectionObservers.forEach(obs => obs.disconnect());
+      soporteIntersectionObservers = [];
+      
+      if (titulo || descripcion) {
+        const headerObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (titulo) {
+                window.gsap.to(titulo, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }
+              if (descripcion) {
+                window.gsap.to(descripcion, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.3,
+                  delay: 0.05,
+                  ease: "power2.out",
+                });
+              }
+            } else if (!entry.isIntersecting) {
+              if (titulo) {
+                window.gsap.to(titulo, {
+                  y: 50,
+                  opacity: 0,
+                  duration: 0.3,
+                  ease: "power2.in",
+                });
+              }
+              if (descripcion) {
+                window.gsap.to(descripcion, {
+                  y: 50,
+                  opacity: 0,
+                  duration: 0.3,
+                  ease: "power2.in",
+                });
+              }
+            }
+          });
+        }, { threshold: 0.3, rootMargin: '-10% 0px' });
+        
+        headerObserver.observe(section);
+        soporteIntersectionObservers.push(headerObserver);
+      }
+      
+      if (cardLeft || cardRight) {
+        const cardsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (cardLeft) {
+                window.gsap.to(cardLeft, {
+                  x: 0,
+                  opacity: 1,
+                  duration: 0.4,
+                  ease: "power2.out",
+                });
+              }
+              if (cardRight) {
+                window.gsap.to(cardRight, {
+                  x: 0,
+                  opacity: 1,
+                  duration: 0.4,
+                  ease: "power2.out",
+                });
+              }
+            } else if (!entry.isIntersecting) {
+              if (cardLeft) {
+                window.gsap.to(cardLeft, {
+                  x: -100,
+                  opacity: 0,
+                  duration: 0.3,
+                  ease: "power2.in",
+                });
+              }
+              if (cardRight) {
+                window.gsap.to(cardRight, {
+                  x: 100,
+                  opacity: 0,
+                  duration: 0.3,
+                  ease: "power2.in",
+                });
+              }
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '-15% 0px' });
+        
+        cardsObserver.observe(section);
+        soporteIntersectionObservers.push(cardsObserver);
+      }
+      
+      if (ticketCard) {
+        const ticketObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (textoO) {
+                window.gsap.to(textoO, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }
+              window.gsap.to(ticketCard, {
+                y: 0,
+                opacity: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            } else if (!entry.isIntersecting) {
+              if (textoO) {
+                window.gsap.to(textoO, {
+                  y: 50,
+                  opacity: 0,
+                  duration: 0.3,
+                  ease: "power2.in",
+                });
+              }
+              window.gsap.to(ticketCard, {
+                y: 50,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in",
+              });
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '-5% 0px' });
+        
+        ticketObserver.observe(ticketCard);
+        soporteIntersectionObservers.push(ticketObserver);
+      }
+      
+    } else {
+      if (!window.ScrollTrigger) return;
+      
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      
+      setTimeout(() => {
+        window.ScrollTrigger.refresh();
+      }, 100);
+      
+      if (titulo) {
+        window.gsap.to(titulo, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            toggleActions: "play reverse play reverse",
+          }
+        });
+      }
+      
+      if (descripcion) {
+        window.gsap.to(descripcion, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          delay: 0.05,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 60%",
+            toggleActions: "play reverse play reverse",
+          }
+        });
+      }
+      
+      if (cardLeft) {
+        window.gsap.to(cardLeft, {
+          x: 0,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          }
+        });
+      }
+      
+      if (cardRight) {
+        window.gsap.to(cardRight, {
+          x: 0,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 40%",
+            toggleActions: "play reverse play reverse",
+          }
+        });
+      }
+      
+      if (textoO && ticketCard) {
+        window.gsap.to(textoO, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ticketCard,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          }
+        });
+      }
+      
+      if (ticketCard) {
+        window.gsap.to(ticketCard, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ticketCard,
+            start: "top 85%",
+            toggleActions: "play reverse play reverse",
+          }
+        });
+      }
+      
+      function handleResize() {
+        clearTimeout(soporteResizeTimeout);
+        soporteResizeTimeout = setTimeout(() => {
+          if (window.ScrollTrigger) {
+            window.ScrollTrigger.refresh();
+          }
+        }, 250);
+      }
+      
+      window.addEventListener('resize', handleResize);
+      
+      if (soporteResizeObserver) {
+        soporteResizeObserver.disconnect();
+      }
+      
+      soporteResizeObserver = new ResizeObserver(() => {
+        clearTimeout(soporteResizeTimeout);
+        soporteResizeTimeout = setTimeout(() => {
+          if (window.ScrollTrigger) {
+            window.ScrollTrigger.refresh();
+          }
+        }, 250);
       });
+      
+      soporteResizeObserver.observe(document.documentElement);
     }
-    
-    if (descripcion) {
-      window.gsap.to(descripcion, {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        delay: 0.05,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 60%",
-          toggleActions: "play reverse play reverse",
-        }
-      });
-    }
-    
-    if (cardLeft) {
-      window.gsap.to(cardLeft, {
-        x: 0,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 40%",
-          toggleActions: "play reverse play reverse",
-        }
-      });
-    }
-    
-    if (cardRight) {
-      window.gsap.to(cardRight, {
-        x: 0,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 40%",
-          toggleActions: "play reverse play reverse",
-        }
-      });
-    }
-    
-    if (textoO && ticketCard) {
-      window.gsap.to(textoO, {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ticketCard,
-          start: "top 85%",
-          toggleActions: "play reverse play reverse",
-        }
-      });
-    }
-    
-    if (ticketCard) {
-      window.gsap.to(ticketCard, {
-        y: 0,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ticketCard,
-          start: "top 85%",
-          toggleActions: "play reverse play reverse",
-        }
-      });
-    }
-    
-    function handleResize() {
-      clearTimeout(soporteResizeTimeout);
-      soporteResizeTimeout = setTimeout(() => {
-        if (window.ScrollTrigger) {
-          window.ScrollTrigger.refresh();
-        }
-      }, 250);
-    }
-    
-    window.addEventListener('resize', handleResize);
-    
-    if (soporteResizeObserver) {
-      soporteResizeObserver.disconnect();
-    }
-    
-    soporteResizeObserver = new ResizeObserver(() => {
-      clearTimeout(soporteResizeTimeout);
-      soporteResizeTimeout = setTimeout(() => {
-        if (window.ScrollTrigger) {
-          window.ScrollTrigger.refresh();
-        }
-      }, 250);
-    });
-    
-    soporteResizeObserver.observe(document.documentElement);
   }
   
   document.addEventListener('astro:page-load', initSoporte);
@@ -218,6 +364,8 @@ import CardSoporte from "./Soporte/CardSoporte.astro";
     if (soporteResizeObserver) {
       soporteResizeObserver.disconnect();
     }
+    soporteIntersectionObservers.forEach(obs => obs.disconnect());
+    soporteIntersectionObservers = [];
     clearTimeout(soporteResizeTimeout);
   });
 </script>

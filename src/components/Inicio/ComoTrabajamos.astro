@@ -95,79 +95,145 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro";
 <script is:inline>
   let comoTrabajamosResizeObserver;
   let comoTrabajamosResizeTimeout;
+  let comoTrabajamosIntersectionObserver;
+  
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
   
   function initComoTrabajamos() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-      console.error("GSAP o ScrollTrigger no están cargados.");
+    if (typeof gsap === "undefined") {
+      console.error("GSAP no está cargado.");
       return;
     }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
 
     const section = document.querySelector("#comoTrabajamos");
     if (!section) return;
 
     const steps = section.querySelectorAll(".step");
     const dotsAndIcons = section.querySelectorAll(".dot, .icon");
-
-    if (steps.length > 0) {
-      gsap.from(steps, {
-        opacity: 0,
-        y: 80,
-        stagger: 0.3,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: steps[0],
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
+    
+    if (isIOS()) {
+      if (comoTrabajamosIntersectionObserver) {
+        comoTrabajamosIntersectionObserver.disconnect();
+      }
+      
+      comoTrabajamosIntersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
+            if (steps.length > 0) {
+              gsap.to(steps, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.3,
+                duration: 0.8,
+                ease: "power3.out",
+              });
+            }
+            
+            if (dotsAndIcons.length > 0) {
+              gsap.to(dotsAndIcons, {
+                opacity: 1,
+                scale: 1,
+                stagger: 0.2,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+              });
+            }
+          } else if (!entry.isIntersecting) {
+            if (steps.length > 0) {
+              gsap.to(steps, {
+                opacity: 0,
+                y: 80,
+                duration: 0.4,
+                ease: "power2.in",
+              });
+            }
+            if (dotsAndIcons.length > 0) {
+              gsap.to(dotsAndIcons, {
+                opacity: 0,
+                scale: 0,
+                duration: 0.3,
+                ease: "power2.in",
+              });
+            }
+          }
+        });
+      }, {
+        threshold: [0, 0.2, 0.5],
+        rootMargin: '-20% 0px'
       });
-    }
+      
+      comoTrabajamosIntersectionObserver.observe(section);
+      
+    } else {
+      if (typeof ScrollTrigger === "undefined") {
+        console.error("ScrollTrigger no está cargado.");
+        return;
+      }
 
-    if (dotsAndIcons.length > 0) {
-      gsap.from(dotsAndIcons, {
-        opacity: 0,
-        scale: 0,
-        stagger: 0.2,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: steps[0],
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        }
+      gsap.registerPlugin(ScrollTrigger);
+
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+
+      if (steps.length > 0) {
+        gsap.from(steps, {
+          opacity: 0,
+          y: 80,
+          stagger: 0.3,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: steps[0],
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      if (dotsAndIcons.length > 0) {
+        gsap.from(dotsAndIcons, {
+          opacity: 0,
+          scale: 0,
+          stagger: 0.2,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: steps[0],
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          }
+        });
+      }
+      
+      function handleResize() {
+        clearTimeout(comoTrabajamosResizeTimeout);
+        comoTrabajamosResizeTimeout = setTimeout(() => {
+          if (window.ScrollTrigger) {
+            ScrollTrigger.refresh();
+          }
+        }, 250);
+      }
+      
+      window.addEventListener('resize', handleResize);
+      
+      if (comoTrabajamosResizeObserver) {
+        comoTrabajamosResizeObserver.disconnect();
+      }
+      
+      comoTrabajamosResizeObserver = new ResizeObserver(() => {
+        clearTimeout(comoTrabajamosResizeTimeout);
+        comoTrabajamosResizeTimeout = setTimeout(() => {
+          if (window.ScrollTrigger) {
+            ScrollTrigger.refresh();
+          }
+        }, 250);
       });
+      
+      comoTrabajamosResizeObserver.observe(document.documentElement);
     }
-    
-    function handleResize() {
-      clearTimeout(comoTrabajamosResizeTimeout);
-      comoTrabajamosResizeTimeout = setTimeout(() => {
-        if (window.ScrollTrigger) {
-          ScrollTrigger.refresh();
-        }
-      }, 250);
-    }
-    
-    window.addEventListener('resize', handleResize);
-    
-    if (comoTrabajamosResizeObserver) {
-      comoTrabajamosResizeObserver.disconnect();
-    }
-    
-    comoTrabajamosResizeObserver = new ResizeObserver(() => {
-      clearTimeout(comoTrabajamosResizeTimeout);
-      comoTrabajamosResizeTimeout = setTimeout(() => {
-        if (window.ScrollTrigger) {
-          ScrollTrigger.refresh();
-        }
-      }, 250);
-    });
-    
-    comoTrabajamosResizeObserver.observe(document.documentElement);
   }
   
   document.addEventListener('astro:page-load', initComoTrabajamos);
@@ -178,6 +244,9 @@ import Crecimiento from "./ComoTrabajamos/Crecimiento.astro";
     }
     if (comoTrabajamosResizeObserver) {
       comoTrabajamosResizeObserver.disconnect();
+    }
+    if (comoTrabajamosIntersectionObserver) {
+      comoTrabajamosIntersectionObserver.disconnect();
     }
     clearTimeout(comoTrabajamosResizeTimeout);
   });

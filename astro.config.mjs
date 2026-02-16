@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "certification-fishing-novels-observer.trycloudflare.com"
+      "aside-filed-framed-subjects.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]
