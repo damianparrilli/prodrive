@@ -1,29 +1,96 @@
 ---
 import CardEquipo from "./CardEquipo.astro";
 
-import giselaImage from "../../assets/images/gisela.jpg";
-import lisandroImage from "../../assets/images/lisandro.jpeg";
+import giselaImage from "../../assets/images/gisela.png";
+import lisandroImage from "../../assets/images/lisandro.png";
+import marceloImage from "../../assets/images/marcelo.png";
+import diegoImage from "../../assets/images/diego.png";
+import eitanImage from "../../assets/images/eitan.png";
+import leandroImage from "../../assets/images/leandro.png";
+import darioImage from "../../assets/images/dario.png";
+import antonellaImage from "../../assets/images/antonella.png";
+import marianaImage from "../../assets/images/mariana.png";
+
 ---
 
 <section class="pt-4 pb-16">
   <div class="contenedor">
     <h2 class="equipo-titulo text-2xl md:text-3xl text-center">Conoce a nuestro equipo</h2>
-    <div class="flex flex-col max-[500px]:mx-auto max-[500px]:max-w-96 min-[500px]:flex-row gap-4 pt-6 pb-12 justify-center overflow-x-hidden">
-      
+    <div class="grid grid-cols-1 min-[500px]:grid-cols-2  gap-6 pt-6 pb-6  max-[500px]:mx-auto max-[500px]:max-w-96 max-w-5xl mx-auto overflow-x-hidden">
+    
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Dario Castrelo"
+            puesto=""
+            imagen={darioImage}
+            descripcion="Dario es Técnico informático de Nivel 4 desarrollando tareas de asesor y consultor de soporte de implementaciones complejas en servidores y seguridad de red, además de poseer estas tareas. es fanático de la impresión 3D por lo que posee un taller de reparación de impresoras a nivel industrial. Una larga carrera como Sysadmin de entes gubernamentales le valió una experiencia única en gestión de TI."
+            />
+        </div>
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Diego Guastoni"
+            puesto=""
+            imagen={diegoImage}
+            descripcion="Diego es técnico electrónico y electricista, con más de 30 años especializado en sistemas de seguridad física, soluciones para industria e implementaciones adaptadas a la necesidad del cliente, hoy como consultor de energías renovables, IOT y sistemas de control y seguridad electrónica. Tenes que cuidarte porque donde te distraes te enchufa alguna solución inmediata y resuelve problemas de una manera tan eficiente que sorprende a los orientales."
+            />
+        </div>
         <div class="equipo-card">
           <CardEquipo
             nombre="Gisela Nonaka"
-            puesto="Gestión de Mejoras"
+            puesto=""
             imagen={giselaImage}
-            descripcion={'"Promover la mejora continua, mejorando el entorno laboral y aumentando la productividad, es el mejor camino para convertirse en una empresa eficiente"'}
+            descripcion="Gisela es Licenciada en administración de empresas, con especialización en Kaizen 5s y mejora contínua, luego de realizar cursos en Japón se unió a Prodrive en 2016 como responsable técnica de cuentas y responsable en jefe del servicio técnico, desempeñando tareas de resolución de casos inmediatos de Nivel 2.Sumado a su tarea Gise es Chef Gourmet y Taikista."
+            />
+        </div>
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Eitan Mohorade"
+            puesto=""
+            imagen={eitanImage}
+            descripcion="Eitan es estudiante de ciencias de la computación, y entusiasta de tecnología, comenzó en Prodrive en 2026 como Helpdesk y Soporte inicial de Nivel 1, brindando soluciones directa a los clientes y desarrollando soluciones de programación interna para mejora contínua. Eitan se destaca por su facilidad de aprendizaje y su disponibilidad para resolver problemas con mucha actitud."
             />
         </div>
         <div class="equipo-card">
           <CardEquipo
             nombre="Lisandro Valentini"
-            puesto="Gestión de Implementación"
+            puesto=""
             imagen={lisandroImage}
-            descripcion="Especializados en implementaciones de tecnología y desarollo, buscamos que su empresa sea líder en el rubro, solucionando dificultades del día a día."
+            descripcion="Lisandro es fundador de Prodrive en 1999, luego de estudiar informática y ciberseguridad, actualmente es el responsable comercial y arquitecto de tecnología, desarrollando soluciones y realizando el seguimiento de la cadena de soporte y casos especiales, fue consultor externo de entes gubernamentales durante 20 años. Ahora está enfocado en optimizar procesos y proteger datos sensibles dentro y fuera de la empresa."
+            />
+        </div>
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Leandro Laporta"
+            puesto=""
+            imagen={leandroImage}
+            descripcion="Leandro es técnico informático de Nivel 3, además posee amplios conocimientos en electricidad, radio y tecnología analógica, con más de 20 años trabajando como técnico en sistemas, hoy se desarrolla en Prodrive como asesor técnico y soporte de nivel 2 y 3. Además Leandro es youtuber, promotor de energías renovables y análisis de productos."
+            />
+        </div>
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Antonella Valentini"
+            puesto=""
+            imagen={antonellaImage}
+            descripcion="Antonella es estudiante de Marketing y comercio internacional, siendo bachiller de ciencias económicas, se unió a Prodrive en 2026 para propulsar el Marketing de la empresa y soporte para los canales de comunicación. Con habilidades para hipercomunicación y danza, transmite dentro y fuera de la empresa su alegría y datos para mejorar dia a dia la gestión externa y visualización de la empresa."
+            />
+        </div>
+        <div class="equipo-card">
+          <CardEquipo
+            nombre="Mariana Fama"
+            puesto=""
+            imagen={marianaImage}
+            descripcion="Mariana es A.P.M. Hoy, responsable administrativa y de control de cuentas corrientes, posee 20 años de experiencia en gestión de documentación, bancaria y de pago a proveedores, facilitando en el día a día la gestión de cuentas, siendo un soporte comercial fundamental para la organización. Marian está desde 2010 ejerciendo esta profesión, y se suele escapar a la playa que es lo que ama."
+            />
+        </div>
+        
+    </div>
+    <div class="flex flex-col max-[500px]:mx-auto max-[500px]:max-w-96 min-[500px]:flex-row gap-4 pb-12 justify-center overflow-x-hidden items-stretch">
+      <div class="equipo-card">
+          <CardEquipo
+            nombre="Marcelo Felman"
+            puesto=""
+            imagen={marceloImage}
+            descripcion="Marcelo es Licenciado en sistemas y técnico informático de Nivel 3 en su carrera de 18 años se desempeña como Ingeniero de análisis de datos y gestión de transformación tecnológica con IA,  además de haber sido parte activa del crecimiento de la empresa hoy desde el lugar de consultor posee amplia experiencia en desarrollo control y seguimiento de negocio y gestión de organizaciones. Fanático de los gatos y el ejercicio Marce cuenta con una habilidad innata de disfrutar, sumado a eso es Coach Ontológico hace mas de 1 década."
             />
         </div>
     </div>
@@ -67,10 +134,9 @@ import lisandroImage from "../../assets/images/lisandro.jpeg";
             scrollTrigger: {
               trigger: titulo,
               start: "top 80%",
-              toggleActions: "play none none reset",
-              onLeaveBack: () => {
-                window.gsap.set(titulo, { opacity: 0, y: -50 });
-              },
+              // Cambiamos "reset" por "reverse"
+              toggleActions: "play none none reverse", 
+              // Eliminamos la función onLeaveBack con gsap.set
             },
           }
         );
@@ -93,10 +159,9 @@ import lisandroImage from "../../assets/images/lisandro.jpeg";
             scrollTrigger: {
               trigger: card,
               start: "top 80%",
-              toggleActions: "play none none reset",
-              onLeaveBack: () => {
-                window.gsap.set(card, { opacity: 0, x: xInicial });
-              },
+              // Cambiamos "reset" por "reverse"
+              toggleActions: "play none none reverse",
+              // Eliminamos la función onLeaveBack con gsap.set
             },
           }
         );
