@@ -21,9 +21,10 @@ const { channelId, width = 800, height = 450 } = Astro.props as Props;
 
     try {
       const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`;
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`;
 
       const response = await fetch(proxyUrl);
+      if (!response.ok) throw new Error('Proxy error');
       const text = await response.text();
 
       const match =
