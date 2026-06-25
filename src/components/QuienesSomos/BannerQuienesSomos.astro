@@ -3,17 +3,17 @@
 
 <section id="quienes-somos-banner" class="banner py-50 w-full bg-center bg-size-[45%] bg-no-repeat bg-contact relative overflow-hidden">
     <canvas id="quienes-canvas" class="absolute top-0 left-0 w-full h-full -z-10"></canvas>
-    <div class="contenedor flex flex-col justify-center items-center h-full text-center gap-2 relative z-10">
-        <h1 class="text-4xl md:text-5xl mb-4">Nuestra historia</h1>
-        <div id="typing-container" class="text-lg md:text-xl max-w-[1000px] relative">
+    <div class="contenedor flex flex-col justify-center items-center h-full gap-2 relative z-10">
+        <h1 class="text-4xl md:text-5xl mb-4 text-center">Nuestra historia</h1>
+        <div id="typing-container" class="text-lg md:text-xl max-w-[1000px] relative text-left w-full">
             <div id="typing-hidden" class="invisible space-y-4" aria-hidden="true">
                 <p>Prodrive nace en 1999 como un proyecto orientado a brindar soluciones tecnológicas para PYMES, adaptadas a las necesidades y particularidades de cada mercado.</p>
                 <p>Con la llegada y expansión de Internet, las empresas comenzaron a demandar soluciones informáticas cada vez más complejas. A lo largo de los años fuimos incorporando conocimiento y experiencia, alcanzando en 2010 un salto cualitativo mediante la implementación de proyectos tecnológicos de mayor complejidad.</p>
                 <p>En 2013, a través de formación continua y capacitaciones especializadas, nos posicionamos firmemente en sectores industriales, de servicios y organismos gubernamentales. En 2019 desarrollamos procesos internos de gestión avanzados, lo que nos permitió mantener un servicio altamente personalizado sin perder eficiencia.</p>
                 <p>Durante el período 2020–2022 acompañamos a nuestros clientes en la digitalización de procesos críticos, fortaleciendo la conectividad y consolidándonos como un socio estratégico en contextos de alta exigencia operativa.</p>
                 <p>Actualmente continuamos brindando soluciones tecnológicas con altos niveles de capacidad, disponibilidad y adaptación. Creemos que la tecnología debe estar al servicio de las personas: incorporamos Inteligencia Artificial de forma estratégica, sin despersonalizar el negocio y comprendiendo las necesidades actuales de gestión.</p>
-                <p class="font-semibold mt-8">Nuestra mejor definición:</p>
-                <p class="italic">Somos fanáticos de lo que hacemos día a día para que nuestros clientes nos recomienden de forma natural como un aliado de negocio.</p>
+                <p class="font-semibold mt-8 text-center">Nuestra mejor definición:</p>
+                <p class="italic text-center">Somos fanáticos de lo que hacemos día a día para que nuestros clientes nos recomienden de forma natural como un aliado de negocio.</p>
             </div>
             
             <div id="typing-visible" class="absolute top-0 left-0 w-full space-y-4">
@@ -22,8 +22,8 @@
                 <p class="typing-paragraph" data-text="En 2013, a través de formación continua y capacitaciones especializadas, nos posicionamos firmemente en sectores industriales, de servicios y organismos gubernamentales. En 2019 desarrollamos procesos internos de gestión avanzados, lo que nos permitió mantener un servicio altamente personalizado sin perder eficiencia."></p>
                 <p class="typing-paragraph" data-text="Durante el período 2020–2022 acompañamos a nuestros clientes en la digitalización de procesos críticos, fortaleciendo la conectividad y consolidándonos como un socio estratégico en contextos de alta exigencia operativa."></p>
                 <p class="typing-paragraph" data-text="Actualmente continuamos brindando soluciones tecnológicas con altos niveles de capacidad, disponibilidad y adaptación. Creemos que la tecnología debe estar al servicio de las personas: incorporamos Inteligencia Artificial de forma estratégica, sin despersonalizar el negocio y comprendiendo las necesidades actuales de gestión."></p>
-                <p class="typing-paragraph font-semibold mt-8" data-text="Nuestra mejor definición:"></p>
-                <p class="typing-paragraph italic" data-text="Somos fanáticos de lo que hacemos día a día para que nuestros clientes nos recomienden de forma natural como un aliado de negocio."></p>
+                <p class="typing-paragraph font-semibold mt-8 text-center" data-text="Nuestra mejor definición:"></p>
+                <p class="typing-paragraph italic text-center" data-text="Somos fanáticos de lo que hacemos día a día para que nuestros clientes nos recomienden de forma natural como un aliado de negocio."></p>
             </div>
         </div>
     </div>
@@ -195,7 +195,7 @@
               
               timeline.to({ i: 0 }, {
                 i: chars.length,
-                duration: chars.length * 0.03,
+                duration: chars.length * 0.01,
                 ease: "none",
                 onUpdate: function() {
                   const i = Math.floor(this.targets()[0].i);
