@@ -1,59 +1,28 @@
----
-interface Props {
-  channelId: string;
-  width?: number;
-  height?: number;
-}
-
-const { channelId, width = 800, height = 450 } = Astro.props as Props;
----
-
-<div class="youtube-container" data-channel-id={channelId}>
-  <p class="youtube-loading">Cargando último video...</p>
+<div class="youtube-container" id="video-wrapper">
+  <iframe
+    data-src="https://www.youtube.com/embed/vAQ1Uqbpr9o?autoplay=1&mute=1"
+    width="100%"
+    height="100%"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen
+  ></iframe>
 </div>
 
 <script>
-  async function loadLatestVideo() {
-    const container = document.querySelector('.youtube-container');
-    const channelId = container?.getAttribute('data-channel-id');
-    
-    if (!channelId) return;
+  const wrapper = document.getElementById('video-wrapper');
+  const iframe = wrapper?.querySelector('iframe');
 
-    try {
-      const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-
-      if (data.status === 'ok' && data.items.length > 0) {
-        const videoLink = data.items[0].link;
-        const match = videoLink.match(/v=([^&]+)/);
-        const videoId = match ? match[1] : '';
-
-        if (videoId && container) {
-          container.innerHTML = `
-            <iframe
-              src="https://www.youtube.com/embed/${videoId}?rel=0"
-              width="100%"
-              height="100%"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          `;
-        }
-      } else {
-        throw new Error("No se encontraron videos");
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && iframe) {
+        iframe.src = iframe.getAttribute('data-src') || '';
+        obs.unobserve(entry.target);
       }
-    } catch (error) {
-      if (container) {
-        container.innerHTML = '<p class="youtube-loading">Error al cargar el video</p>';
-      }
-    }
-  }
+    });
+  }, { threshold: 0.5 });
 
-  loadLatestVideo();
+  if (wrapper) observer.observe(wrapper);
 </script>
 
 <style>
@@ -63,22 +32,12 @@ const { channelId, width = 800, height = 450 } = Astro.props as Props;
     margin: 0 auto 100px auto;
     aspect-ratio: 16 / 9;
     background: #000;
-    position: relative;
   }
 
   .youtube-container iframe {
     width: 100%;
     height: 100%;
     border: 0;
-  }
-
-  .youtube-loading {
-    color: #fff;
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   @media (max-width: 1200px) and (min-width: 768px) {
