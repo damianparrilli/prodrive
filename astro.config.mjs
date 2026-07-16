@@ -13,7 +13,7 @@ export default defineConfig({
   },
 server: {
     allowedHosts: [
-      "aside-filed-framed-subjects.trycloudflare.com"
+      "awareness-libraries-colleague-package.trycloudflare.com"
     ]
   },
   integrations: [sitemap()]

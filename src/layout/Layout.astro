@@ -68,6 +68,7 @@ const { title, description, keywords } = Astro.props;
     />
     <title>{title}</title>
     <ClientRouter />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
   <body class="overflow-x-hidden bg-[#0B081D]">
     <Header />
@@ -88,6 +89,7 @@ const { title, description, keywords } = Astro.props;
       font-size: 14px;
     }
   }
+
 </style>
 
     <script is:inline>
@@ -132,4 +134,9 @@ const { title, description, keywords } = Astro.props;
     min-height: 100dvh;
     grid-template-rows: auto 1fr auto;
   }
+  
+  main {
+  display: contents;
+}
+
 </style>
